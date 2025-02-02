@@ -1,1 +1,95 @@
-Hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Notepad++ Style</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #dcdcdc;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1rem;
+    }
+
+    .editor-container {
+      background-color: #252526;
+      border: 1px solid #3c3c3c;
+      border-radius: 5px;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 900px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    h1, h2 {
+      color: #569cd6;
+    }
+
+    a {
+      color: #4ec9b0;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      display: block;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .syntax-comment {
+      color: #6a9955;
+    }
+
+    .syntax-keyword {
+      color: #569cd6;
+    }
+
+    .syntax-string {
+      color: #d69d85;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <h1></h1>
+    <code><span class="syntax-comment">// Personal Information</span></code>
+    <code><span class="syntax-keyword">Name:</span> "Arshad Shaik"</code>
+    <code><span class="syntax-keyword">Title:</span> "Software Developer & Machine Learning Enthusiast"</code>
+
+    <code><span class="syntax-comment">// Resume Section</span></code>
+    <code><span class="syntax-keyword">Resume:</span> <a href="./resume.pdf" target="_blank">"Download Resume"</a></code>
+
+    <code><span class="syntax-comment">// Projects Section</span></code>
+    <code>Project1 = <span class="syntax-string">"Traffic Light Optimization Algorithm"</span></code>
+    <code>Project2 = <span class="syntax-string">"AI Image Classifier"</span></code>
+
+    <code><span class="syntax-comment">// Contact Section</span></code>
+    <code><span class="syntax-keyword">Email:</span> "yourname@example.com"</code>
+    <code><span class="syntax-keyword">GitHub:</span> <a href="https://github.com/yourgithub">"github.com/yourgithub"</a></code>
+    <code><span class="syntax-keyword">LinkedIn:</span> <a href="https://linkedin.com/in/yourlinkedin">"linkedin.com/in/yourlinkedin"</a></code>
+  </div>
+  <footer>
+    <p>&copy; 2025 </p>
+  </footer>
+</body>
+</html>
