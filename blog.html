@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Medium Posts Showcase</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .animation-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #111, #333);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .letter {
+      font-size: 150px;
+      font-weight: bold;
+      color: crimson;
+      text-shadow: 0 0 20px crimson;
+      animation: fadeInZoom 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .blog-container {
+      opacity: 0;
+      animation: fadeIn 3s ease-in 3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .medium-posts {
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 1rem 0;
+    }
+
+    a {
+      color: crimson;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-container">
+    <div class="letter">A</div>
+  </div>
+  <div class="blog-container">
+    <div class="medium-posts">
+      <h1>My Medium Posts</h1>
+      <ul>
+        <li><a href="#">How I Built a Traffic Light Optimization Algorithm</a></li>
+        <li><a href="#">Exploring Image Classification with AI</a></li>
+        <li><a href="#">Building a Real-Time Object Detection System</a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        document.querySelector('.animation-container').style.display = 'none';
+        document.querySelector('.blog-container').style.opacity = '1';
+      }, 3000);
+    };
+  </script>
+</body>
+</html>
