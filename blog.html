@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Medium Posts Showcase</title>
+  <title>Arshad's Blog</title>
   <style>
     * {
       margin: 0;
@@ -16,45 +16,49 @@
       color: white;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
     }
 
     .animation-container {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #111, #333);
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
     }
 
     .letter {
-      font-size: 150px;
+      font-size: 200px;
       font-weight: bold;
       color: crimson;
-      text-shadow: 0 0 20px crimson;
-      animation: fadeInZoom 3s ease-in-out forwards;
+      animation: zoomEffect 3s forwards;
     }
 
-    @keyframes fadeInZoom {
+    @keyframes zoomEffect {
       0% {
-        opacity: 0;
-        transform: scale(0.1);
-      }
-      100% {
-        opacity: 1;
         transform: scale(1);
       }
+      50% {
+        transform: scale(5);
+        color: crimson;
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(60) translateY(-10vh);
+        opacity: 0;
+      }
     }
 
-    .blog-container {
+    .main-container {
       opacity: 0;
-      animation: fadeIn 3s ease-in 3s forwards;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      animation: fadeIn 2s ease-in 3s forwards;
     }
 
     @keyframes fadeIn {
@@ -66,15 +70,37 @@
       }
     }
 
-    .medium-posts {
+    .sidebar {
+      width: 20%;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2rem;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      text-transform: uppercase;
+    }
+
+    .sidebar a:hover {
+      color: crimson;
+    }
+
+    .content {
+      width: 80%;
       padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     h1 {
-      text-align: center;
+      text-align: left;
       font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     ul {
@@ -86,12 +112,12 @@
       margin: 1rem 0;
     }
 
-    a {
+    a.post-link {
       color: crimson;
       text-decoration: none;
     }
 
-    a:hover {
+    a.post-link:hover {
       text-decoration: underline;
     }
   </style>
@@ -100,13 +126,19 @@
   <div class="animation-container">
     <div class="letter">A</div>
   </div>
-  <div class="blog-container">
-    <div class="medium-posts">
+  <div class="main-container">
+    <div class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="content">
       <h1>My Medium Posts</h1>
       <ul>
-        <li><a href="#">How I Built a Traffic Light Optimization Algorithm</a></li>
-        <li><a href="#">Exploring Image Classification with AI</a></li>
-        <li><a href="#">Building a Real-Time Object Detection System</a></li>
+        <li><a class="post-link" href="https://medium.com/me/stats/post/32a83cd4daf1">Linear regression with supervised data using python</a></li>
+        <li><a class="post-link" href="https://medium.com/me/stats/post/79d7a6f67469">Model Evaluation metrics:MSE and R2</a></li>
+        <li><a class="post-link" href="#">Building a Real-Time Object Detection System</a></li>
       </ul>
     </div>
   </div>
@@ -114,7 +146,7 @@
     window.onload = function () {
       setTimeout(() => {
         document.querySelector('.animation-container').style.display = 'none';
-        document.querySelector('.blog-container').style.opacity = '1';
+        document.querySelector('.main-container').style.opacity = '1';
       }, 3000);
     };
   </script>
