@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arshad Shaik</title>
+    <title>Arshad Shaik's Portfolio Jungle Game</title>
     <style>
         body {
             margin: 0;
@@ -24,17 +24,22 @@
             z-index: 1000;
         }
 
-        .prompt {
+        .score {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 10px;
+            right: 10px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 15px;
-            font-size: 1.2rem;
-            display: none;
+            padding: 10px;
+            font-size: 1rem;
             z-index: 1000;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #0d0d0d;
+            border: 2px solid white;
         }
     </style>
 </head>
@@ -43,7 +48,7 @@
 
     <div class="info-panel">
         <h1>Welcome to Arshad's Portfolio Jungle!</h1>
-        <p>Use arrow keys to navigate.</p>
+        <p>Use arrow keys to move and jump in the game below.</p>
         <ul>
             <li>Projects: <a href="./projects.html" target="_blank">Explore Projects</a></li>
             <li>Blog: <a href="./blog.html" target="_blank">Read Blog Posts</a></li>
@@ -51,112 +56,179 @@
         </ul>
     </div>
 
-    <div class="prompt" id="prompt-box">
-        <p>Do you want to visit the Projects or Blog?</p>
-        <button onclick="window.location.href='./projects.html'">Go to Projects</button>
-        <button onclick="window.location.href='./blog.html'">Go to Blog</button>
-    </div>
+    <div class="score" id="score">Score: 0</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
 
     <script>
-        // Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        // Game Variables
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        let score = 0;
+        let gameOver = false;
 
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 10, 7.5);
-        scene.add(directionalLight);
+        // Player Variables
+        const player = {
+            x: 50,
+            y: canvas.height - 100,
+            width: 30,
+            height: 50,
+            speed: 5,
+            dx: 0,
+            dy: 0,
+            gravity: 0.5,
+            jumpPower: -10,
+            grounded: false
+        };
 
-        // Red Box (Car)
-        const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-        const boxMaterial = new THREE.MeshStandardMaterial({ color: 0xff5733 });
-        const box = new THREE.Mesh(boxGeometry, boxMaterial);
-        box.position.y = 0.5;
-        scene.add(box);
-
-        // Ground plane
-        const groundGeometry = new THREE.PlaneGeometry(50, 50);
-        const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x228B22 });
-        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-        ground.rotation.x = -Math.PI / 2;
-        scene.add(ground);
-
-        // Animal-like creatures (Yellow spheres)
-        function createAnimal(x, z) {
-            const animalGeometry = new THREE.SphereGeometry(1); // Simulating an animal with a sphere
-            const animalMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
-            const animal = new THREE.Mesh(animalGeometry, animalMaterial);
-            animal.position.set(x, 1, z);
-            scene.add(animal);
-            return animal;
-        }
-
-        // Points of interest (animals)
-        const animals = [
-            { position: new THREE.Vector3(10, 0.5, -10), type: 'Projects' },
-            { position: new THREE.Vector3(-20, 0.5, 15), type: 'Blog' }
+        // Platform Variables
+        const platforms = [
+            { x: 0, y: canvas.height - 50, width: canvas.width, height: 50 }, // Ground
+            { x: 200, y: 450, width: 150, height: 20 },
+            { x: 400, y: 350, width: 150, height: 20 },
+            { x: 600, y: 250, width: 150, height: 20 },
         ];
 
-        animals.forEach(animal => {
-            animal.model = createAnimal(animal.position.x, animal.position.z);
+        // Falling objects (simulating Donkey Kong)
+        const fallingObjects = [];
+        const fallingObjectSpeed = 3;
+
+        // Event listeners for player movement
+        let keys = {};
+        window.addEventListener("keydown", (e) => {
+            keys[e.key] = true;
+        });
+        window.addEventListener("keyup", (e) => {
+            keys[e.key] = false;
         });
 
-        // Player movement (Red Box / Car)
-        const speed = 0.2;
-        const keys = {};
-        window.addEventListener('keydown', (event) => keys[event.key] = true);
-        window.addEventListener('keyup', (event) => keys[event.key] = false);
+        // Game Loop
+        function gameLoop() {
+            if (gameOver) {
+                ctx.fillStyle = "red";
+                ctx.font = "30px Arial";
+                ctx.fillText("Game Over!", canvas.width / 2 - 80, canvas.height / 2);
+                return;
+            }
 
-        function handleMovement() {
-            if (keys['ArrowUp']) box.position.z -= speed;
-            if (keys['ArrowDown']) box.position.z += speed;
-            if (keys['ArrowLeft']) box.position.x -= speed;
-            if (keys['ArrowRight']) box.position.x += speed;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            movePlayer();
+            updatePlayerPosition();
+            detectCollisions();
+            drawPlatforms();
+            drawFallingObjects();
+            drawPlayer();
+            updateScore();
+
+            requestAnimationFrame(gameLoop);
         }
 
-        // Camera setup
-        camera.position.set(0, 10, 10);
-        camera.lookAt(0, 0, 0);
+        // Draw Platforms
+        function drawPlatforms() {
+            ctx.fillStyle = "#228B22"; // Ground and platforms color
+            platforms.forEach(platform => {
+                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+            });
+        }
 
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
+        // Draw the Player
+        function drawPlayer() {
+            ctx.fillStyle = "#ff5733"; // Red player (box)
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
 
-            handleMovement();
-            camera.position.x = box.position.x;
-            camera.position.z = box.position.z + 10;
-            camera.lookAt(box.position);
+        // Move Player
+        function movePlayer() {
+            if (keys["ArrowLeft"]) {
+                player.dx = -player.speed;
+            } else if (keys["ArrowRight"]) {
+                player.dx = player.speed;
+            } else {
+                player.dx = 0;
+            }
 
-            // Collision detection: Check if box (car) collides with any animal
-            animals.forEach(animal => {
-                const distance = box.position.distanceTo(animal.position);
-                if (distance < 2) {
-                    document.getElementById('prompt-box').style.display = 'block';
-                    document.getElementById('prompt-box').dataset.type = animal.type;
+            if (keys["ArrowUp"] && player.grounded) {
+                player.dy = player.jumpPower;
+                player.grounded = false;
+            }
+
+            player.x += player.dx;
+            player.y += player.dy;
+        }
+
+        // Update Player Position (gravity and jumping)
+        function updatePlayerPosition() {
+            // Apply gravity
+            if (player.y + player.height < canvas.height) {
+                player.dy += player.gravity;
+            } else {
+                player.dy = 0;
+                player.grounded = true;
+            }
+
+            // Prevent going off-screen
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+        }
+
+        // Detect Collisions
+        function detectCollisions() {
+            // Platform collisions
+            player.grounded = false;
+            platforms.forEach(platform => {
+                if (player.y + player.height <= platform.y && player.y + player.height + player.dy >= platform.y &&
+                    player.x + player.width > platform.x && player.x < platform.x + platform.width) {
+                    player.y = platform.y - player.height;
+                    player.dy = 0;
+                    player.grounded = true;
                 }
             });
 
-            renderer.render(scene, camera);
+            // Falling object collisions
+            fallingObjects.forEach((object, index) => {
+                if (object.x < player.x + player.width && object.x + object.width > player.x &&
+                    object.y < player.y + player.height && object.y + object.height > player.y) {
+                    gameOver = true;
+                }
+            });
         }
 
-        animate();
+        // Generate Falling Objects (simulating Donkey Kong)
+        function generateFallingObjects() {
+            if (Math.random() < 0.02) {
+                const x = Math.random() * canvas.width;
+                fallingObjects.push({ x, y: 0, width: 20, height: 20 });
+            }
+        }
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
+        // Draw Falling Objects
+        function drawFallingObjects() {
+            ctx.fillStyle = "yellow"; // Falling objects (simulating barrels)
+            fallingObjects.forEach((object, index) => {
+                object.y += fallingObjectSpeed;
+                ctx.fillRect(object.x, object.y, object.width, object.height);
+            });
+
+            // Remove objects that have fallen out of the canvas
+            fallingObjects.forEach((object, index) => {
+                if (object.y > canvas.height) {
+                    fallingObjects.splice(index, 1);
+                    score += 10; // Increase score when object disappears
+                }
+            });
+        }
+
+        // Update the score
+        function updateScore() {
+            document.getElementById("score").textContent = `Score: ${score}`;
+        }
+
+        // Start the game
+        generateFallingObjects();
+        gameLoop();
 
     </script>
-
 </body>
 
 </html>
