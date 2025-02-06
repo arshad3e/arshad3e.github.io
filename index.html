@@ -1,79 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Procedural Jungle</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Courier New', Courier, monospace;
-      background-color: #000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arshad Shaik</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+        }
 
-    canvas {
-      display: block;
-    }
-  </style>
+        .info-panel {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 1rem;
+            z-index: 1000;
+        }
+
+        .prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
 </head>
+
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
 
-    // Basic Car Shape (Procedural)
-    const carGeometry = new THREE.BoxGeometry(1, 0.5, 2);
-    const carMaterial = new THREE.MeshStandardMaterial({ color: 0xffa500 }); // Orange
-    const car = new THREE.Mesh(carGeometry, carMaterial);
-    scene.add(car);
+    <div class="info-panel">
+        <h1>Welcome to Arshad's Portfolio Jungle!</h1>
+        <p>Use arrow keys to navigate.</p>
+        <ul>
+            <li>Projects: <a href="./projects.html" target="_blank">Explore Projects</a></li>
+            <li>Blog: <a href="./blog.html" target="_blank">Read Blog Posts</a></li>
+            <li>Contact: <a href="mailto:arshad.3e.1@gmail.com">Email Me</a></li>
+        </ul>
+    </div>
 
-    // Procedural "Jungle" (Simplified)
-    for (let i = 0; i < 100; i++) {
-      const x = (Math.random() - 0.5) * 50;
-      const z = (Math.random() - 0.5) * 50;
-      const height = Math.random() * 5 + 1;
+    <div class="prompt" id="prompt-box">
+        <p>Do you want to visit the Projects or Blog?</p>
+        <button onclick="window.location.href='./projects.html'">Go to Projects</button>
+        <button onclick="window.location.href='./blog.html'">Go to Blog</button>
+    </div>
 
-      const treeGeometry = new THREE.CylinderGeometry(0.2, 0.2, height);
-      const treeMaterial = new THREE.MeshStandardMaterial({ color: 0x228B22 }); // Green
-      const tree = new THREE.Mesh(treeGeometry, treeMaterial);
-      tree.position.set(x, height / 2, z);
-      scene.add(tree);
-    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    // Ground (Procedural)
-    const groundGeometry = new THREE.PlaneGeometry(100, 100);
-    const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x38761d }); // Darker green
-    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-    ground.rotation.x = -Math.PI / 2;
-    scene.add(ground);
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-    // ... (Your movement code, camera setup, animation loop, etc. - same as before)
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
 
-    // Basic Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-    scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(5, 10, 7.5);
-    scene.add(directionalLight);
+        // Player car (replace cube with box-like car for now)
+        const carGeometry = new THREE.BoxGeometry(2, 1, 4);
+        const carMaterial = new THREE.MeshStandardMaterial({ color: 0xff5733 });
+        const car = new THREE.Mesh(carGeometry, carMaterial);
+        car.position.y = 0.5;
+        scene.add(car);
 
-    camera.position.set(0, 10, 20); // Initial camera position
-    camera.lookAt(car.position); // Look at the car
+        // Ground plane
+        const groundGeometry = new THREE.PlaneGeometry(50, 50);
+        const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x228B22 });
+        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -Math.PI / 2;
+        scene.add(ground);
 
+        // Tree creation
+        function createTree(x, z) {
+            const trunkGeometry = new THREE.CylinderGeometry(0.2, 0.2, 1);
+            const trunkMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
+            trunk.position.set(x, 0.5, z);
 
-    // Animation loop (modified)
-    function animate() {
-      requestAnimationFrame(animate);
-      handleMovement();
-      // ... (camera updates, rendering)
-    }
+            const foliageGeometry = new THREE.SphereGeometry(0.5);
+            const foliageMaterial = new THREE.MeshStandardMaterial({ color: 0x228B22 });
+            const foliage = new THREE.Mesh(foliageGeometry, foliageMaterial);
+            foliage.position.set(x, 1.3, z);
 
-    // ... (rest of your code)
+            scene.add(trunk);
+            scene.add(foliage);
+        }
 
-  </script>
+        // Generate random trees with more density
+        for (let i = 0; i < 150; i++) {
+            const x = (Math.random() - 0.5) * 50;
+            const z = (Math.random() - 0.5) * 50;
+            createTree(x, z);
+        }
+
+        // Points of interest (for navigation)
+        const pointsOfInterest = [
+            { position: new THREE.Vector3(10, 0.5, -10), type: 'Projects' },
+            { position: new THREE.Vector3(-20, 0.5, 15), type: 'Blog' }
+        ];
+
+        pointsOfInterest.forEach(point => {
+            const pointGeometry = new THREE.SphereGeometry(0.5);
+            const pointMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+            const pointMarker = new THREE.Mesh(pointGeometry, pointMaterial);
+            pointMarker.position.set(point.position.x, point.position.y, point.position.z);
+            scene.add(pointMarker);
+            point.marker = pointMarker;
+        });
+
+        // Player movement
+        const speed = 0.2;
+        const keys = {};
+        window.addEventListener('keydown', (event) => keys[event.key] = true);
+        window.addEventListener('keyup', (event) => keys[event.key] = false);
+
+        function handleMovement() {
+            if (keys['ArrowUp']) car.position.z -= speed;
+            if (keys['ArrowDown']) car.position.z += speed;
+            if (keys['ArrowLeft']) car.position.x -= speed;
+            if (keys['ArrowRight']) car.position.x += speed;
+        }
+
+        // Camera setup
+        camera.position.set(0, 10, 10);
+        camera.lookAt(0, 0, 0);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            handleMovement();
+            camera.position.x = car.position.x;
+            camera.position.z = car.position.z + 10;
+            camera.lookAt(car.position);
+
+            // Check proximity to points of interest
+            pointsOfInterest.forEach(point => {
+                const distance = car.position.distanceTo(point.position);
+                if (distance < 5) {
+                    document.getElementById('prompt-box').style.display = 'block';
+                    document.getElementById('prompt-box').dataset.type = point.type;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+    </script>
+
 </body>
+
 </html>
