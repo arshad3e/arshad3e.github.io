@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arshad Shaik's Portfolio Jungle Game</title>
+    <title>Developer Bug Battle Game</title>
     <style>
         body {
             margin: 0;
@@ -38,41 +37,32 @@
         canvas {
             display: block;
             margin: 0 auto;
-            background-color: #0d0d0d;
+            background-color: #111;
             border: 2px solid white;
         }
     </style>
 </head>
-
 <body>
-
     <div class="info-panel">
-        <h1>Welcome to Arshad's Portfolio Jungle!</h1>
-        <p>Use arrow keys to move and jump in the game below.</p>
-        <ul>
-            <li>Projects: <a href="./projects.html" target="_blank">Explore Projects</a></li>
-            <li>Blog: <a href="./blog.html" target="_blank">Read Blog Posts</a></li>
-            <li>Contact: <a href="mailto:arshad.3e.1@gmail.com">Email Me</a></li>
-        </ul>
+        <h1>Developer vs Bugs!</h1>
+        <p>Use arrow keys to move and jump. Push blocks off the third platform to gain points!</p>
     </div>
-
     <div class="score" id="score">Score: 0</div>
-
     <canvas id="gameCanvas" width="800" height="600"></canvas>
 
     <script>
-        // Game Variables
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
         let score = 0;
         let gameOver = false;
 
-        // Player Variables
+        // Player (Developer) Variables
         const player = {
             x: 50,
             y: canvas.height - 100,
             width: 30,
             height: 50,
+            color: "#ff5733",
             speed: 5,
             dx: 0,
             dy: 0,
@@ -81,26 +71,29 @@
             grounded: false
         };
 
-        // Platform Variables
+        // Platforms
         const platforms = [
-            { x: 0, y: canvas.height - 50, width: canvas.width, height: 50 }, // Ground
+            { x: 0, y: canvas.height - 50, width: canvas.width, height: 50 },
             { x: 200, y: 450, width: 150, height: 20 },
             { x: 400, y: 350, width: 150, height: 20 },
-            { x: 600, y: 250, width: 150, height: 20 },
+            { x: 600, y: 250, width: 150, height: 20 } // Third platform
         ];
 
-        // Falling objects (simulating Donkey Kong)
-        const fallingObjects = [];
-        const fallingObjectSpeed = 3;
+        // Blocks to Push
+        const blocks = [
+            { x: 620, y: 220, width: 20, height: 20 },
+            { x: 650, y: 220, width: 20, height: 20 },
+            { x: 680, y: 220, width: 20, height: 20 }
+        ];
 
-        // Event listeners for player movement
+        // Bug Thrower
+        const bugThrower = { x: 0, y: 50, width: 40, height: 40, direction: 1, speed: 2 };
+        const bugs = [];
+
+        // Key Controls
         let keys = {};
-        window.addEventListener("keydown", (e) => {
-            keys[e.key] = true;
-        });
-        window.addEventListener("keyup", (e) => {
-            keys[e.key] = false;
-        });
+        window.addEventListener("keydown", (e) => keys[e.key] = true);
+        window.addEventListener("keyup", (e) => keys[e.key] = false);
 
         // Game Loop
         function gameLoop() {
@@ -116,9 +109,13 @@
             movePlayer();
             updatePlayerPosition();
             detectCollisions();
+            moveBugThrower();
+            generateBug();
             drawPlatforms();
-            drawFallingObjects();
+            drawBlocks();
             drawPlayer();
+            drawBugThrower();
+            drawBugs();
             updateScore();
 
             requestAnimationFrame(gameLoop);
@@ -126,7 +123,7 @@
 
         // Draw Platforms
         function drawPlatforms() {
-            ctx.fillStyle = "#228B22"; // Ground and platforms color
+            ctx.fillStyle = "#228B22";
             platforms.forEach(platform => {
                 ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
             });
@@ -134,47 +131,75 @@
 
         // Draw the Player
         function drawPlayer() {
-            ctx.fillStyle = "#ff5733"; // Red player (box)
+            ctx.fillStyle = player.color;
             ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.fillStyle = "#fff";
+            ctx.fillText("Developer", player.x - 5, player.y - 5);
+        }
+
+        // Draw Bug Thrower
+        function drawBugThrower() {
+            ctx.fillStyle = "purple";
+            ctx.fillRect(bugThrower.x, bugThrower.y, bugThrower.width, bugThrower.height);
+            ctx.fillStyle = "#fff";
+            ctx.fillText("Bug Source", bugThrower.x - 10, bugThrower.y - 10);
+        }
+
+        // Move Bug Thrower
+        function moveBugThrower() {
+            bugThrower.x += bugThrower.direction * bugThrower.speed;
+            if (bugThrower.x < 0 || bugThrower.x + bugThrower.width > canvas.width) {
+                bugThrower.direction *= -1; // Reverse direction
+            }
+        }
+
+        // Generate Bugs
+        function generateBug() {
+            if (Math.random() < 0.02) {
+                bugs.push({ x: bugThrower.x + 20, y: bugThrower.y + 40, width: 10, height: 10 });
+            }
+        }
+
+        // Draw Bugs
+        function drawBugs() {
+            ctx.fillStyle = "yellow";
+            bugs.forEach(bug => {
+                bug.y += 3; // Move bug downward
+                ctx.fillRect(bug.x, bug.y, bug.width, bug.height);
+            });
+        }
+
+        // Draw Blocks
+        function drawBlocks() {
+            ctx.fillStyle = "blue";
+            blocks.forEach(block => {
+                ctx.fillRect(block.x, block.y, block.width, block.height);
+            });
         }
 
         // Move Player
         function movePlayer() {
-            if (keys["ArrowLeft"]) {
-                player.dx = -player.speed;
-            } else if (keys["ArrowRight"]) {
-                player.dx = player.speed;
-            } else {
-                player.dx = 0;
-            }
+            if (keys["ArrowLeft"]) player.dx = -player.speed;
+            else if (keys["ArrowRight"]) player.dx = player.speed;
+            else player.dx = 0;
 
             if (keys["ArrowUp"] && player.grounded) {
                 player.dy = player.jumpPower;
                 player.grounded = false;
             }
-
-            player.x += player.dx;
-            player.y += player.dy;
         }
 
-        // Update Player Position (gravity and jumping)
+        // Update Player Position
         function updatePlayerPosition() {
-            // Apply gravity
-            if (player.y + player.height < canvas.height) {
-                player.dy += player.gravity;
-            } else {
-                player.dy = 0;
-                player.grounded = true;
-            }
+            player.dy += player.gravity;
+            player.x += player.dx;
+            player.y += player.dy;
 
             // Prevent going off-screen
             if (player.x < 0) player.x = 0;
             if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
-        }
 
-        // Detect Collisions
-        function detectCollisions() {
-            // Platform collisions
+            // Platform Collision
             player.grounded = false;
             platforms.forEach(platform => {
                 if (player.y + player.height <= platform.y && player.y + player.height + player.dy >= platform.y &&
@@ -184,51 +209,32 @@
                     player.grounded = true;
                 }
             });
+        }
 
-            // Falling object collisions
-            fallingObjects.forEach((object, index) => {
-                if (object.x < player.x + player.width && object.x + object.width > player.x &&
-                    object.y < player.y + player.height && object.y + object.height > player.y) {
-                    gameOver = true;
+        // Detect Collisions with Blocks
+        function detectCollisions() {
+            blocks.forEach((block, index) => {
+                if (player.x < block.x + block.width &&
+                    player.x + player.width > block.x &&
+                    player.y < block.y + block.height &&
+                    player.y + player.height > block.y) {
+                    block.x += player.dx; // Push the block
+                    if (block.y > canvas.height) {
+                        blocks.splice(index, 1); // Remove block if off-screen
+                        score += 1; // Increase score
+                    }
                 }
             });
         }
 
-        // Generate Falling Objects (simulating Donkey Kong)
-        function generateFallingObjects() {
-            if (Math.random() < 0.02) {
-                const x = Math.random() * canvas.width;
-                fallingObjects.push({ x, y: 0, width: 20, height: 20 });
-            }
-        }
-
-        // Draw Falling Objects
-        function drawFallingObjects() {
-            ctx.fillStyle = "yellow"; // Falling objects (simulating barrels)
-            fallingObjects.forEach((object, index) => {
-                object.y += fallingObjectSpeed;
-                ctx.fillRect(object.x, object.y, object.width, object.height);
-            });
-
-            // Remove objects that have fallen out of the canvas
-            fallingObjects.forEach((object, index) => {
-                if (object.y > canvas.height) {
-                    fallingObjects.splice(index, 1);
-                    score += 10; // Increase score when object disappears
-                }
-            });
-        }
-
-        // Update the score
+        // Update the Score
         function updateScore() {
             document.getElementById("score").textContent = `Score: ${score}`;
         }
 
         // Start the game
-        generateFallingObjects();
+        setInterval(generateBug, 500);
         gameLoop();
-
     </script>
 </body>
-
 </html>
