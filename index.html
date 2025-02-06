@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Notepad++ Style</title>
+  <title>Portfolio - Arshad Shaik</title>
   <style>
     /* General Styles */
     * {
@@ -13,85 +13,143 @@
     }
 
     body {
-      background-color: #1e1e1e;
+      background-color: #000;
       color: #dcdcdc;
       font-family: 'Courier New', Courier, monospace;
-      padding: 1rem;
+      overflow: hidden;
     }
 
     .editor-container {
-      background-color: #252526;
-      border: 1px solid #3c3c3c;
-      border-radius: 5px;
-      padding: 1rem;
-      margin: 1rem auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #1f1f1f;
+      padding: 2rem;
+      border-radius: 15px;
       max-width: 900px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
+      z-index: 10;
     }
 
-    h1, h2 {
-      color: #569cd6;
+    h1 {
+      color: #00ff99;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      display: block;
+      background: rgba(0, 0, 0, 0.6);
+      color: #00ff99;
+      padding: 0.7rem;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+      border-left: 4px solid #00ff99;
     }
 
     a {
-      color: #4ec9b0;
+      color: #ff007f;
       text-decoration: none;
+      font-weight: bold;
     }
 
     a:hover {
       text-decoration: underline;
     }
 
-    code {
-      display: block;
-      background: #1e1e1e;
-      color: #d4d4d4;
-      padding: 0.5rem 0;
-      font-size: 1rem;
-    }
-
-    .syntax-comment {
-      color: #6a9955;
-    }
-
-    .syntax-keyword {
-      color: #569cd6;
-    }
-
-    .syntax-string {
-      color: #d69d85;
+    img {
+      vertical-align: middle;
+      margin-left: 10px;
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      color: #999;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <div class="editor-container">
-    <h1></h1>
-    <code><span class="syntax-comment">// Personal Information</span></code>
-    <code><span class="syntax-keyword">Name:</span> "Arshad Shaik"</code>
-    <code><span class="syntax-keyword">Title:</span> "Software Developer & Machine Learning Enthusiast"</code>
+  <canvas id="background"></canvas>
 
-    <!-- <code><span class="syntax-comment">// Resume Section</span></code>
-    <code><span class="syntax-keyword">Resume:</span> <a href="https://github.com/arshad3e/arshad3e.github.io/blob/master/Arshad_Shaik_Resume.pdf" target="_blank">"Download Resume"</a></code>-->
+  <div class="editor-container">
+    <h1>Portfolio - Arshad Shaik</h1>
+
+    <code><span class="syntax-comment">// Personal Information</span></code>
+    <code><span class="syntax-keyword">Name:</span> <span class="syntax-string">"Arshad Shaik"</span></code>
+    <code><span class="syntax-keyword">Title:</span> <span class="syntax-string">"Software Developer & Machine Learning Enthusiast"</span></code>
 
     <code><span class="syntax-comment">// Projects Section</span></code>
-    <code><span class="syntax-keyword">Projects:</span> <a href="./projects.html" target="_blank"><img src="images/redpill.png" alt="Red Pill Emoji" width="40" height="40"> </a></code>
+    <code><span class="syntax-keyword">Projects:</span> <a href="./projects.html" target="_blank">Click to Explore <img src="images/redpill.png" alt="Projects Icon" width="25" height="25"></a></code>
 
-    <code><span class="syntax-comment">// Blogging Section</span></code>
-    <code><span class="syntax-keyword">Blog:</span> <a href="./blog.html" target="_blank"><img src="images/A.png" alt="blog icon" width="40" height="40"> </a></code>
-    
+    <code><span class="syntax-comment">// Blog Section</span></code>
+    <code><span class="syntax-keyword">Blog:</span> <a href="./blog.html" target="_blank">Read My Posts <img src="images/A.png" alt="Blog Icon" width="25" height="25"></a></code>
+
     <code><span class="syntax-comment">// Contact Section</span></code>
-    <code><span class="syntax-keyword">Email:</span> "arshad.3e.1@gmail.com"</code>
-    <code><span class="syntax-keyword">GitHub:</span> <a href="https://github.com/arshad3e"><img src="images/github.jpg" alt="github emoji" width="40" height="40"></a></code>
-    <code><span class="syntax-keyword">LinkedIn:</span> <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/"><img src="images/in.jpg" alt="Linkedin emoji" width="40" height="40"></a></code>
+    <code><span class="syntax-keyword">Email:</span> <span class="syntax-string">"arshad.3e.1@gmail.com"</span></code>
+    <code><span class="syntax-keyword">GitHub:</span> <a href="https://github.com/arshad3e" target="_blank"><img src="images/github.jpg" alt="GitHub Icon" width="25" height="25"></a></code>
+    <code><span class="syntax-keyword">LinkedIn:</span> <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/" target="_blank"><img src="images/in.jpg" alt="LinkedIn Icon" width="25" height="25"></a></code>
   </div>
+
   <footer>
-    <p>&copy; 2025 </p>
+    <p>&copy; 2025 Arshad Shaik. All rights reserved.</p>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Initialize Scene, Camera, and Renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('background').appendChild(renderer.domElement);
+
+    camera.position.z = 5;
+
+    // Add Stars
+    function addStar() {
+      const geometry = new THREE.SphereGeometry(0.1, 24, 24);
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ff99 });
+      const star = new THREE.Mesh(geometry, material);
+
+      const [x, y, z] = Array(3)
+        .fill()
+        .map(() => THREE.MathUtils.randFloatSpread(100));
+
+      star.position.set(x, y, z);
+      scene.add(star);
+    }
+
+    Array(300).fill().forEach(addStar);
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  </script>
 </body>
 </html>
+
