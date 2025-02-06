@@ -84,6 +84,8 @@
             car.scale.set(0.5, 0.5, 0.5);  // Scale the car model to fit the scene
             car.position.y = 0.5;
             scene.add(car);
+        }, undefined, (error) => {
+            console.error(error);
         });
 
         // Ground plane
@@ -93,52 +95,24 @@
         ground.rotation.x = -Math.PI / 2;
         scene.add(ground);
 
-        // Pixar-style tree creation (Improved rendering)
-        function createTree(x, z) {
-            // Trunk
-            const trunkGeometry = new THREE.CylinderGeometry(0.5, 0.5, 4);
-            const trunkMaterial = new THREE.MeshStandardMaterial({
-                color: 0x8b4513,
-                roughness: 0.5,
-                metalness: 0.1
-            });
-            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
-            trunk.position.set(x, 2, z);
-
-            // Foliage
-            const foliageGeometry = new THREE.SphereGeometry(2, 12, 12);
-            const foliageMaterial = new THREE.MeshStandardMaterial({
-                color: 0x228B22,
-                roughness: 0.7,
-                metalness: 0.2
-            });
-            const foliage = new THREE.Mesh(foliageGeometry, foliageMaterial);
-            foliage.position.set(x, 4.5, z);
-
-            scene.add(trunk);
-            scene.add(foliage);
+        // Animal-like creatures (Yellow spheres for simplicity)
+        function createAnimal(x, z) {
+            const animalGeometry = new THREE.SphereGeometry(1); // Simulating an animal with a sphere
+            const animalMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+            const animal = new THREE.Mesh(animalGeometry, animalMaterial);
+            animal.position.set(x, 1, z);
+            scene.add(animal);
+            return animal;
         }
 
-        // Generate random trees with Pixar-style rendering
-        for (let i = 0; i < 150; i++) {
-            const x = (Math.random() - 0.5) * 50;
-            const z = (Math.random() - 0.5) * 50;
-            createTree(x, z);
-        }
-
-        // Points of interest (for navigation)
-        const pointsOfInterest = [
+        // Points of interest (for animals)
+        const animals = [
             { position: new THREE.Vector3(10, 0.5, -10), type: 'Projects' },
             { position: new THREE.Vector3(-20, 0.5, 15), type: 'Blog' }
         ];
 
-        pointsOfInterest.forEach(point => {
-            const pointGeometry = new THREE.SphereGeometry(0.5);
-            const pointMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
-            const pointMarker = new THREE.Mesh(pointGeometry, pointMaterial);
-            pointMarker.position.set(point.position.x, point.position.y, point.position.z);
-            scene.add(pointMarker);
-            point.marker = pointMarker;
+        animals.forEach(animal => {
+            animal.model = createAnimal(animal.position.x, animal.position.z);
         });
 
         // Player movement
@@ -148,10 +122,12 @@
         window.addEventListener('keyup', (event) => keys[event.key] = false);
 
         function handleMovement() {
-            if (keys['ArrowUp']) car.position.z -= speed;
-            if (keys['ArrowDown']) car.position.z += speed;
-            if (keys['ArrowLeft']) car.position.x -= speed;
-            if (keys['ArrowRight']) car.position.x += speed;
+            if (car) {
+                if (keys['ArrowUp']) car.position.z -= speed;
+                if (keys['ArrowDown']) car.position.z += speed;
+                if (keys['ArrowLeft']) car.position.x -= speed;
+                if (keys['ArrowRight']) car.position.x += speed;
+            }
         }
 
         // Camera setup
@@ -161,6 +137,7 @@
         // Animation loop
         function animate() {
             requestAnimationFrame(animate);
+
             if (car) {
                 handleMovement();
                 camera.position.x = car.position.x;
@@ -168,12 +145,12 @@
                 camera.lookAt(car.position);
             }
 
-            // Check proximity to points of interest
-            pointsOfInterest.forEach(point => {
-                const distance = car.position.distanceTo(point.position);
-                if (distance < 5) {
+            // Collision detection: Check if car collides with any animal
+            animals.forEach(animal => {
+                const distance = car.position.distanceTo(animal.position);
+                if (distance < 2) {
                     document.getElementById('prompt-box').style.display = 'block';
-                    document.getElementById('prompt-box').dataset.type = point.type;
+                    document.getElementById('prompt-box').dataset.type = animal.type;
                 }
             });
 
