@@ -1,240 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Bug Battle Game</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #000;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arshad's Diary Portfolio</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .info-panel {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-size: 1rem;
-            z-index: 1000;
-        }
+    body {
+      background-color: #f9f4ef;
+      color: #4e4b43;
+      font-family: 'Georgia', serif;
+      padding: 2rem;
+      line-height: 1.6;
+    }
 
-        .score {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-size: 1rem;
-            z-index: 1000;
-        }
+    .editor-container {
+      background: #faf8f6;
+      border: 1px solid #dcd2c6;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        canvas {
-            display: block;
-            margin: 0 auto;
-            background-color: #111;
-            border: 2px solid white;
-        }
-    </style>
+    h1 {
+      color: #8c6c54;
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    code {
+      display: block;
+      background: #fff4e0;
+      color: #6e5c4b;
+      padding: 0.75rem 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      border-radius: 5px;
+      margin: 0.5rem 0;
+    }
+
+    a {
+      color: #9a6d3f;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #7c7063;
+    }
+
+    .date-time {
+      font-style: italic;
+      text-align: center;
+      color: #867f78;
+      margin-bottom: 2rem;
+    }
+  </style>
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      document.getElementById('date-time').textContent = now.toLocaleDateString('en-US', options);
+    }
+    window.onload = updateDateTime;
+  </script>
 </head>
 <body>
-    <div class="info-panel">
-        <h1>Developer vs Bugs!</h1>
-        <p>Use arrow keys to move and jump. Push blocks off the third platform to gain points!</p>
-    </div>
-    <div class="score" id="score">Score: 0</div>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <div class="editor-container">
+    <h1>Arshad's profile</h1>
+    <p id="date-time" class="date-time"></p>
 
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-        let score = 0;
-        let gameOver = false;
+    <code>// Personal Information</code>
+    <code>Name: "Arshad Shaik"</code>
+    <code>Title: "Software Developer & Machine Learning Enthusiast"</code>
 
-        // Player (Developer) Variables
-        const player = {
-            x: 50,
-            y: canvas.height - 100,
-            width: 30,
-            height: 50,
-            color: "#ff5733",
-            speed: 5,
-            dx: 0,
-            dy: 0,
-            gravity: 0.5,
-            jumpPower: -10,
-            grounded: false
-        };
+    <code>// Projects Section</code>
+    <code>Projects: <a href="./projects.html" target="_blank">Explore Projects <img src="images/redpill.png" alt="Red Pill Icon" width="20" height="20"></a></code>
 
-        // Platforms
-        const platforms = [
-            { x: 0, y: canvas.height - 50, width: canvas.width, height: 50 },
-            { x: 200, y: 450, width: 150, height: 20 },
-            { x: 400, y: 350, width: 150, height: 20 },
-            { x: 600, y: 250, width: 150, height: 20 } // Third platform
-        ];
+    <code>// Blogging Section</code>
+    <code>Blog: <a href="./blog.html" target="_blank">Read Blog Posts <img src="images/A.png" alt="Blog Icon" width="20" height="20"></a></code>
 
-        // Blocks to Push
-        const blocks = [
-            { x: 620, y: 220, width: 20, height: 20 },
-            { x: 650, y: 220, width: 20, height: 20 },
-            { x: 680, y: 220, width: 20, height: 20 }
-        ];
-
-        // Bug Thrower
-        const bugThrower = { x: 0, y: 50, width: 40, height: 40, direction: 1, speed: 2 };
-        const bugs = [];
-
-        // Key Controls
-        let keys = {};
-        window.addEventListener("keydown", (e) => keys[e.key] = true);
-        window.addEventListener("keyup", (e) => keys[e.key] = false);
-
-        // Game Loop
-        function gameLoop() {
-            if (gameOver) {
-                ctx.fillStyle = "red";
-                ctx.font = "30px Arial";
-                ctx.fillText("Game Over!", canvas.width / 2 - 80, canvas.height / 2);
-                return;
-            }
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            movePlayer();
-            updatePlayerPosition();
-            detectCollisions();
-            moveBugThrower();
-            generateBug();
-            drawPlatforms();
-            drawBlocks();
-            drawPlayer();
-            drawBugThrower();
-            drawBugs();
-            updateScore();
-
-            requestAnimationFrame(gameLoop);
-        }
-
-        // Draw Platforms
-        function drawPlatforms() {
-            ctx.fillStyle = "#228B22";
-            platforms.forEach(platform => {
-                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
-            });
-        }
-
-        // Draw the Player
-        function drawPlayer() {
-            ctx.fillStyle = player.color;
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-            ctx.fillStyle = "#fff";
-            ctx.fillText("Developer", player.x - 5, player.y - 5);
-        }
-
-        // Draw Bug Thrower
-        function drawBugThrower() {
-            ctx.fillStyle = "purple";
-            ctx.fillRect(bugThrower.x, bugThrower.y, bugThrower.width, bugThrower.height);
-            ctx.fillStyle = "#fff";
-            ctx.fillText("Bug Source", bugThrower.x - 10, bugThrower.y - 10);
-        }
-
-        // Move Bug Thrower
-        function moveBugThrower() {
-            bugThrower.x += bugThrower.direction * bugThrower.speed;
-            if (bugThrower.x < 0 || bugThrower.x + bugThrower.width > canvas.width) {
-                bugThrower.direction *= -1; // Reverse direction
-            }
-        }
-
-        // Generate Bugs
-        function generateBug() {
-            if (Math.random() < 0.02) {
-                bugs.push({ x: bugThrower.x + 20, y: bugThrower.y + 40, width: 10, height: 10 });
-            }
-        }
-
-        // Draw Bugs
-        function drawBugs() {
-            ctx.fillStyle = "yellow";
-            bugs.forEach(bug => {
-                bug.y += 3; // Move bug downward
-                ctx.fillRect(bug.x, bug.y, bug.width, bug.height);
-            });
-        }
-
-        // Draw Blocks
-        function drawBlocks() {
-            ctx.fillStyle = "blue";
-            blocks.forEach(block => {
-                ctx.fillRect(block.x, block.y, block.width, block.height);
-            });
-        }
-
-        // Move Player
-        function movePlayer() {
-            if (keys["ArrowLeft"]) player.dx = -player.speed;
-            else if (keys["ArrowRight"]) player.dx = player.speed;
-            else player.dx = 0;
-
-            if (keys["ArrowUp"] && player.grounded) {
-                player.dy = player.jumpPower;
-                player.grounded = false;
-            }
-        }
-
-        // Update Player Position
-        function updatePlayerPosition() {
-            player.dy += player.gravity;
-            player.x += player.dx;
-            player.y += player.dy;
-
-            // Prevent going off-screen
-            if (player.x < 0) player.x = 0;
-            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
-
-            // Platform Collision
-            player.grounded = false;
-            platforms.forEach(platform => {
-                if (player.y + player.height <= platform.y && player.y + player.height + player.dy >= platform.y &&
-                    player.x + player.width > platform.x && player.x < platform.x + platform.width) {
-                    player.y = platform.y - player.height;
-                    player.dy = 0;
-                    player.grounded = true;
-                }
-            });
-        }
-
-        // Detect Collisions with Blocks
-        function detectCollisions() {
-            blocks.forEach((block, index) => {
-                if (player.x < block.x + block.width &&
-                    player.x + player.width > block.x &&
-                    player.y < block.y + block.height &&
-                    player.y + player.height > block.y) {
-                    block.x += player.dx; // Push the block
-                    if (block.y > canvas.height) {
-                        blocks.splice(index, 1); // Remove block if off-screen
-                        score += 1; // Increase score
-                    }
-                }
-            });
-        }
-
-        // Update the Score
-        function updateScore() {
-            document.getElementById("score").textContent = `Score: ${score}`;
-        }
-
-        // Start the game
-        setInterval(generateBug, 500);
-        gameLoop();
-    </script>
+    <code>// Contact Section</code>
+    <code>Email: "arshad.3e.1@gmail.com"</code>
+    <code>GitHub: <a href="https://github.com/arshad3e"><img src="images/github.jpg" alt="GitHub Icon" width="20" height="20"></a></code>
+    <code>LinkedIn: <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/"><img src="images/in.jpg" alt="LinkedIn Icon" width="20" height="20"></a></code>
+  </div>
+  <footer>
+    <p>&copy; 2025 Arshad's Diary Portfolio</p>
+  </footer>
 </body>
 </html>
