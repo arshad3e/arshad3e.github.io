@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arshad's Diary Portfolio</title>
+  <title>Arshad</title>
   <style>
     /* Global Styles */
     * {
@@ -13,14 +13,14 @@
     }
 
     body {
-      background-color: #f9f4ef;
-      color: #4e4b43;
+      background-color: #f4f1e0;
+      color: #5c4a32;
       font-family: 'Georgia', serif;
       padding: 2rem;
       line-height: 1.6;
     }
 
-    .editor-container {
+    .editor-container, .container {
       background: #faf8f6;
       border: 1px solid #dcd2c6;
       border-radius: 10px;
@@ -30,21 +30,28 @@
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
+    h1, h2 {
       color: #8c6c54;
       text-align: center;
-      font-size: 2rem;
     }
 
-    code {
-      display: block;
-      background: #fff4e0;
-      color: #6e5c4b;
-      padding: 0.75rem 1rem;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1rem;
+    p {
+      line-height: 1.6;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .skill {
+      background: #8d6e63;
+      padding: 0.8rem 1.2rem;
+      margin: 0.5rem;
       border-radius: 5px;
-      margin: 0.5rem 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      color: #fff;
     }
 
     a {
@@ -54,18 +61,6 @@
 
     a:hover {
       text-decoration: underline;
-    }
-
-    img {
-      vertical-align: middle;
-      margin-left: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #7c7063;
     }
 
     .date-time {
@@ -86,26 +81,52 @@
 </head>
 <body>
   <div class="editor-container">
-    <h1>Arshad's profile</h1>
+    <h1>Arshad's Profile</h1>
     <p id="date-time" class="date-time"></p>
 
     <code>// Personal Information</code>
     <code>Name: "Arshad Shaik"</code>
-    <code>Title: "Software Developer & Machine Learning Enthusiast"</code>
 
     <code>// Projects Section</code>
-    <code>Projects: <a href="./projects.html" target="_blank">Explore Projects <img src="images/redpill.png" alt="Red Pill Icon" width="20" height="20"></a></code>
+    <code>Projects: <a href="./projects.html" target="_blank">Explore Projects</a></code>
 
     <code>// Blogging Section</code>
-    <code>Blog: <a href="./blog.html" target="_blank">Read Blog Posts <img src="images/A.png" alt="Blog Icon" width="20" height="20"></a></code>
+    <code>Blog: <a href="./blog.html" target="_blank">Read Blog Posts</a></code>
 
     <code>// Contact Section</code>
-    <code>Email: "arshad.3e.1@gmail.com"</code>
-    <code>GitHub: <a href="https://github.com/arshad3e"><img src="images/github.jpg" alt="GitHub Icon" width="20" height="20"></a></code>
-    <code>LinkedIn: <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/"><img src="images/in.jpg" alt="LinkedIn Icon" width="20" height="20"></a></code>
+    <code>Email: "arshad.3e@gmail.com"</code>
+    <code>GitHub: <a href="https://github.com/arshad3e">GitHub Profile</a></code>
+    <code>LinkedIn: <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/">LinkedIn Profile</a></code>
   </div>
-  <footer>
-    <p>&copy; 2025</p>
-  </footer>
+
+  <div class="container">
+    <section class="section">
+      <h2>About Me</h2>
+      <p>Experienced Software Launch Manager overseeing industrialization for 14 OEM car lines, specializing in QNX-based infotainment systems, Ethernet networking, and high-performance computing solutions.</p>
+    </section>
+
+    <section class="section">
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <span class="skill">C++</span>
+        <span class="skill">Embedded Systems</span>
+        <span class="skill">Linux</span>
+        <span class="skill">Ethernet Networking</span>
+        <span class="skill">Python</span>
+        <span class="skill">Docker</span>
+        <span class="skill">CI/CD</span>
+        <span class="skill">Terraform</span>
+        <span class="skill">Kubernetes</span>
+        <span class="skill">Rust</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Experience</h2>
+      <p><strong>Robert Bosch LLC</strong> - Software Launch Manager & Architect (2019 - Present)</p>
+      <p><strong>Ford Motor Company (via Epitec)</strong> - Solution Architect (2017 - 2019)</p>
+      <p><strong>Caterpillar Inc (via Easi LLC)</strong> - Embedded Software Engineer (2015 - 2017)</p>
+    </section>
+  </div>
 </body>
 </html>
