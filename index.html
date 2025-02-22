@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arshad Shaik - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* Changed to auto to allow scrolling */
+        }
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        nav {
+            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0));
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1;
+            position: sticky; /* Keeps navigation visible */
+            top: 0;  /* Sticks to the top */
+        }
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+            display: inline-block; /* Ensure correct spacing and transitions */
+        }
+        nav a:hover {
+            color: #00b7eb;
+        }
+        .section {
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(17, 17, 17, 0.7); /* Added background to section for better readability */
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 2rem; /* Added spacing between sections */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+            word-wrap: break-word; /* Prevents text overflow */
+        }
+        .project {
+            background: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+        .project h2 {
+            margin-top: 0;
+            color: #00ffff;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form input, .contact-form textarea {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(25, 25, 25, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            color: #00ffff;
+        }
+        .contact-form button {
+            background: rgba(30, 30, 30, 0.7);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: rgba(50, 50, 50, 0.7);
+        }
+        footer {
+            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0));
+            color: #00ffff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
+            position: relative;  /* Removed 'absolute' for proper scrolling with footer */
+            clear: both; /* Ensure footer appears after all content */
+        }
+
+        /* Skill Styles */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skill {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 0.8rem 1.2rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <header>
+        <h1>Arshad Shaik</h1>
+        <p>Software Launch Manager & Architect</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>Experienced Software Launch Manager overseeing industrialization for 14 OEM car lines, specializing in QNX-based infotainment systems, Ethernet networking, and high-performance computing solutions. Passionate about building robust and scalable systems.</p>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills">
+            <span class="skill">C++</span>
+            <span class="skill">Embedded Systems</span>
+            <span class="skill">Linux</span>
+            <span class="skill">Ethernet Networking</span>
+            <span class="skill">Python</span>
+            <span class="skill">Docker</span>
+            <span class="skill">CI/CD</span>
+            <span class="skill">Terraform</span>
+            <span class="skill">Kubernetes</span>
+            <span class="skill">Rust</span>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2>Experience</h2>
+        <p><strong>Robert Bosch LLC</strong> - Software Launch Manager & Architect (2019 - Present)</p>
+        <p><strong>Ford Motor Company</strong> - Solution Architect (2017 - 2019)</p>
+        <p><strong>Caterpillar Inc</strong> - Embedded Software Engineer (2015 - 2017)</p>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="project">
+            <h2><a href="./projects.html" style="color: #00ffff; text-decoration: none;">Explore Projects</a></h2>
+            <p>View my diverse range of projects showcasing my expertise in software development and system architecture.  Click the title to view detailed project descriptions.</p>
+        </div>
+    </section>
+
+    <section id="blog" class="section">
+        <h2>Blog</h2>
+        <p>Check out my latest blog posts where I share insights and expertise on various software development topics. <a href="./blog.html" style="color: #00ffff; text-decoration: none;">Read Blog Posts</a></p>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Initiate Contact</button>
+        </form>
+        <p>Email: arshad.3e@gmail.com</p>
+        <p>GitHub: <a href="https://github.com/arshad3e" style="color: #00ffff;">GitHub Profile</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/" style="color: #00ffff;">LinkedIn Profile</a></p>
+
+    </section>
+
+    <footer>
+        <p>© 2024 Arshad Shaik. Exploring the infinite possibilities of the digital cosmos.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, stars, planets, speed, galaxyGeometry, galaxyMaterial, galaxy;
+        let lightSpeedActive = false, warpSpeedActive = false;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000); // Increased far plane
+            camera.position.z = 500;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, precision: 'highp' }); // Increased precision
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+             // Galaxy background - James Webb Inspired
+            galaxyGeometry = new THREE.BufferGeometry();
+            const galaxyVertices = [];
+            const galaxyColors = [];
+
+            for (let i = 0; i < 20000; i++) {
+                const x = (Math.random() - 0.5) * 3000;
+                const y = (Math.random() - 0.5) * 3000;
+                const z = (Math.random() - 0.5) * 3000;
+
+                galaxyVertices.push(x, y, z);
+
+                const color = new THREE.Color();
+                color.setHSL(Math.random(), 0.5, Math.random() * 0.5 + 0.5); // Colorful nebulae
+                galaxyColors.push(color.r, color.g, color.b);
+
+            }
+
+            galaxyGeometry.setAttribute('position', new THREE.Float32BufferAttribute(galaxyVertices, 3));
+            galaxyGeometry.setAttribute('color', new THREE.Float32BufferAttribute(galaxyColors, 3));
+
+            galaxyMaterial = new THREE.PointsMaterial({
+                size: 1,  //Smaller points
+                vertexColors: true,
+                blending: THREE.NormalBlending, //Changed blending mode
+                transparent: true,
+                opacity: 0.8
+            });
+
+            galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
+            scene.add(galaxy);
+
+
+            // Stars - More subtle stars for a balanced look
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+            for (let i = 0; i < 3000; i++) {  //Reduced star count
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = -Math.random() * 2000;
+                starVertices.push(x, y, z);
+            }
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            const starMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 1,
+                sizeAttenuation: false
+            });
+            stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+
+
+            // Planets
+            planets = [];
+            const planetColors = [0xff4500, 0x00ffff, 0x808080, 0xadd8e6, 0xffd700];
+
+            for (let i = 0; i < 5; i++) {
+                const planetGeometry = new THREE.SphereGeometry(Math.random() * 20 + 10, 32, 32);
+                const planetMaterial = new THREE.MeshStandardMaterial({
+                    color: planetColors[i],
+                    roughness: 0.5,
+                    metalness: 0.3
+                });
+                const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+                planet.position.set(
+                    (Math.random() - 0.5) * 2000,
+                    (Math.random() - 0.5) * 2000,
+                    -Math.random() * 1000
+                );
+                scene.add(planet);
+                planets.push({mesh: planet, hasRings: false, moons: []}); // Store planet data
+
+                // Add rings to some planets
+                if (Math.random() > 0.5) {
+                    const ringGeometry = new THREE.RingGeometry(25, 40, 64);
+                    const ringMaterial = new THREE.MeshBasicMaterial({
+                        color: planetColors[i],
+                        side: THREE.DoubleSide,
+                        transparent: true,
+                        opacity: 0.6
+                    });
+                    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                    ring.rotation.x = Math.PI / 2; // Orient rings correctly
+                    planet.add(ring); // Add rings to the planet
+                    planets[i].hasRings = true;
+                }
+
+                 // Add moons to some planets
+                const numMoons = Math.floor(Math.random() * 3); // 0-2 moons
+                for (let j = 0; j < numMoons; j++) {
+                    const moonGeometry = new THREE.SphereGeometry(Math.random() * 3 + 2, 16, 16);
+                    const moonMaterial = new THREE.MeshStandardMaterial({
+                        color: 0xffffff, // Default moon color
+                        roughness: 0.6,
+                        metalness: 0.2
+                    });
+                    const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+                    const moonDistance = Math.random() * 50 + 60; // Distance from planet
+                    moon.position.set(moonDistance, 0, 0); // Initial position
+                    planet.add(moon);
+                    planets[i].moons.push({mesh:moon, distance: moonDistance, speed: Math.random() * 0.02 + 0.01}); // Store moon data
+                }
+            }
+
+            // Add a light source for the planets
+            const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            directionalLight.position.set(1, 1, 1);
+            scene.add(directionalLight);
+
+            speed = 0.05;  // Normal speed - Reduced for less dizzying effect
+            document.addEventListener('keydown', handleSpeedChange);
+            document.addEventListener('keyup', handleSpeedChange);
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+             // Galaxy Rotation (optional, but adds to the effect)
+            galaxy.rotation.y += 0.0005; //Very subtle rotation
+
+            // Stars movement to simulate movement through space
+            stars.rotation.y += speed / 10;
+
+            // Planets movement
+            planets.forEach(planetData => {
+                const planet = planetData.mesh;
+                planet.rotation.y += 0.005; // Rotate planet (slower)
+                planet.position.z += speed * 0.5;  //Planets move slower than before
+
+                if (planet.position.z > 500) {
+                    // Reset planet position when it passes the camera
+                    planet.position.set(
+                        (Math.random() - 0.5) * 2000,
+                        (Math.random() - 0.5) * 2000,
+                        -Math.random() * 1000
+                    );
+                }
+
+                // Moon orbits
+                planetData.moons.forEach(moonData => {
+                   const moon = moonData.mesh;
+                   moon.position.x = Math.cos(Date.now() * moonData.speed) * moonData.distance;
+                   moon.position.z = Math.sin(Date.now() * moonData.speed) * moonData.distance;
+                });
+
+            });
+
+            if (warpSpeedActive) {
+                // Warp speed effect
+                stars.material.size = 5;
+                stars.material.opacity = 0.5 + Math.sin(Date.now() * 0.005) * 0.5;
+                speed = 5;
+            } else if (lightSpeedActive) {
+                // Light speed effect
+                stars.material.size = 2;
+                stars.material.opacity = 0.1 + Math.sin(Date.now() * 0.01) * 0.1;
+                speed = 2.5;
+            } else {
+                // Reset to normal speed
+                stars.material.size = 1;
+                stars.material.opacity = 1;
+                speed = 0.05; //Original speed.
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function handleSpeedChange(event) {
+            if (event.type === 'keydown') {
+                if (event.key === 'Shift') {
+                    warpSpeedActive = true;
+                } else if (event.key === 'Control') {
+                    lightSpeedActive = true;
+                }
+            } else if (event.type === 'keyup') {
+                if (event.key === 'Shift') {
+                    warpSpeedActive = false;
+                } else if (event.key === 'Control') {
+                    lightSpeedActive = false;
+                }
+            }
+        }
+
+        window.addEventListener('resize', onWindowResize, false);
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        init();
+    </script>
+</body>
+</html>
