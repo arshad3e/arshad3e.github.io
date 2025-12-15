@@ -3,412 +3,519 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arshad Shaik - Portfolio</title>
+    <title>Arshad Shaik | Galactic Architect</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            overflow: auto; /* Changed to auto to allow scrolling */
+        /* --- FONTS & RESET --- */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap');
+        
+        body { margin: 0; overflow: hidden; background-color: #000005; font-family: 'Rajdhani', sans-serif; color: white; }
+        canvas { display: block; }
+
+        :root { --cyan: #00f3ff; --gold: #ffd700; }
+
+        /* --- UI: TOP LEFT IDENTITY --- */
+        #identity {
+            position: fixed; top: 30px; left: 30px; z-index: 50; pointer-events: none;
         }
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        #identity h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; letter-spacing: 4px; margin: 0;
+            background: linear-gradient(90deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
         }
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            position: relative;
-            z-index: 1;
-        }
-        h1 {
-            font-size: 4rem;
-            margin: 0;
-            text-shadow: 0 0 10px #00ffff;
-        }
-        nav {
-            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0));
-            width: 100%;
-            text-align: center;
-            padding: 1rem 0;
-            position: relative;
-            z-index: 1;
-            position: sticky; /* Keeps navigation visible */
-            top: 0;  /* Sticks to the top */
-        }
-        nav a {
-            color: #00ffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-            display: inline-block; /* Ensure correct spacing and transitions */
-        }
-        nav a:hover {
-            color: #00b7eb;
-        }
-        .section {
-            padding: 2rem;
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            background: rgba(17, 17, 17, 0.7); /* Added background to section for better readability */
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            margin-bottom: 2rem; /* Added spacing between sections */
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
-            word-wrap: break-word; /* Prevents text overflow */
-        }
-        .project {
-            background: rgba(17, 17, 17, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
-        }
-        .project h2 {
-            margin-top: 0;
-            color: #00ffff;
-        }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-form input, .contact-form textarea {
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(25, 25, 25, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            color: #00ffff;
-        }
-        .contact-form button {
-            background: rgba(30, 30, 30, 0.7);
-            color: #00ffff;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            padding: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .contact-form button:hover {
-            background: rgba(50, 50, 50, 0.7);
-        }
-        footer {
-            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0));
-            color: #00ffff;
-            text-align: center;
-            padding: 1rem 0;
-            width: 100%;
-            position: relative;  /* Removed 'absolute' for proper scrolling with footer */
-            clear: both; /* Ensure footer appears after all content */
+        #identity p {
+            font-size: 0.9rem; letter-spacing: 3px; color: #aaddff; margin: 8px 0 0 0;
+            border-left: 3px solid var(--cyan); padding-left: 12px;
+            text-transform: uppercase; opacity: 0.8;
         }
 
-        /* Skill Styles */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        /* --- HUD TRACKERS --- */
+        #hud-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+        
+        .planet-tracker {
+            position: absolute; display: flex; align-items: flex-end;
+            transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s;
         }
+        /* The angled line */
+        .tracker-line {
+            width: 1px; height: 60px; background: linear-gradient(to top, var(--cyan), transparent);
+            transform: rotate(-35deg); transform-origin: bottom center;
+        }
+        /* The Label */
+        .tracker-label {
+            border: 1px solid var(--cyan); background: rgba(0, 5, 10, 0.85);
+            padding: 6px 16px; font-family: 'Orbitron'; font-size: 11px; letter-spacing: 2px;
+            color: var(--cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
+            margin-bottom: 50px; margin-left: -25px;
+            cursor: pointer; pointer-events: auto; transition: 0.3s;
+        }
+        .tracker-label:hover { background: var(--cyan); color: #000; box-shadow: 0 0 30px rgba(0, 243, 255, 0.6); }
 
-        .skill {
-            background: rgba(30, 30, 30, 0.7);
-            padding: 0.8rem 1.2rem;
-            margin: 0.5rem;
-            border-radius: 5px;
-            box-shadow: 0 3px 8px rgba(0, 255, 255, 0.1);
-            color: #00ffff;
-            border: 1px solid rgba(0, 255, 255, 0.2);
+        /* --- MODAL --- */
+        #modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+            z-index: 100; opacity: 0; pointer-events: none; transition: 0.4s;
+            display: flex; justify-content: center; align-items: center;
         }
+        #modal.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-card {
+            width: 800px; max-width: 90%; max-height: 85vh;
+            background: rgba(5, 8, 12, 0.95); border: 1px solid var(--cyan);
+            box-shadow: 0 0 60px rgba(0, 243, 255, 0.1);
+            display: flex; flex-direction: column;
+            transform: scale(0.95) translateY(20px); transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        #modal.active .modal-card { transform: scale(1) translateY(0); }
+        
+        .modal-header {
+            padding: 25px 35px; border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.05), transparent);
+        }
+        .modal-header h2 { font-family: 'Orbitron'; margin: 0; font-size: 1.8rem; color: var(--cyan); letter-spacing: 2px; }
+        .close-btn {
+            background: none; border: 1px solid #444; width: 35px; height: 35px; border-radius: 50%;
+            color: #888; font-size: 1.2rem; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;
+        }
+        .close-btn:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.1); }
+        
+        .modal-body { padding: 40px; overflow-y: auto; color: #ccc; font-size: 1.1rem; line-height: 1.7; }
+        .modal-body h3 { color: #fff; border-left: 3px solid var(--cyan); padding-left: 15px; margin-top: 35px; margin-bottom: 15px; }
+        .modal-body ul { list-style: none; padding: 0; }
+        .modal-body li { margin-bottom: 12px; padding-left: 20px; position: relative; }
+        .modal-body li::before { content: '►'; color: var(--cyan); position: absolute; left: 0; font-size: 0.8em; top: 4px; }
+        .modal-body a { color: var(--cyan); text-decoration: none; border-bottom: 1px dotted var(--cyan); transition: 0.3s; }
+        .modal-body a:hover { background: rgba(0, 243, 255, 0.1); }
+
+        /* --- LOADER --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 999;
+            display: flex; justify-content: center; align-items: center;
+            flex-direction: column; transition: opacity 1.5s;
+        }
+        .loader-text { color: var(--cyan); font-family: 'Orbitron'; letter-spacing: 6px; font-size: 1.2rem; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* --- HIDDEN CONTENT --- */
+        #data-source { display: none; }
     </style>
 </head>
 <body>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-text">I hope you will enjoy...</div>
+    </div>
+
+    <!-- 3D CANVAS -->
     <div id="canvas-container"></div>
-    <header>
+
+    <!-- IDENTITY -->
+    <div id="identity">
         <h1>Arshad Shaik</h1>
-        <p>Software Launch Manager & Architect</p>
-    </header>
+    </div>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <!-- HUD LAYER -->
+    <div id="hud-layer"></div>
 
-    <section id="about" class="section">
-        <h2>About Me</h2>
-        <p>Experienced Software Launch Manager overseeing industrialization for 14 OEM car lines, specializing in QNX-based infotainment systems, Ethernet networking, and high-performance computing solutions. Passionate about building robust and scalable systems.</p>
-    </section>
-
-    <section id="skills" class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills">
-            <span class="skill">C++</span>
-            <span class="skill">Embedded Systems</span>
-            <span class="skill">Linux</span>
-            <span class="skill">Ethernet Networking</span>
-            <span class="skill">Python</span>
-            <span class="skill">Docker</span>
-            <span class="skill">CI/CD</span>
-            <span class="skill">Terraform</span>
-            <span class="skill">Kubernetes</span>
-            <span class="skill">Rust</span>
+    <!-- MODAL -->
+    <div id="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 id="modal-title">TITLE</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
         </div>
-    </section>
+    </div>
 
-    <section id="experience" class="section">
-        <h2>Experience</h2>
-        <p><strong>Robert Bosch LLC</strong> - Software Launch Manager & Architect (2019 - Present)</p>
-        <p><strong>Ford Motor Company</strong> - Solution Architect (2017 - 2019)</p>
-        <p><strong>Caterpillar Inc</strong> - Embedded Software Engineer (2015 - 2017)</p>
-    </section>
-
-    <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="project">
-            <h2><a href="./projects.html" style="color: #00ffff; text-decoration: none;">Explore Projects</a></h2>
-            <p>View my diverse range of projects showcasing my expertise in software development and system architecture.  Click the title to view detailed project descriptions.</p>
+    <!-- DATA SOURCE -->
+    <div id="data-source">
+        <div id="data-about">
+            <p>I specialize in the <strong>industrialization of automotive software</strong>. Navigating the chaotic intersection of hardware constraints, timelines, and architectural purity.</p>
+            <p>Currently overseeing 14 OEM car lines, bridging high-level architecture with low-level embedded reality.</p>
         </div>
-    </section>
+        <div id="data-skills">
+            <h3>Core Engineering</h3>
+            <ul>
+                <li>C++ / Embedded C / Rust</li>
+                <li>QNX Neutrino / Embedded Linux</li>
+                <li>Real-Time Operating Systems (RTOS)</li>
+            </ul>
+            <h3>Infrastructure</h3>
+            <ul>
+                <li>Kubernetes (K8s, K3s)</li>
+                <li>Docker / Containerization</li>
+                <li>Terraform / IaC</li>
+            </ul>
+        </div>
+        <div id="data-experience">
+            <h3>Robert Bosch LLC (2019 - Present)</h3>
+            <p><strong>Software Launch Manager & Architect</strong></p>
+            <p>Leading global teams to deliver next-gen Cockpit Domain Controllers. Responsible for system stability and launch readiness.</p>
+            <h3>Ford Motor Company (2017 - 2019)</h3>
+            <p><strong>Solution Architect</strong></p>
+            <p>Designed connected vehicle platforms and cloud standards.</p>
+        </div>
+        <div id="data-projects">
+            <h3>Luxury EV Infotainment</h3>
+            <p>Architected boot sequence optimization for a flagship EV, reducing cold boot time by 40%.</p>
+            <h3>Edge Computing</h3>
+            <p>Deployed K3s (Kubernetes) on vehicle hardware to manage microservices.</p>
+        </div>
+        <div id="data-blog">
+            <h3>Latest Posts</h3>
+            <ul>
+                <li><a href="#">The Shift to Zone Architecture</a></li>
+                <li><a href="#">Why Rust is Eating C++</a></li>
+            </ul>
+        </div>
+        <div id="data-contact">
+            <h3>Secure Channels</h3>
+            <p><strong>Email:</strong> arshad.3e@gmail.com</p>
+            <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/arshad-shaik</a></p>
+        </div>
+    </div>
 
-    <section id="blog" class="section">
-        <h2>Blog</h2>
-        <p>Check out my latest blog posts where I share insights and expertise on various software development topics. <a href="./blog.html" style="color: #00ffff; text-decoration: none;">Read Blog Posts</a></p>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>Contact</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Initiate Contact</button>
-        </form>
-        <p>Email: arshad.3e@gmail.com</p>
-        <p>GitHub: <a href="https://github.com/arshad3e" style="color: #00ffff;">GitHub Profile</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/arshad-shaik-bba4837b/" style="color: #00ffff;">LinkedIn Profile</a></p>
-
-    </section>
-
-    <footer>
-        <p>© 2024 Arshad Shaik. Exploring the infinite possibilities of the digital cosmos.</p>
-    </footer>
-
+    <!-- THREE.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <script>
-        let scene, camera, renderer, stars, planets, speed, galaxyGeometry, galaxyMaterial, galaxy;
-        let lightSpeedActive = false, warpSpeedActive = false;
+        // --- CONFIG ---
+        const CONFIG = {
+            camZ: 250,
+            orbitSpeed: 0.05,
+            sunSize: 22,
+        };
+
+        const PLANETS = [
+            { id: 'about', name: 'ABOUT', radius: 5, dist: 65, speed: 1.0, color: 0xaa4444, type: 'rock' },
+            { id: 'skills', name: 'SKILLS', radius: 8, dist: 95, speed: 0.7, color: 0xffcc00, type: 'gas' },
+            { id: 'experience', name: 'EXPERIENCE', radius: 7, dist: 135, speed: 0.5, color: 0x0088ff, type: 'earth' },
+            { id: 'projects', name: 'PROJECTS', radius: 6, dist: 175, speed: 0.4, color: 0xff5522, type: 'rock' },
+            { id: 'blog', name: 'BLOG', radius: 14, dist: 230, speed: 0.25, color: 0xddbb99, type: 'jupiter' },
+            { id: 'contact', name: 'CONTACT', radius: 11, dist: 290, speed: 0.15, color: 0x88aaff, type: 'ice' }
+        ];
+
+        let scene, camera, renderer, clock;
+        let sunMesh, planetsMesh = [];
+        let starGroups = []; // Array to hold different star layers
+        let raycaster, mouse;
+        let isPaused = false;
+
+        // --- SHADERS ---
+        const sunVertex = `
+            varying vec2 vUv; varying vec3 vNormal;
+            void main() { vUv = uv; vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }
+        `;
+        const sunFragment = `
+            uniform float time; varying vec2 vUv;
+            vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+            float snoise(vec2 v) {
+                const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                vec2 i  = floor(v + dot(v, C.yy) );
+                vec2 x0 = v - i + dot(i, C.xx);
+                vec2 i1; i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                vec4 x12 = x0.xyxy + C.xxzz; x12.xy -= i1;
+                i = mod289(i);
+                vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+                vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+                m = m*m ; m = m*m ;
+                vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                vec3 h = abs(x) - 0.5;
+                vec3 ox = floor(x + 0.5);
+                vec3 a0 = x - ox;
+                m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+                vec3 g; g.x  = a0.x  * x0.x  + h.x  * x0.y; g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                return 130.0 * dot(m, g);
+            }
+            void main() {
+                float n = snoise(vUv * 6.0 + time * 0.2);
+                vec3 colorA = vec3(1.0, 0.5, 0.0); vec3 colorB = vec3(1.0, 0.9, 0.1);
+                vec3 finalColor = mix(colorA, colorB, n * 0.5 + 0.5);
+                gl_FragColor = vec4(finalColor + vec3(0.1), 1.0);
+            }
+        `;
+
+        const atmoVertex = `varying vec3 vNormal; void main() { vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+        const atmoFragment = `varying vec3 vNormal; uniform vec3 glowColor; void main() { float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 3.0); gl_FragColor = vec4(glowColor, 1.0) * intensity * 1.5; }`;
 
         function init() {
             scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000); // Increased far plane
-            camera.position.z = 500;
+            scene.fog = new THREE.FogExp2(0x000000, 0.0004); // Reduced fog to see stars better
+            clock = new THREE.Clock();
 
-            renderer = new THREE.WebGLRenderer({ alpha: true, precision: 'highp' }); // Increased precision
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000); // Far plane increased
+            camera.position.set(0, 80, 800);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
             document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-             // Galaxy background - James Webb Inspired
-            galaxyGeometry = new THREE.BufferGeometry();
-            const galaxyVertices = [];
-            const galaxyColors = [];
+            const ambient = new THREE.AmbientLight(0x333333);
+            scene.add(ambient);
+            const sunLight = new THREE.PointLight(0xffffff, 1.5, 2000);
+            scene.add(sunLight);
 
-            for (let i = 0; i < 20000; i++) {
-                const x = (Math.random() - 0.5) * 3000;
-                const y = (Math.random() - 0.5) * 3000;
-                const z = (Math.random() - 0.5) * 3000;
+            createSun();
+            createPlanets();
+            createMassiveStarfield(); // NEW FUNCTION
 
-                galaxyVertices.push(x, y, z);
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
 
-                const color = new THREE.Color();
-                color.setHSL(Math.random(), 0.5, Math.random() * 0.5 + 0.5); // Colorful nebulae
-                galaxyColors.push(color.r, color.g, color.b);
-
-            }
-
-            galaxyGeometry.setAttribute('position', new THREE.Float32BufferAttribute(galaxyVertices, 3));
-            galaxyGeometry.setAttribute('color', new THREE.Float32BufferAttribute(galaxyColors, 3));
-
-            galaxyMaterial = new THREE.PointsMaterial({
-                size: 1,  //Smaller points
-                vertexColors: true,
-                blending: THREE.NormalBlending, //Changed blending mode
-                transparent: true,
-                opacity: 0.8
-            });
-
-            galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
-            scene.add(galaxy);
-
-
-            // Stars - More subtle stars for a balanced look
-            const starGeometry = new THREE.BufferGeometry();
-            const starVertices = [];
-            for (let i = 0; i < 3000; i++) {  //Reduced star count
-                const x = (Math.random() - 0.5) * 2000;
-                const y = (Math.random() - 0.5) * 2000;
-                const z = -Math.random() * 2000;
-                starVertices.push(x, y, z);
-            }
-            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-            const starMaterial = new THREE.PointsMaterial({
-                color: 0xffffff,
-                size: 1,
-                sizeAttenuation: false
-            });
-            stars = new THREE.Points(starGeometry, starMaterial);
-            scene.add(stars);
-
-
-            // Planets
-            planets = [];
-            const planetColors = [0xff4500, 0x00ffff, 0x808080, 0xadd8e6, 0xffd700];
-
-            for (let i = 0; i < 5; i++) {
-                const planetGeometry = new THREE.SphereGeometry(Math.random() * 20 + 10, 32, 32);
-                const planetMaterial = new THREE.MeshStandardMaterial({
-                    color: planetColors[i],
-                    roughness: 0.5,
-                    metalness: 0.3
-                });
-                const planet = new THREE.Mesh(planetGeometry, planetMaterial);
-                planet.position.set(
-                    (Math.random() - 0.5) * 2000,
-                    (Math.random() - 0.5) * 2000,
-                    -Math.random() * 1000
-                );
-                scene.add(planet);
-                planets.push({mesh: planet, hasRings: false, moons: []}); // Store planet data
-
-                // Add rings to some planets
-                if (Math.random() > 0.5) {
-                    const ringGeometry = new THREE.RingGeometry(25, 40, 64);
-                    const ringMaterial = new THREE.MeshBasicMaterial({
-                        color: planetColors[i],
-                        side: THREE.DoubleSide,
-                        transparent: true,
-                        opacity: 0.6
-                    });
-                    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-                    ring.rotation.x = Math.PI / 2; // Orient rings correctly
-                    planet.add(ring); // Add rings to the planet
-                    planets[i].hasRings = true;
-                }
-
-                 // Add moons to some planets
-                const numMoons = Math.floor(Math.random() * 3); // 0-2 moons
-                for (let j = 0; j < numMoons; j++) {
-                    const moonGeometry = new THREE.SphereGeometry(Math.random() * 3 + 2, 16, 16);
-                    const moonMaterial = new THREE.MeshStandardMaterial({
-                        color: 0xffffff, // Default moon color
-                        roughness: 0.6,
-                        metalness: 0.2
-                    });
-                    const moon = new THREE.Mesh(moonGeometry, moonMaterial);
-                    const moonDistance = Math.random() * 50 + 60; // Distance from planet
-                    moon.position.set(moonDistance, 0, 0); // Initial position
-                    planet.add(moon);
-                    planets[i].moons.push({mesh:moon, distance: moonDistance, speed: Math.random() * 0.02 + 0.01}); // Store moon data
-                }
-            }
-
-            // Add a light source for the planets
-            const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
-            scene.add(ambientLight);
-
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight.position.set(1, 1, 1);
-            scene.add(directionalLight);
-
-            speed = 0.05;  // Normal speed - Reduced for less dizzying effect
-            document.addEventListener('keydown', handleSpeedChange);
-            document.addEventListener('keyup', handleSpeedChange);
+            window.addEventListener('resize', onResize);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('click', onClick);
 
             animate();
+            
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = 0;
+                setTimeout(() => document.getElementById('loader').remove(), 1000);
+            }, 1500);
+        }
+
+        // --- NEW MASSIVE STARFIELD ---
+        function createMassiveStarfield() {
+            // 1. DEEP SPACE DUST (The Milky Way effect)
+            // 15,000 tiny stars
+            const dustGeo = new THREE.BufferGeometry();
+            const dustPos = [];
+            for(let i=0; i<15000; i++) {
+                // Wide spread
+                dustPos.push((Math.random()-0.5)*4000, (Math.random()-0.5)*2000, (Math.random()-0.5)*4000);
+            }
+            dustGeo.setAttribute('position', new THREE.Float32BufferAttribute(dustPos, 3));
+            const dustMat = new THREE.PointsMaterial({ 
+                size: 0.6, 
+                color: 0x5588aa, // Blue-ish tint
+                transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending 
+            });
+            const dustSystem = new THREE.Points(dustGeo, dustMat);
+            scene.add(dustSystem);
+            starGroups.push({ mesh: dustSystem, speed: 0.005 }); // Slowest
+
+            // 2. STANDARD STARS
+            // 5,000 regular stars
+            const starGeo = new THREE.BufferGeometry();
+            const starPos = [];
+            const starCol = [];
+            for(let i=0; i<5000; i++) {
+                starPos.push((Math.random()-0.5)*3000, (Math.random()-0.5)*3000, (Math.random()-0.5)*3000);
+                const c = new THREE.Color();
+                c.setHSL(Math.random(), 0.5, Math.random()*0.5 + 0.5);
+                starCol.push(c.r, c.g, c.b);
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+            starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starCol, 3));
+            const starMat = new THREE.PointsMaterial({ 
+                size: 1.2, vertexColors: true, 
+                map: createGlowTexture(255,255,255), blending: THREE.AdditiveBlending, transparent: true
+            });
+            const starSystem = new THREE.Points(starGeo, starMat);
+            scene.add(starSystem);
+            starGroups.push({ mesh: starSystem, speed: 0.01 });
+
+            // 3. BRIGHT GIANTS (Foreground)
+            // 500 large bright stars
+            const giantGeo = new THREE.BufferGeometry();
+            const giantPos = [];
+            for(let i=0; i<500; i++) {
+                giantPos.push((Math.random()-0.5)*2000, (Math.random()-0.5)*1000, (Math.random()-0.5)*2000);
+            }
+            giantGeo.setAttribute('position', new THREE.Float32BufferAttribute(giantPos, 3));
+            const giantMat = new THREE.PointsMaterial({ 
+                size: 3.5, color: 0xffffff, 
+                map: createGlowTexture(200, 220, 255), blending: THREE.AdditiveBlending, transparent: true, opacity: 0.9
+            });
+            const giantSystem = new THREE.Points(giantGeo, giantMat);
+            scene.add(giantSystem);
+            starGroups.push({ mesh: giantSystem, speed: 0.015 }); // Fastest parallax
+        }
+
+        function createSun() {
+            const geo = new THREE.SphereGeometry(CONFIG.sunSize, 64, 64);
+            const mat = new THREE.ShaderMaterial({
+                uniforms: { time: { value: 0 } },
+                vertexShader: sunVertex, fragmentShader: sunFragment
+            });
+            sunMesh = new THREE.Mesh(geo, mat);
+            scene.add(sunMesh);
+
+            const spriteMat = new THREE.SpriteMaterial({
+                map: createGlowTexture(255, 120, 0), color: 0xffaa00, blending: THREE.AdditiveBlending, transparent: true
+            });
+            const sprite = new THREE.Sprite(spriteMat);
+            sprite.scale.set(CONFIG.sunSize*4.5, CONFIG.sunSize*4.5, 1);
+            sunMesh.add(sprite);
+        }
+
+        function createPlanetTexture(type, colorHex) {
+            const size = 512;
+            const canvas = document.createElement('canvas'); canvas.width = size; canvas.height = size/2;
+            const ctx = canvas.getContext('2d'); const w = size; const h = size/2;
+            ctx.fillStyle = '#' + colorHex.toString(16).padStart(6, '0'); ctx.fillRect(0,0,w,h);
+            
+            if (type === 'gas' || type === 'jupiter') {
+                for(let i=0; i<30; i++) {
+                    ctx.fillStyle = `rgba(255,255,255, ${Math.random()*0.15})`;
+                    ctx.fillRect(0, Math.random()*h, w, Math.random()*40+5);
+                }
+            } else if (type === 'earth') {
+                ctx.fillStyle = '#004499'; ctx.fillRect(0,0,w,h);
+                for(let i=0; i<200; i++) {
+                    ctx.beginPath(); ctx.arc(Math.random()*w, Math.random()*h, Math.random()*30, 0, Math.PI*2);
+                    ctx.fillStyle = `rgba(40, 180, 40, 0.7)`; ctx.fill();
+                }
+                for(let i=0; i<300; i++) {
+                    ctx.beginPath(); ctx.arc(Math.random()*w, Math.random()*h, Math.random()*20, 0, Math.PI*2);
+                    ctx.fillStyle = `rgba(255,255,255, 0.2)`; ctx.fill();
+                }
+            } else {
+                for(let i=0; i<400; i++) {
+                    ctx.beginPath(); ctx.arc(Math.random()*w, Math.random()*h, Math.random()*10, 0, Math.PI*2);
+                    ctx.fillStyle = `rgba(0,0,0,0.15)`; ctx.fill();
+                }
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createGlowTexture(r, g, b) {
+            const c = document.createElement('canvas'); c.width=64; c.height=64;
+            const ctx = c.getContext('2d');
+            const gr = ctx.createRadialGradient(32,32,0,32,32,32);
+            gr.addColorStop(0, `rgba(${r},${g},${b},1)`);
+            gr.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = gr; ctx.fillRect(0,0,64,64);
+            return new THREE.CanvasTexture(c);
+        }
+
+        function createPlanets() {
+            const hud = document.getElementById('hud-layer');
+            PLANETS.forEach(p => {
+                const grp = new THREE.Group();
+                const mat = new THREE.MeshStandardMaterial({ map: createPlanetTexture(p.type, p.color), roughness: 0.8 });
+                const mesh = new THREE.Mesh(new THREE.SphereGeometry(p.radius, 64, 64), mat);
+                grp.add(mesh);
+
+                const atmo = new THREE.Mesh(new THREE.SphereGeometry(p.radius*1.15, 64, 64), 
+                    new THREE.ShaderMaterial({
+                        uniforms: { glowColor: { value: new THREE.Color(p.color) } },
+                        vertexShader: atmoVertex, fragmentShader: atmoFragment,
+                        side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true
+                    }));
+                mesh.add(atmo);
+
+                if (p.type === 'jupiter') {
+                     const ring = new THREE.Mesh(new THREE.RingGeometry(p.radius*1.4, p.radius*2.2, 64),
+                     new THREE.MeshBasicMaterial({ color: 0xaa8866, side: THREE.DoubleSide, transparent: true, opacity: 0.3 }));
+                     ring.rotation.x = Math.PI/2.2; mesh.add(ring);
+                }
+
+                const path = new THREE.Mesh(new THREE.RingGeometry(p.dist-0.2, p.dist+0.2, 128),
+                    new THREE.MeshBasicMaterial({ color: 0x333333, side: THREE.DoubleSide, transparent: true, opacity: 0.3 }));
+                path.rotation.x = Math.PI/2; scene.add(path);
+
+                grp.position.x = p.dist;
+                scene.add(grp);
+
+                const el = document.createElement('div'); el.className = 'planet-tracker';
+                el.innerHTML = `<div class="tracker-label" onclick="openModal('${p.id}', '${p.name}')">${p.name}</div><div class="tracker-line"></div>`;
+                hud.appendChild(el);
+
+                planetsMesh.push({ mesh, group: grp, data: p, angle: Math.random()*Math.PI*2, el });
+            });
         }
 
         function animate() {
             requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+            const delta = clock.getDelta();
 
-             // Galaxy Rotation (optional, but adds to the effect)
-            galaxy.rotation.y += 0.0005; //Very subtle rotation
+            sunMesh.material.uniforms.time.value = time;
 
-            // Stars movement to simulate movement through space
-            stars.rotation.y += speed / 10;
-
-            // Planets movement
-            planets.forEach(planetData => {
-                const planet = planetData.mesh;
-                planet.rotation.y += 0.005; // Rotate planet (slower)
-                planet.position.z += speed * 0.5;  //Planets move slower than before
-
-                if (planet.position.z > 500) {
-                    // Reset planet position when it passes the camera
-                    planet.position.set(
-                        (Math.random() - 0.5) * 2000,
-                        (Math.random() - 0.5) * 2000,
-                        -Math.random() * 1000
-                    );
-                }
-
-                // Moon orbits
-                planetData.moons.forEach(moonData => {
-                   const moon = moonData.mesh;
-                   moon.position.x = Math.cos(Date.now() * moonData.speed) * moonData.distance;
-                   moon.position.z = Math.sin(Date.now() * moonData.speed) * moonData.distance;
-                });
-
+            // Rotate Star Fields (Parallax)
+            starGroups.forEach(s => {
+                s.mesh.rotation.y += s.speed * delta;
             });
 
-            if (warpSpeedActive) {
-                // Warp speed effect
-                stars.material.size = 5;
-                stars.material.opacity = 0.5 + Math.sin(Date.now() * 0.005) * 0.5;
-                speed = 5;
-            } else if (lightSpeedActive) {
-                // Light speed effect
-                stars.material.size = 2;
-                stars.material.opacity = 0.1 + Math.sin(Date.now() * 0.01) * 0.1;
-                speed = 2.5;
+            if (!isPaused) {
+                planetsMesh.forEach(o => {
+                    o.angle += o.data.speed * CONFIG.orbitSpeed * 0.1;
+                    o.group.position.x = Math.cos(o.angle) * o.data.dist;
+                    o.group.position.z = Math.sin(o.angle) * o.data.dist;
+                    o.mesh.rotation.y += 0.5 * delta;
+                });
             } else {
-                // Reset to normal speed
-                stars.material.size = 1;
-                stars.material.opacity = 1;
-                speed = 0.05; //Original speed.
+                planetsMesh.forEach(o => o.mesh.rotation.y += 0.1 * delta);
             }
 
+            // Camera Intro & Parallax
+            const targetZ = CONFIG.camZ;
+            if (camera.position.z > targetZ + 1) {
+                camera.position.z += (targetZ - camera.position.z) * 0.02;
+                camera.position.y += (80 - camera.position.y) * 0.02;
+            } else if (!isPaused) {
+                camera.position.x += (mouse.x * 30 - camera.position.x) * 0.05;
+                camera.position.y += (80 + mouse.y * 30 - camera.position.y) * 0.05;
+            }
+            camera.lookAt(0,0,0);
+
+            updateHUD();
             renderer.render(scene, camera);
         }
 
-        function handleSpeedChange(event) {
-            if (event.type === 'keydown') {
-                if (event.key === 'Shift') {
-                    warpSpeedActive = true;
-                } else if (event.key === 'Control') {
-                    lightSpeedActive = true;
+        function updateHUD() {
+            planetsMesh.forEach(o => {
+                const v = o.group.position.clone(); v.y += o.data.radius; v.project(camera);
+                if (v.z > 1) { o.el.style.opacity = 0; } else {
+                    const x = (v.x * 0.5 + 0.5) * window.innerWidth;
+                    const y = (-(v.y * 0.5) + 0.5) * window.innerHeight;
+                    o.el.style.left = `${x}px`; o.el.style.top = `${y}px`;
+                    o.el.style.opacity = isPaused ? 0.2 : 1;
                 }
-            } else if (event.type === 'keyup') {
-                if (event.key === 'Shift') {
-                    warpSpeedActive = false;
-                } else if (event.key === 'Control') {
-                    lightSpeedActive = false;
-                }
+            });
+        }
+
+        function onMouseMove(e) {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1; mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(planetsMesh.map(p => p.mesh));
+            document.body.style.cursor = hits.length > 0 ? 'pointer' : 'default';
+        }
+
+        function onClick() {
+            if (isPaused) return;
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(planetsMesh.map(p => p.mesh));
+            if (hits.length > 0) {
+                const p = planetsMesh.find(x => x.mesh === hits[0].object);
+                if(p) openModal(p.data.id, p.data.name);
             }
         }
 
-        window.addEventListener('resize', onWindowResize, false);
+        window.openModal = function(id, title) {
+            isPaused = true;
+            document.getElementById('modal-body').innerHTML = document.getElementById(`data-${id}`).innerHTML;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal').classList.add('active');
+            document.getElementById('hud-layer').style.opacity = 0;
+        }
 
-        function onWindowResize() {
+        window.closeModal = function() {
+            document.getElementById('modal').classList.remove('active');
+            document.getElementById('hud-layer').style.opacity = 1;
+            isPaused = false;
+        }
+
+        function onResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
