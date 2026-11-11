@@ -1,0 +1,243 @@
+{
+ "date": "2026-11-11",
+ "postings": 206,
+ "skills": [
+  {
+   "skill": "System design / architecture",
+   "share": 0.816,
+   "week": 8
+  },
+  {
+   "skill": "ML / AI on device",
+   "share": 0.699,
+   "week": 0
+  },
+  {
+   "skill": "ADAS / autonomy",
+   "share": 0.558,
+   "week": 0
+  },
+  {
+   "skill": "Python",
+   "share": 0.505,
+   "week": 0
+  },
+  {
+   "skill": "C++",
+   "share": 0.471,
+   "week": 3
+  },
+  {
+   "skill": "Technical leadership / mentoring",
+   "share": 0.451,
+   "week": 8
+  },
+  {
+   "skill": "Cross-functional / stakeholders",
+   "share": 0.432,
+   "week": 8
+  },
+  {
+   "skill": "Robotics / ROS",
+   "share": 0.427,
+   "week": 0
+  },
+  {
+   "skill": "Performance / optimization",
+   "share": 0.379,
+   "week": 8
+  },
+  {
+   "skill": "Debugging (GDB, trace, crash)",
+   "share": 0.35,
+   "week": 8
+  },
+  {
+   "skill": "Sensors / sensor fusion",
+   "share": 0.33,
+   "week": 0
+  },
+  {
+   "skill": "Embedded Linux / kernel",
+   "share": 0.228,
+   "week": 7
+  },
+  {
+   "skill": "CI/CD / build systems",
+   "share": 0.223,
+   "week": 0
+  },
+  {
+   "skill": "Cloud / backend",
+   "share": 0.223,
+   "week": 0
+  },
+  {
+   "skill": "GPU / CUDA",
+   "share": 0.218,
+   "week": 0
+  },
+  {
+   "skill": "Board bring-up / hardware debug",
+   "share": 0.214,
+   "week": 8
+  },
+  {
+   "skill": "Testing (unit, HIL, SIL)",
+   "share": 0.214,
+   "week": 0
+  },
+  {
+   "skill": "RTOS",
+   "share": 0.209,
+   "week": 4
+  },
+  {
+   "skill": "C language",
+   "share": 0.194,
+   "week": 1
+  },
+  {
+   "skill": "Functional safety (ISO 26262)",
+   "share": 0.189,
+   "week": 8
+  },
+  {
+   "skill": "Ethernet / TCP/IP / networking",
+   "share": 0.184,
+   "week": 0
+  },
+  {
+   "skill": "Device drivers",
+   "share": 0.15,
+   "week": 7
+  },
+  {
+   "skill": "CAN / LIN / automotive buses",
+   "share": 0.136,
+   "week": 6
+  },
+  {
+   "skill": "Rust",
+   "share": 0.131,
+   "week": 0
+  },
+  {
+   "skill": "Security (secure boot, crypto)",
+   "share": 0.131,
+   "week": 8
+  },
+  {
+   "skill": "Bare metal / startup / linker",
+   "share": 0.126,
+   "week": 5
+  },
+  {
+   "skill": "ARM Cortex / MCUs",
+   "share": 0.121,
+   "week": 5
+  },
+  {
+   "skill": "Concurrency / multithreading",
+   "share": 0.107,
+   "week": 4
+  },
+  {
+   "skill": "Data structures & algorithms",
+   "share": 0.097,
+   "week": 2
+  },
+  {
+   "skill": "OTA / firmware update",
+   "share": 0.097,
+   "week": 8
+  },
+  {
+   "skill": "I2C / SPI / UART",
+   "share": 0.078,
+   "week": 6
+  },
+  {
+   "skill": "Hypervisor / virtualization",
+   "share": 0.078,
+   "week": 0
+  },
+  {
+   "skill": "USB / PCIe",
+   "share": 0.063,
+   "week": 0
+  },
+  {
+   "skill": "Bluetooth / Wi-Fi / wireless",
+   "share": 0.049,
+   "week": 0
+  },
+  {
+   "skill": "Android / AOSP",
+   "share": 0.049,
+   "week": 0
+  },
+  {
+   "skill": "ASPICE / process",
+   "share": 0.044,
+   "week": 0
+  },
+  {
+   "skill": "Motor control / power electronics",
+   "share": 0.044,
+   "week": 0
+  },
+  {
+   "skill": "Modern C++ (11/14/17/20)",
+   "share": 0.039,
+   "week": 3
+  },
+  {
+   "skill": "Low power",
+   "share": 0.034,
+   "week": 8
+  },
+  {
+   "skill": "MISRA / coding standards",
+   "share": 0.034,
+   "week": 8
+  },
+  {
+   "skill": "AUTOSAR",
+   "share": 0.029,
+   "week": 0
+  },
+  {
+   "skill": "DSP / signal processing",
+   "share": 0.029,
+   "week": 0
+  },
+  {
+   "skill": "DMA / memory / caches",
+   "share": 0.019,
+   "week": 5
+  },
+  {
+   "skill": "Interrupts / ISRs",
+   "share": 0.015,
+   "week": 4
+  },
+  {
+   "skill": "Bit manipulation / registers",
+   "share": 0.005,
+   "week": 1
+  }
+ ],
+ "gaps": [
+  "ML / AI on device",
+  "ADAS / autonomy",
+  "Python",
+  "Robotics / ROS",
+  "Sensors / sensor fusion",
+  "CI/CD / build systems",
+  "Cloud / backend",
+  "GPU / CUDA",
+  "Testing (unit, HIL, SIL)",
+  "Ethernet / TCP/IP / networking"
+ ]
+}

@@ -1,0 +1,1601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Sixty Days to Principal Embedded</title>
+<meta name="description" content="A 60-day daily curriculum for Principal Embedded / Principal C/C++ Software Engineer interviews">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F2F4F6; --surface:#FFFFFF; --soft:#E8ECF0; --ink:#18212F; --muted:#556170; --line:#D4DAE1;
+  --copper:#A8541F; --copper-soft:#F4E4D8; --teal:#1F6F6B; --teal-soft:#DCEDEB; --done:#2F7D4F; --done-soft:#DDEFE3;
+  --code-bg:#EEF1F4; --term-bg:#18212F; --term-ink:#E3E8EE; --term-muted:#97A3B1; --term-line:#2A3440;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F141A; --surface:#161D25; --soft:#1C2530; --ink:#E3E8EE; --muted:#97A3B1; --line:#2A3440;
+    --copper:#E48A4E; --copper-soft:#3A2618; --teal:#55B8B0; --teal-soft:#16302E; --done:#5CC08A; --done-soft:#17301F;
+    --code-bg:#1C2530; --term-bg:#0A0E13; --term-ink:#E3E8EE; --term-muted:#97A3B1; --term-line:#2A3440;
+  }}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F141A; --surface:#161D25; --soft:#1C2530; --ink:#E3E8EE; --muted:#97A3B1; --line:#2A3440;
+  --copper:#E48A4E; --copper-soft:#3A2618; --teal:#55B8B0; --teal-soft:#16302E; --done:#5CC08A; --done-soft:#17301F;
+  --code-bg:#1C2530; --term-bg:#0A0E13; --term-ink:#E3E8EE; --term-muted:#97A3B1; --term-line:#2A3440;
+}
+#lessonView *{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+#lessonView header.top,#lessonView nav.blocks,#lessonView main{max-width:800px;margin-inline:auto}
+#lessonView h1,#lessonView h2,#lessonView h3,#lessonView h4{font-family:var(--display);font-weight:600;letter-spacing:.01em;line-height:1.12;text-wrap:balance;margin:0}
+#lessonView h1{font-size:clamp(38px,8vw,60px)}
+#lessonView h2{font-size:34px}
+#lessonView h3{font-size:26px}
+#lessonView h4{font-size:20px;margin-top:10px}
+#lessonView h3.sub{font-size:22px;margin-top:10px}
+#lessonView p,#lessonView ul,#lessonView ol,#lessonView figure,#lessonView dl{margin:0}
+#lessonView ul,#lessonView ol{padding-left:22px;display:flex;flex-direction:column;gap:6px}
+#lessonView a{color:var(--teal)}
+#lessonView a:focus-visible,#lessonView button:focus-visible,#lessonView input:focus-visible,#lessonView summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#lessonView code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.08em .32em;border-radius:3px;overflow-wrap:anywhere}
+#lessonView pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+#lessonView .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+#lessonView header.top{padding-block:28px 22px;display:flex;flex-direction:column;gap:12px}
+#lessonView .back{font-size:14px;width:fit-content}
+#lessonView .lede{color:var(--muted);max-width:66ch}
+#lessonView .plan-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
+#lessonView .plan-grid a{background:var(--surface);padding:10px 12px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:2px;min-width:0}
+#lessonView .plan-grid a:hover{background:var(--teal-soft)}
+#lessonView .plan-grid b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--teal)}
+#lessonView .plan-grid span{font-size:13.5px;line-height:1.3}
+#lessonView nav.blocks{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:8px;border-bottom:1px solid var(--line)}
+#lessonView nav.blocks a{font-family:var(--mono);font-size:12.5px;white-space:nowrap;text-decoration:none;color:var(--ink);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+#lessonView nav.blocks a:hover{border-color:var(--copper)}
+#lessonView main{display:flex;flex-direction:column;gap:44px;padding-block:28px 72px}
+#lessonView .block{display:flex;flex-direction:column;gap:16px;min-width:0}
+#lessonView .block-head{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:start;border-bottom:2px solid var(--ink);padding-bottom:10px}
+#lessonView .block-head .eyebrow{grid-column:1;grid-row:1}
+#lessonView .block-head h2{grid-column:1;grid-row:2}
+#lessonView .tick{grid-column:2;grid-row:1/3;align-self:center;font-size:14px;display:flex;gap:7px;align-items:center;cursor:pointer;color:var(--muted)}
+#lessonView .tick input,#lessonView .done-box input{width:20px;height:20px;accent-color:var(--done);cursor:pointer;margin:0}
+#lessonView .lesson{display:flex;flex-direction:column;gap:13px;min-width:0;padding-block:6px 24px;border-bottom:1px solid var(--line)}
+#lessonView .lesson:last-child{border-bottom:0;padding-bottom:0}
+#lessonView .lesson h3{display:flex;gap:10px;align-items:baseline}
+#lessonView .lesson h3 .n{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--copper);flex:none}
+#lessonView .lesson>p,#lessonView .block>p,#lessonView .sol-body>p{max-width:72ch}
+#lessonView .cb{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--code-bg);min-width:0}
+#lessonView .cb figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 10px;font-family:var(--mono);font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);min-height:32px}
+#lessonView .cb pre{margin:0;padding:11px 12px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+#lessonView .cb.term{background:var(--term-bg);border-color:var(--term-bg)}
+#lessonView .cb.term figcaption{color:var(--term-muted);border-bottom-color:var(--term-line)}
+#lessonView .cb.term pre{color:var(--term-ink)}
+#lessonView .cb.out{background:var(--teal-soft);border-color:var(--teal)}
+#lessonView .cb.out figcaption{color:var(--teal);border-bottom-color:var(--teal)}
+#lessonView .cb.asm{background:var(--surface)}
+#lessonView .copy{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border:1px solid currentColor;border-radius:3px;background:transparent;color:inherit;cursor:pointer}
+#lessonView .copy:hover{color:var(--copper)}
+#lessonView .side{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+#lessonView .side>*{min-width:0}
+#lessonView .pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:4px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
+#lessonView .stage{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:8px 4px;border:1px solid var(--line);border-radius:4px;min-width:0}
+#lessonView .stage small{font-size:11.5px;color:var(--muted);line-height:1.2}
+#lessonView .arrow{font-family:var(--mono);font-size:10.5px;color:var(--copper);text-align:center;line-height:1.3}
+#lessonView .arrow::after{content:"\2192";display:block;font-size:15px}
+#lessonView .arrow code{background:none;padding:0;font-size:inherit}
+#lessonView .scroll{overflow-x:auto;min-width:0}
+#lessonView table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--surface)}
+#lessonView th,#lessonView td{text-align:left;padding:7px 10px;border:1px solid var(--line);vertical-align:top}
+#lessonView th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted)}
+#lessonView th small{font-size:11px;font-family:var(--body)}
+#lessonView table.nums td{font-variant-numeric:tabular-nums}
+#lessonView tr.hit td{background:var(--copper-soft)}
+#lessonView .reg{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}
+#lessonView .reg-bits{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+#lessonView .bit{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 6px;border:1px solid var(--line);border-radius:4px;background:var(--soft);color:var(--ink);cursor:pointer;font-family:var(--mono);min-width:0}
+#lessonView .bit b{font-size:20px;font-weight:500;line-height:1.1}
+#lessonView .bit small{font-size:10.5px;color:var(--muted)}
+#lessonView .bit[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+#lessonView .bit[aria-pressed="true"] small{color:var(--surface)}
+#lessonView .reg-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#lessonView .reg-vals dt{font-size:12px;color:var(--muted)}
+#lessonView .reg-vals dd{margin:0;font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+#lessonView .rule{background:var(--copper-soft);border-radius:5px;padding:11px 14px;max-width:72ch}
+#lessonView .rule code{background:var(--surface)}
+#lessonView .recap{background:var(--teal-soft);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+#lessonView .recap h4{margin:0}
+#lessonView .problem{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+#lessonView details{min-width:0}
+#lessonView summary{cursor:pointer;font-weight:500}
+#lessonView .hint{border-top:1px solid var(--line);padding-top:10px}
+#lessonView .hint p{margin-top:6px;color:var(--muted)}
+#lessonView .sol{border:1px solid var(--line);border-radius:5px;background:var(--bg);padding:10px 12px}
+#lessonView .sol-body{display:flex;flex-direction:column;gap:12px;margin-top:12px;min-width:0}
+#lessonView .qa{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+#lessonView .qa details{border-bottom:1px solid var(--line);padding:12px 14px}
+#lessonView .qa details:last-child{border-bottom:0}
+#lessonView .ans{margin-top:8px;padding-left:12px;border-left:3px solid var(--teal);max-width:72ch}
+#lessonView .quiz{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#lessonView .q{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+#lessonView .q-n{font-family:var(--mono);font-size:12px;color:var(--copper)}
+#lessonView .snip{margin:0;background:var(--code-bg);border-radius:4px;padding:9px 10px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.5}
+#lessonView .q details p{margin-top:6px;font-size:14.5px}
+#lessonView .finish{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+#lessonView .exit{font-size:15px}
+#lessonView .done-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+#lessonView .done-box{display:flex;gap:9px;align-items:center;font-weight:500;cursor:pointer}
+#lessonView .tomorrow{color:var(--muted);font-size:14.5px}
+@media (max-width:700px){#lessonView .plan-grid{grid-template-columns:repeat(3,1fr)}
+#lessonView .pipe{grid-template-columns:1fr;justify-items:stretch}
+#lessonView .arrow::after{content:"\2193"}
+#lessonView .side,#lessonView .quiz{grid-template-columns:1fr}
+#lessonView .reg-vals{grid-template-columns:1fr 1fr}
+#lessonView .bit b{font-size:17px}
+#lessonView h2{font-size:30px}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* ---- plan view */
+#planView *{box-sizing:border-box}
+#planView{font-size:15px;line-height:1.55}
+#planView .wrap{max-width:1080px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:40px}
+#planView h1,#planView h2,#planView h3{font-family:var(--display);font-weight:600;letter-spacing:.01em;text-wrap:balance;margin:0;line-height:1.1}
+#planView h1{font-size:clamp(34px,6vw,54px)}
+#planView h2{font-size:30px}
+#planView h3{font-size:21px}
+#planView p{margin:0}
+#planView .mono{font-family:var(--mono)}
+#planView .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+#planView a{color:var(--teal)}
+#planView a:focus-visible,#planView button:focus-visible,#planView input:focus-visible,#planView summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#planView header{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
+#planView header .lede{color:var(--muted);max-width:60ch;margin-top:10px}
+#planView .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+#planView .stat{background:var(--surface);padding:12px 14px}
+#planView .stat b{display:block;font-family:var(--display);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums}
+#planView .stat span{font-size:12px;color:var(--muted)}
+#planView .progress{grid-column:1/-1;display:flex;flex-direction:column;gap:8px}
+#planView .bar{height:10px;background:var(--soft);border-radius:5px;overflow:hidden;border:1px solid var(--line)}
+#planView .bar i{display:block;height:100%;width:0;background:var(--done);transition:width .3s}
+#planView .controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13px;color:var(--muted)}
+#planView .controls label{display:flex;gap:6px;align-items:center}
+#planView .controls input[type=date]{font-family:var(--mono);font-size:13px;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink)}
+#planView .btn{font:inherit;font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+#planView .btn:hover{border-color:var(--copper)}
+#planView .panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px}
+#planView .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#planView .routine{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+#planView .slot{border-top:3px solid var(--teal);padding-top:8px}
+#planView .slot b{font-family:var(--mono);font-size:13px;color:var(--teal);display:block}
+#planView .slot span{font-size:13.5px}
+#planView .rules{margin:14px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+#planView table{border-collapse:collapse;width:100%;font-size:14px}
+#planView th,#planView td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+#planView th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+#planView td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+#planView .scroll{overflow-x:auto}
+#planView nav.weeks{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+#planView nav.weeks a{font-family:var(--mono);font-size:12.5px;text-decoration:none;color:var(--ink);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--surface);display:flex;gap:6px;align-items:center}
+#planView nav.weeks a em{font-style:normal;color:var(--muted)}
+#planView nav.weeks a.full{border-color:var(--done);color:var(--done)}
+#planView .week{display:flex;flex-direction:column;gap:12px;scroll-margin-top:64px}
+#planView .week-head{display:flex;flex-direction:column;gap:6px;padding-bottom:6px}
+#planView .week-head p{color:var(--muted);max-width:75ch}
+#planView .day{background:var(--surface);border:1px solid var(--line);border-radius:6px}
+#planView .day.done{background:var(--done-soft);border-color:var(--done)}
+#planView .day-top{display:grid;grid-template-columns:auto auto 1fr auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+#planView .day.done .day-top{border-bottom-color:var(--done)}
+#planView .day-top input{width:20px;height:20px;accent-color:var(--done);cursor:pointer}
+#planView .addr{font-family:var(--mono);font-size:13px;color:var(--copper);white-space:nowrap}
+#planView .addr small{color:var(--muted);font-size:11.5px;margin-left:6px}
+#planView .day-top h3{font-size:20px}
+#planView .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#planView .tag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:3px;white-space:nowrap}
+#planView .tag.wk{background:var(--teal-soft);color:var(--teal)}
+#planView .tag.mock{background:var(--copper-soft);color:var(--copper)}
+#planView .tag.hw{background:var(--soft);color:var(--ink)}
+#planView .day-body{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+#planView .cell{padding:12px 16px;display:flex;flex-direction:column;gap:5px;border-right:1px solid var(--line)}
+#planView .cell:nth-child(2n){border-right:0}
+#planView .cell:nth-child(n+3){border-top:1px solid var(--line)}
+#planView .day.done .cell{border-color:var(--done)}
+#planView .cell h4{margin:0;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#planView .cell ul{margin:0;padding-left:17px;display:flex;flex-direction:column;gap:3px}
+#planView .cell .res{font-size:13px;color:var(--muted)}
+#planView .lc{font-family:var(--mono);font-size:13px}
+#planView .lesson-link{display:inline-block;width:fit-content;margin-top:4px;padding:6px 11px;border-radius:4px;background:var(--teal);color:var(--surface);font-weight:500;font-size:14px;text-decoration:none}
+#planView .lesson-link:hover{background:var(--copper)}
+#planView .lesson-link:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#planView .lessons-ready{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+#planView .lessons-ready p{color:var(--muted);max-width:62ch;margin-top:4px}
+#planView .hidden-done .day.done{display:none}
+#planView details{border-bottom:1px solid var(--line);padding:9px 0}
+#planView summary{cursor:pointer;font-weight:500}
+#planView details p{margin-top:6px;color:var(--muted);max-width:80ch}
+#planView .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+#planView .check{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+#planView .check li{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+#planView .check li::before{content:"";flex:none;width:12px;height:12px;margin-top:5px;border:2px solid var(--teal);border-radius:2px}
+#planView footer{color:var(--muted);font-size:13px}
+@media (max-width:820px){#planView header,#planView .two,#planView .qgrid,#planView .check{grid-template-columns:1fr}
+#planView .routine{grid-template-columns:1fr 1fr}
+#planView .day-body{grid-template-columns:1fr}
+#planView .cell{border-right:0}
+#planView .cell:nth-child(n+2){border-top:1px solid var(--line)}
+#planView .day-top{grid-template-columns:auto 1fr;}
+#planView .day-top h3{grid-column:1/-1}
+#planView .tags{grid-column:1/-1;justify-content:flex-start}}
+@media (prefers-reduced-motion:reduce){#planView .bar i{transition:none}}
+</style>
+<style>
+[hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#syncBar{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;
+  display:flex;flex-direction:column;gap:8px;align-items:flex-end;font:13px var(--body);max-width:min(360px,calc(100vw - 24px))}
+#syncBadge{display:flex;gap:8px;align-items:center;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer}
+#syncBadge i{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+#syncBadge[data-s="ok"] i{background:var(--done)} #syncBadge[data-s="local"] i{background:var(--copper)} #syncBadge[data-s="err"] i{background:#C0392B}
+#syncForm{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+#syncForm p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.45}
+#syncForm input{font:13px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%}
+#syncForm .row{display:flex;gap:8px;justify-content:flex-end}
+#syncForm button{font:inherit;padding:5px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+#syncForm button.go{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+#resumePanel .big{font-family:var(--display);font-size:34px;font-weight:600;line-height:1.1}
+#resumePanel .sub{color:var(--muted);margin-top:4px;max-width:62ch}
+#marketPanel h3{margin-top:4px}
+#marketPanel .gaps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+#marketPanel .gap{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:3px;background:var(--copper-soft);color:var(--copper)}
+#marketPanel .share{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-variant-numeric:tabular-nums}
+#marketPanel .share b{display:block;height:6px;border-radius:3px;background:var(--teal);flex:none}
+#marketPanel .wk{font-family:var(--mono);font-size:12px;white-space:nowrap}
+#marketPanel .wk.no{color:var(--copper)}
+#marketPanel .note{color:var(--muted);font-size:13px;margin-top:10px;max-width:80ch}
+</style>
+<script>
+/* Progress sync: every p60.* key mirrors learn/progress.json in the repo, so any device continues where you left off. */
+(function(){
+  var API="https://api.github.com/repos/arshad3e/arshad3e.github.io/contents/learn/progress.json";
+  var TK="p60sync.token",UP="p60sync.updated",SHA="p60sync.sha";
+  var ls=window.localStorage,origSet=Storage.prototype.setItem,origDel=Storage.prototype.removeItem;
+  function g(k){try{return ls.getItem(k)}catch(e){return null}}
+  function s(k,v){try{origSet.call(ls,k,v)}catch(e){}}
+  function keys(){var a=[];try{for(var i=0;i<ls.length;i++){var k=ls.key(i);if(k&&k.indexOf("p60.")===0)a.push(k)}}catch(e){}return a}
+  function snap(){var o={};keys().forEach(function(k){o[k]=g(k)});return o}
+  function b64e(t){return btoa(unescape(encodeURIComponent(t)))}
+  function b64d(t){return decodeURIComponent(escape(atob(t.replace(/\s/g,""))))}
+  function hdr(){var h={"Accept":"application/vnd.github+json"},t=g(TK);if(t)h.Authorization="Bearer "+t;return h}
+  var badge,form,timer,busy=false;
+  function status(st,txt){if(!badge)return;badge.dataset.s=st;badge.querySelector("span").textContent=txt}
+  function stamp(){return new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}
+
+  function pull(){
+    return fetch(API+"?ref=main&t="+Date.now(),{headers:hdr(),cache:"no-store"}).then(function(r){
+      if(r.status===404)return null;
+      if(!r.ok)throw new Error("read "+r.status);
+      return r.json();
+    }).then(function(j){
+      if(!j)return {updated:0,state:null,sha:null};
+      var d=JSON.parse(b64d(j.content));return {updated:+d.updated||0,state:d.state||{},sha:j.sha};
+    });
+  }
+  function push(){
+    var t=g(TK);if(!t){status("local","Saved on this device · tap to sync");return}
+    if(busy){clearTimeout(timer);timer=setTimeout(push,1500);return}
+    busy=true;status("local","Syncing…");
+    var updated=+g(UP)||Date.now(),done=0;try{done=Object.keys(JSON.parse(g("p60.done")||"{}")).length}catch(e){}
+    var body=JSON.stringify({updated:updated,state:snap()},null,1);
+    function put(sha){
+      return fetch(API,{method:"PUT",headers:Object.assign(hdr(),{"Content-Type":"application/json"}),
+        body:JSON.stringify({message:"learn: progress "+done+"/60 days",content:b64e(body),sha:sha||undefined,branch:"main"})});
+    }
+    put(g(SHA)).then(function(r){
+      if(r.status===409||r.status===422)return pull().then(function(p){return put(p.sha)});
+      return r;
+    }).then(function(r){
+      if(r.status===401||r.status===403)throw new Error("token refused ("+r.status+")");
+      if(!r.ok)throw new Error("save "+r.status);
+      return r.json();
+    }).then(function(j){s(SHA,j.content.sha);status("ok","Synced "+stamp())})
+      .catch(function(e){status("err","Not synced: "+e.message+" · tap")})
+      .then(function(){busy=false});
+  }
+  function changed(k){
+    if(k&&k.indexOf("p60.")===0){s(UP,String(Date.now()));clearTimeout(timer);timer=setTimeout(push,1200);
+      if(window.p60Resume)window.p60Resume()}
+  }
+  Storage.prototype.setItem=function(k,v){origSet.call(this,k,v);if(this===ls)changed(k)};
+  Storage.prototype.removeItem=function(k){origDel.call(this,k);if(this===ls)changed(k)};
+
+  function apply(state){
+    keys().forEach(function(k){if(!(k in state))try{origDel.call(ls,k)}catch(e){}});
+    Object.keys(state).forEach(function(k){s(k,state[k])});
+  }
+  function mergeDone(state){
+    var changedAny=false;
+    Object.keys(state).forEach(function(k){
+      if(k!=="p60.done"&&!/^p60\.d\d+\.ticks$/.test(k))return;
+      var mine={},theirs={};try{mine=JSON.parse(g(k)||"{}");theirs=JSON.parse(state[k]||"{}")}catch(e){return}
+      Object.keys(theirs).forEach(function(n){if(!mine[n]){mine[n]=theirs[n];changedAny=true}});
+      if(changedAny)s(k,JSON.stringify(mine));
+    });
+    return changedAny;
+  }
+  function start(){
+    status("local","Checking progress…");
+    pull().then(function(p){
+      var local=+g(UP)||0;
+      if(p.sha)s(SHA,p.sha);
+      if(p.state&&p.updated>local){
+        var before=JSON.stringify(snap());apply(p.state);s(UP,String(p.updated));
+        if(JSON.stringify(snap())!==before){
+          try{if(sessionStorage.getItem("p60sync.reloaded")!==String(p.updated)){sessionStorage.setItem("p60sync.reloaded",String(p.updated));location.reload();return}}catch(e){}
+        }
+        status(g(TK)?"ok":"local",g(TK)?"Synced "+stamp():"Showing saved progress · tap to connect");
+      }else if(local>p.updated){
+        // this device changed later, but never let it erase finished days or steps another device saved
+        if(p.state&&mergeDone(p.state)){
+          try{if(sessionStorage.getItem("p60sync.merged")!==String(p.updated)){sessionStorage.setItem("p60sync.merged",String(p.updated));location.reload();return}}catch(e){}
+        }
+        push();
+      }
+      else status(g(TK)?"ok":"local",g(TK)?"Synced "+stamp():"Showing saved progress · tap to connect");
+    }).catch(function(e){status("err","Offline: progress saved on this device")});
+  }
+
+  document.addEventListener("DOMContentLoaded",function(){
+    var bar=document.createElement("div");bar.id="syncBar";
+    bar.innerHTML='<form id="syncForm" hidden><b>Sync progress across devices</b>'+
+      '<p>Paste a GitHub fine-grained token with <code>Contents: Read and write</code> on <code>arshad3e.github.io</code> only. It stays in this browser.</p>'+
+      '<input type="password" autocomplete="off" placeholder="github_pat_…" aria-label="GitHub token">'+
+      '<div class="row"><button type="button" class="forget">Forget token</button><button type="button" class="cancel">Cancel</button><button type="submit" class="go">Connect</button></div></form>'+
+      '<button type="button" id="syncBadge" data-s="local"><i></i><span>Loading…</span></button>';
+    document.body.appendChild(bar);
+    badge=bar.querySelector("#syncBadge");form=bar.querySelector("#syncForm");
+    badge.addEventListener("click",function(){form.hidden=!form.hidden;if(!form.hidden)form.querySelector("input").focus()});
+    form.querySelector(".cancel").addEventListener("click",function(){form.hidden=true});
+    form.querySelector(".forget").addEventListener("click",function(){try{origDel.call(ls,TK)}catch(e){}form.hidden=true;status("local","Saved on this device · tap to sync")});
+    form.addEventListener("submit",function(ev){ev.preventDefault();var v=form.querySelector("input").value.trim();if(!v)return;
+      s(TK,v);form.querySelector("input").value="";form.hidden=true;
+      pull().then(function(p){if(p.sha)s(SHA,p.sha);var local=+g(UP)||0;
+        if(p.state&&p.updated>local){apply(p.state);s(UP,String(p.updated));location.reload()}else push()})
+      .catch(function(e){status("err","Not synced: "+e.message+" · tap")});
+    });
+    start();
+  });
+})();
+</script>
+</head>
+<body>
+<div id="planView">
+
+<div class="wrap">
+<header>
+  <div>
+    <div class="eyebrow">Arshad Shaik · Principal Embedded / Principal C/C++ SWE track</div>
+    <h1>Sixty Days to Principal Embedded</h1>
+    <p class="lede">A day-by-day rebuild from zero: C and bit-level fluency, modern C++, concurrency, bare-metal Cortex-M, drivers, embedded Linux, board bring-up and principal-level system design. Every day has something to learn, problems to solve, something to build on real hardware, and questions to answer out loud.</p>
+  </div>
+  <div class="stats" aria-label="Plan totals">
+    <div class="stat"><b>60</b><span>days</span></div>
+    <div class="stat"><b id="lcCount">0</b><span>coding problems</span></div>
+    <div class="stat"><b id="labCount">0</b><span>hardware labs</span></div>
+  </div>
+  <div class="progress">
+    <div class="controls">
+      <span id="progText">0 of 60 days done</span>
+      <label for="startDate">Start date <input type="date" id="startDate"></label>
+      <label for="hideDone"><input type="checkbox" id="hideDone"> Hide finished days</label>
+      <button class="btn" id="jumpNext" type="button">Jump to next day</button>
+    </div>
+    <div class="bar" role="progressbar" aria-labelledby="progText" aria-valuemin="0" aria-valuemax="60"><i id="barFill"></i></div>
+  </div>
+</header>
+
+<section class="panel lessons-ready" id="resumePanel"></section>
+<section class="panel" id="marketPanel" hidden></section>
+
+<section class="panel">
+  <div class="eyebrow">How every day runs</div>
+  <h2>Weekday 3 hours · Weekend 5 hours</h2>
+  <div class="routine">
+    <div class="slot"><b>15 min · Recall</b><span>Anki review of yesterday's cards. Add new cards for anything you got wrong.</span></div>
+    <div class="slot"><b>60 min · Learn</b><span>Read the day's lesson, then write a 5-line summary in your own words.</span></div>
+    <div class="slot"><b>60 min · Code</b><span>The listed problems in C or C++. 25-minute cap each, then study the best solution and re-type it.</span></div>
+    <div class="slot"><b>30 min · Build</b><span>The lab or drill. Weekends extend this to 2–3 hours on real hardware.</span></div>
+    <div class="slot"><b>15 min · Explain</b><span>Answer the day's questions out loud as if in an interview. Record yourself twice a week.</span></div>
+  </div>
+  <ul class="rules">
+    <li>Write every coding problem in a plain editor first, no autocomplete. Interviews use CoderPad or a whiteboard.</li>
+    <li>Mark a problem red if you needed the solution. Re-solve every red problem 3 days later and again on Day 57.</li>
+    <li>Push every lab and drill to one GitHub repo, <span class="mono">embedded-portfolio</span>. By Day 60 it is evidence a principal candidate can still build.</li>
+    <li>Compile all C with <span class="mono">-Wall -Wextra -Werror -fsanitize=address,undefined</span> on the host before moving to target.</li>
+    <li>Sundays are checkpoints. If a checkpoint goes badly, spend Monday's Learn block repeating that week's weakest topic.</li>
+  </ul>
+</section>
+
+<section class="two">
+  <div class="panel">
+    <div class="eyebrow">Order this by Day 7 · about $160</div>
+    <h3>Hardware kit</h3>
+    <div class="scroll" style="margin-top:10px">
+    <table>
+      <thead><tr><th>Item</th><th>Used for</th><th>Approx.</th></tr></thead>
+      <tbody>
+        <tr><td>STM32 Nucleo-F446RE (Cortex-M4F, on-board ST-LINK)</td><td>Weeks 5–6 bare-metal, drivers, bootloader</td><td class="num">$20</td></tr>
+        <tr><td>Raspberry Pi 4 or 5 + 32 GB microSD + PSU</td><td>Week 7 kernel modules and drivers</td><td class="num">$80</td></tr>
+        <tr><td>USB logic analyzer, 24 MHz 8-channel (sigrok / PulseView)</td><td>Verify I2C, SPI, UART, PWM timing</td><td class="num">$15</td></tr>
+        <tr><td>BME280 breakout (I2C/SPI)</td><td>I2C driver bare-metal and in-kernel</td><td class="num">$10</td></tr>
+        <tr><td>W25Q64 SPI NOR flash breakout</td><td>SPI driver, bootloader storage</td><td class="num">$5</td></tr>
+        <tr><td>USB-UART adapter (CP2102 or FTDI)</td><td>Pi serial console, bootloader upload</td><td class="num">$8</td></tr>
+        <tr><td>2× MCP2515 CAN modules (optional)</td><td>Day 39 CAN experiments</td><td class="num">$10</td></tr>
+        <tr><td>Breadboard, jumper wires, pushbuttons, LEDs</td><td>GPIO and interrupt labs</td><td class="num">$10</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">Optional · only for extra depth</div>
+    <h3>Books and references</h3>
+    <ul class="rules">
+      <li><b>K&amp;R</b>, The C Programming Language, 2nd ed.</li>
+      <li><b>Expert C Programming</b>, Peter van der Linden</li>
+      <li><b>CS:APP</b>, Computer Systems: A Programmer's Perspective, ch. 2–3, 6, 9</li>
+      <li><b>Hacker's Delight</b>, Henry Warren, ch. 2 · plus Sean Anderson's “Bit Twiddling Hacks” page</li>
+      <li><b>Effective Modern C++</b>, Scott Meyers</li>
+      <li><b>C++ Concurrency in Action</b>, 2nd ed., Anthony Williams</li>
+      <li><b>Making Embedded Systems</b>, 2nd ed., Elecia White</li>
+      <li><b>The Definitive Guide to ARM Cortex-M3 and M4</b>, Joseph Yiu</li>
+      <li><b>Mastering the FreeRTOS Real Time Kernel</b> (free PDF)</li>
+      <li><b>Linux Device Drivers, 3rd ed.</b> (free) and <b>Bootlin</b> training slides (free)</li>
+      <li><b>Memfault “Interrupt” blog</b>: zero-to-main, HardFault debugging, bring-up posts</li>
+      <li><b>NeetCode 150</b> list and <b>godbolt.org</b> for reading generated assembly</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="weeks" id="weekNav" aria-label="Weeks"></nav>
+<main id="plan" style="display:flex;flex-direction:column;gap:40px"></main>
+
+<section class="panel">
+  <div class="eyebrow">Self-test · click to reveal</div>
+  <h2>Rapid-fire questions principal loops actually ask</h2>
+  <div class="qgrid" id="qa" style="margin-top:12px"></div>
+</section>
+
+<section class="panel">
+  <div class="eyebrow">Day 60 exit criteria</div>
+  <h2>You are ready when you can</h2>
+  <ul class="check">
+    <li>Solve an unseen LeetCode medium in C++ in under 25 minutes while talking through it.</li>
+    <li>Write memmove, a power-of-two ring buffer and register-field macros from memory, bug-free.</li>
+    <li>Walk an interviewer from power-on to main() on a Cortex-M, including the linker script.</li>
+    <li>Explain a context switch, priority inversion and interrupt latency with diagrams.</li>
+    <li>Write an I2C or SPI driver from a datasheet page in 40 minutes.</li>
+    <li>Write a Linux char driver and a DT-bound platform driver without notes.</li>
+    <li>Explain the Linux boot chain and debug a kernel oops with addr2line.</li>
+    <li>Run a 45-minute embedded system design (OTA, logger, camera pipeline) with clear tradeoffs.</li>
+    <li>Tell six STAR stories in 3 minutes each, each with a number in it.</li>
+    <li>Show a GitHub repo with your drivers, bootloader and kernel module.</li>
+  </ul>
+</section>
+
+<footer>Progress is saved in this browser only. Problem numbers refer to LeetCode. Problems marked premium need a LeetCode subscription; a free alternative is listed next to them.</footer>
+</div>
+
+</div>
+<div id="lessonView" hidden>
+<header class="top">
+  <a class="back" href="#top" data-open="plan">Back to the 60-day plan</a>
+  <div class="eyebrow">D01 · 0x01 · Week 1 · C, rebuilt from the metal</div>
+  <h1>How C Becomes Machine Code</h1>
+  <p class="lede">Everything for today is on this page. You do not need a book. Assume you remember nothing and work from the top down. Every code sample and output below was compiled and run on your Mac (Intel, Apple clang 15).</p>
+  <div class="plan-grid" role="list" aria-label="Today's three hours">
+    <a role="listitem" href="#setup"><b>10 min</b><span>Set up</span></a>
+    <a role="listitem" href="#read"><b>60 min</b><span>Read</span></a>
+    <a role="listitem" href="#code"><b>55 min</b><span>Solve 3 problems</span></a>
+    <a role="listitem" href="#build"><b>25 min</b><span>Build and break</span></a>
+    <a role="listitem" href="#explain"><b>20 min</b><span>Answer out loud</span></a>
+    <a role="listitem" href="#quiz"><b>10 min</b><span>Predict the output</span></a>
+  </div>
+</header>
+
+<nav class="blocks" aria-label="Lesson sections">
+  <a href="#setup">Set up</a><a href="#read">Read</a><a href="#code">Solve</a><a href="#build">Build</a><a href="#explain">Explain</a><a href="#quiz">Quiz</a><a href="#finish">Finish</a>
+</nav>
+
+<main>
+
+<section id="setup" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-setup" data-tick="setup"> Done</label>
+    <div class="eyebrow">Step 1 · 10 minutes</div>
+    <h2>Set up your workspace</h2>
+  </div>
+  <p>Your Mac already has the compiler. Open Terminal and run these three commands. They create one folder that will hold all 60 days of work, which becomes your portfolio by Day 60.</p>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>mkdir -p ~/embedded-portfolio/day01/pipeline
+cd ~/embedded-portfolio
+git init
+printf 'build/\n*.o\n*.i\n*.s\napp\nub_*\n' &gt; .gitignore</code></pre></figure>
+  <p>Use a plain text editor with autocomplete off. Interviews use a bare editor or a whiteboard, so practice that way from today.</p>
+</section>
+
+<section id="read" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-read" data-tick="read"> Done</label>
+    <div class="eyebrow">Step 2 · 60 minutes</div>
+    <h2>Read this</h2>
+  </div>
+
+  <article class="lesson">
+    <h3><span class="n">1</span> What the CPU actually runs</h3>
+    <p>A CPU does not understand C. It runs <b>machine instructions</b>, which are numbers stored in memory. Each one does something tiny: copy a value, add two values, compare two values, jump somewhere else.</p>
+    <p>Those instructions work on <b>registers</b>, a small set of very fast storage slots inside the CPU. A Cortex-M4 has 16 of them, named <code>r0</code> to <code>r15</code>. Three have special jobs: <code>r13</code> is the stack pointer (<code>sp</code>), <code>r14</code> holds the return address (<code>lr</code>), and <code>r15</code> is the program counter (<code>pc</code>), which points at the next instruction.</p>
+    <p>Assembly language is the human-readable spelling of those numbers. C is a higher-level language, and the compiler toolchain translates it down. Today you learn exactly how, because almost every hard firmware bug lives in the gap between what your C says and what the machine does.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">2</span> The four stages of a build</h3>
+    <p>When you run <code>clang main.c</code>, four separate tools run in order. Interviewers ask this directly, and each stage produces its own kind of error.</p>
+    <div class="pipe" role="img" aria-label="main.c goes through the preprocessor to main.i, the compiler to main.s, the assembler to main.o, and the linker to an executable">
+      <div class="stage"><code>main.c</code><small>your source</small></div>
+      <div class="arrow">preprocess<br><code>-E</code></div>
+      <div class="stage"><code>main.i</code><small>pure C text</small></div>
+      <div class="arrow">compile<br><code>-S</code></div>
+      <div class="stage"><code>main.s</code><small>assembly</small></div>
+      <div class="arrow">assemble<br><code>-c</code></div>
+      <div class="stage"><code>main.o</code><small>object file</small></div>
+      <div class="arrow">link</div>
+      <div class="stage"><code>app</code><small>executable</small></div>
+    </div>
+    <p>Follow along with a real example. Create these three files in <code>~/embedded-portfolio/day01/pipeline</code>.</p>
+    <figure class="cb code"><figcaption><span>calc.h</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#ifndef CALC_H
+#define CALC_H
+
+#define SCALE 10
+
+int scaled_add(int a, int b);
+
+#endif</code></pre></figure>
+    <figure class="cb code"><figcaption><span>calc.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include "calc.h"
+
+int scaled_add(int a, int b)
+{
+    return (a + b) * SCALE;
+}</code></pre></figure>
+    <figure class="cb code"><figcaption><span>main.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "calc.h"
+
+int main(void)
+{
+    printf("%d\n", scaled_add(2, 3));
+    return 0;
+}</code></pre></figure>
+
+    <h4>Stage 1: the preprocessor pastes text</h4>
+    <p>It knows nothing about C. It handles lines that start with <code>#</code>: <code>#include</code> pastes a whole file in, <code>#define</code> swaps text, and <code>#if</code> keeps or drops lines. Comments are removed too.</p>
+    <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>cd ~/embedded-portfolio/day01/pipeline
+clang -E main.c -o main.i
+wc -l main.i</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>$ wc -l main.i
+573 main.i</code></pre></figure>
+    <p>Your 8-line file became 573 lines because all of <code>stdio.h</code> was pasted in. Open <code>main.i</code> and scroll to the bottom. Your code is there, and in <code>calc.c</code> the word <code>SCALE</code> would already be <code>10</code>.</p>
+    <p>Because this is only text substitution, macros have a famous trap:</p>
+    <figure class="cb code"><figcaption><span>Macro trap</span></figcaption><pre><code>#define SQUARE(x)  x * x
+SQUARE(1 + 2)               /* becomes 1 + 2 * 1 + 2, which is 5, not 9 */
+
+#define SQUARE2(x) ((x) * (x))
+SQUARE2(1 + 2)              /* becomes ((1 + 2) * (1 + 2)), which is 9 */</code></pre></figure>
+    <p>Always put parentheses around each argument and around the whole macro body. The <code>#ifndef CALC_H</code> lines in the header are an <b>include guard</b>: if the file gets pasted twice, the second copy is skipped.</p>
+
+    <h4>Stage 2: the compiler turns C into assembly</h4>
+    <p>It checks types and translates one <code>.i</code> file at a time. That one file is called a <b>translation unit</b>. The compiler cannot see any other file, so <code>main.c</code> only needs a promise that <code>scaled_add</code> exists. The line <code>int scaled_add(int a, int b);</code> in the header is that promise.</p>
+    <ul>
+      <li>A <b>declaration</b> says a thing exists and what its type is. You can repeat it many times.</li>
+      <li>A <b>definition</b> creates the thing: the function body or the variable's storage. Exactly one is allowed in the whole program.</li>
+    </ul>
+
+    <h4>Stage 3: the assembler produces an object file</h4>
+    <p>It turns assembly into real machine code inside a <code>.o</code> file. Some addresses are still unknown: <code>main</code> calls <code>scaled_add</code>, but nothing yet says where that function will live. The assembler leaves a note called a <b>relocation</b> for the linker to fill in. You can see the unresolved names with <code>nm</code>.</p>
+    <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -c main.c -o main.o
+clang -c calc.c -o calc.o
+nm main.o
+nm calc.o</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>main.o:
+0000000000000000 T _main
+                 U _printf
+                 U _scaled_add
+
+calc.o:
+0000000000000000 T _scaled_add</code></pre></figure>
+    <p><code>T</code> means defined here, in the text (code) section. <code>U</code> means used here but undefined here. A lowercase <code>t</code> means defined here but private to this file, which is what the <code>static</code> keyword does to a function. The leading underscore is a macOS naming detail. Linux and embedded ELF files do not have it.</p>
+
+    <h4>Stage 4: the linker connects everything</h4>
+    <p>It matches every <code>U</code> to a <code>T</code>, fills in the relocations, assigns final addresses and writes the executable. Try linking with a piece missing.</p>
+    <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang main.o -o app
+clang main.o calc.o -o app
+./app</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>$ clang main.o -o app
+ld: Undefined symbols:
+  _scaled_add, referenced from:
+      _main in main.o
+
+$ clang main.o calc.o -o app
+$ ./app
+50</code></pre></figure>
+    <p>On a microcontroller the linker has one more job. A <b>linker script</b> tells it that code goes in flash (address <code>0x08000000</code> on your STM32) and variables go in RAM (<code>0x20000000</code>). You will write one on Day 30.</p>
+
+    <h4>Which stage failed? Read the error</h4>
+    <div class="scroll"><table>
+      <thead><tr><th>Stage</th><th>Real message from your compiler</th><th>Usual cause</th></tr></thead>
+      <tbody>
+        <tr><td>Preprocessor</td><td><code>fatal error: 'nothing.h' file not found</code></td><td>Wrong include path or file name</td></tr>
+        <tr><td>Compiler</td><td><code>error: use of undeclared identifier 'value'</code></td><td>Typo, missing header, wrong types</td></tr>
+        <tr><td>Linker</td><td><code>Undefined symbols: _scaled_add</code></td><td>Declared but never defined, or a file left out of the link</td></tr>
+        <tr><td>Linker</td><td><code>duplicate symbol '_shared'</code></td><td>Two definitions, often a variable defined in a header</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">3</span> How big is each type?</h3>
+    <p>C does not fix the size of <code>int</code>. It only sets minimums (<code>int</code> must be at least 16 bits), and each platform chooses. The common choices have names, where I means int, L means long and P means pointer.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Type</th><th>ILP32<br><small>Cortex-M, 32-bit Arm</small></th><th>LP64<br><small>your Mac, 64-bit Linux</small></th><th>LLP64<br><small>64-bit Windows</small></th></tr></thead>
+      <tbody>
+        <tr><td><code>char</code></td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td><code>short</code></td><td>2</td><td>2</td><td>2</td></tr>
+        <tr><td><code>int</code></td><td>4</td><td>4</td><td>4</td></tr>
+        <tr class="hit"><td><code>long</code></td><td>4</td><td>8</td><td>4</td></tr>
+        <tr><td><code>long long</code></td><td>8</td><td>8</td><td>8</td></tr>
+        <tr class="hit"><td>pointer, <code>size_t</code></td><td>4</td><td>8</td><td>8</td></tr>
+      </tbody>
+    </table></div>
+    <p>Sizes are in bytes. The highlighted rows are the ones that break code when you move it between platforms. So <b>use <code>stdint.h</code> types</b> such as <code>uint8_t</code>, <code>int16_t</code> and <code>uint32_t</code> for registers, packet formats and anything else with a required width.</p>
+    <p>Even <code>char</code> varies. On your Mac it is signed. On Cortex-M it is unsigned. Look at what this one-line function compiles to for each:</p>
+    <figure class="cb code"><figcaption><span>One line of C</span></figcaption><pre><code>int is_neg(char c) { return c &lt; 0; }</code></pre></figure>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 at -O2: the answer is always 0</span></figcaption><pre><code>is_neg:
+    movs  r0, #0      @ return 0, c is never negative here
+    bx    lr          @ return to caller</code></pre></figure>
+    <p>The same source gives a real comparison on your Mac and a constant 0 on the target. Use <code>char</code> for text only. For numbers, say <code>int8_t</code> or <code>uint8_t</code>.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">4</span> Two's complement: how negative numbers work</h3>
+    <p>A byte is 8 bits, and each bit has a place value. As an <b>unsigned</b> number, the places are 128, 64, 32, 16, 8, 4, 2, 1. As a <b>signed</b> number, one thing changes: the top place is worth <b>−128</b> instead of +128.</p>
+    <p>Click the bits below. The default pattern, <code>0xFA</code>, is 250 as unsigned and −6 as signed. These are the same bits read two different ways.</p>
+    <div class="reg" id="reg">
+      <div class="reg-bits" id="regBits"></div>
+      <dl class="reg-vals">
+        <div><dt>Hex</dt><dd id="regHex">0xFA</dd></div>
+        <div><dt>As uint8_t</dt><dd id="regU">250</dd></div>
+        <div><dt>As int8_t</dt><dd id="regS">-6</dd></div>
+        <div><dt>~x + 1 (negated)</dt><dd id="regN">0x06</dd></div>
+      </dl>
+    </div>
+    <p><b>To negate any number:</b> flip every bit, then add 1. In C that is <code>-x == ~x + 1</code>.</p>
+    <figure class="cb code"><figcaption><span>Negating 6</span></figcaption><pre><code> 6       = 0000 0110
+~6       = 1111 1001    flip every bit
+~6 + 1   = 1111 1010    add one, this is 0xFA, which is -6
+
+check: -128 + 64 + 32 + 16 + 8 + 2 = -6</code></pre></figure>
+    <p>CPUs use this system because the same adder circuit works for signed and unsigned. Adding 250 and 6 overflows 8 bits and leaves 0. Adding −6 and 6 also gives 0, using the same bits and the same hardware.</p>
+    <ul>
+      <li><b>Range for N bits:</b> −2<sup>N−1</sup> to 2<sup>N−1</sup>−1. For 8 bits that is −128 to 127.</li>
+      <li><b>The asymmetry:</b> there is no +128 in 8 bits. For the same reason <code>-INT_MIN</code> and <code>abs(INT_MIN)</code> overflow, which is undefined behavior.</li>
+      <li><b>Widening:</b> a signed value copies its top bit upward (sign extension). An unsigned value fills with zeros (zero extension). So the source type decides the result:</li>
+    </ul>
+    <figure class="cb out"><figcaption><span>Real output, with int16_t t = -2</span></figcaption><pre><code>(uint16_t)t            = 0xFFFE       same 16 bits
+(uint32_t)t            = 0xFFFFFFFE   sign-extended, because t is signed
+(uint32_t)(uint16_t)t  = 0xFFFE       zero-extended, because the middle cast made it unsigned</code></pre></figure>
+    <ul>
+      <li><b>Shift vs divide:</b> dividing truncates toward zero, while right-shifting a negative number rounds down on your compilers. So <code>-7 / 2</code> is −3, <code>-7 % 2</code> is −1, but <code>-7 &gt;&gt; 1</code> is −4. Do not replace a division by 2 with a shift on signed values.</li>
+    </ul>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">5</span> Integer promotion: the rule behind most C traps</h3>
+    <p>C applies two rules before it does any arithmetic. Learn them word for word.</p>
+    <div class="rule"><b>Rule 1, promotion.</b> Anything smaller than <code>int</code> (<code>char</code>, <code>short</code>, <code>uint8_t</code>, <code>uint16_t</code>) is converted to <code>int</code> before arithmetic, on any platform where <code>int</code> can hold all its values.</div>
+    <div class="rule"><b>Rule 2, the common type.</b> If the two sides then differ, they convert to one type. The wider type wins. At equal width, <b>unsigned wins</b>, so a negative signed value becomes a huge positive number.</div>
+    <p>Here is what those rules do. Every result below is real output.</p>
+
+    <h4>Trap 1: results are wider than you think</h4>
+    <figure class="cb code"><figcaption><span>Rule 1</span></figcaption><pre><code>uint8_t a = 200, b = 100;
+a + b;                /* 300, computed as int. sizeof(a + b) is 4 */
+uint8_t c = a + b;    /* 44. Storing keeps the low 8 bits: 300 mod 256 */</code></pre></figure>
+
+    <h4>Trap 2: <code>~</code> on a small type</h4>
+    <figure class="cb code"><figcaption><span>Rule 1</span></figcaption><pre><code>uint8_t x = 0x0F;
+~x == 0xF0;             /* FALSE. x became int, so ~x is 0xFFFFFFF0 */
+(uint8_t)~x == 0xF0;    /* true. The cast cuts it back to 8 bits */</code></pre></figure>
+    <p>This appears in real driver code that compares a register against a mask. It always evaluates false, and nothing crashes.</p>
+
+    <h4>Trap 3: signed meets unsigned</h4>
+    <figure class="cb code"><figcaption><span>Rule 2</span></figcaption><pre><code>(unsigned)-1 &gt; 0;      /* true. -1 becomes 4294967295 */
+-1 &lt; 1u;               /* FALSE. -1 converts to 4294967295, which is not less than 1 */</code></pre></figure>
+
+    <h4>Trap 4: the same code on a different platform</h4>
+    <figure class="cb code"><figcaption><span>Rule 2, depends on the size of long</span></figcaption><pre><code>long l = -1;
+unsigned u = 1;
+l &lt; u;    /* your Mac: true. long is 8 bytes, wider, so it stays signed */
+          /* Cortex-M: FALSE. long is 4 bytes, equal width, so unsigned wins */</code></pre></figure>
+    <p>I confirmed both results. This is exactly why code tested on a PC can fail on the target.</p>
+
+    <h4>Trap 5: unsigned × unsigned can be undefined</h4>
+    <figure class="cb code"><figcaption><span>Rule 1, the one that surprises experienced engineers</span></figcaption><pre><code>uint16_t a = 65535, b = 65535;
+uint32_t bad  = a * b;              /* both promote to SIGNED int, and the product overflows */
+uint32_t good = (uint32_t)a * b;    /* unsigned 32-bit math, well defined */</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output with the undefined behavior sanitizer on</span></figcaption><pre><code>runtime error: signed integer overflow: 65535 * 65535 cannot be represented in type 'int'
+bad=4294836225 good=4294836225</code></pre></figure>
+    <p>The printed number looked correct, and that is the danger. Today's build happens to work. A later optimized build is allowed to do something else. Only the sanitizer told the truth.</p>
+
+    <h4>Trap 6: counting down with an unsigned value</h4>
+    <figure class="cb code"><figcaption><span>Unsigned values are never below zero</span></figcaption><pre><code>size_t n = 3;
+for (size_t k = n - 1; k &gt;= 0; k--)    /* k &gt;= 0 is ALWAYS true: 2, 1, 0, 18446744073709551615... */
+    use(k);
+
+for (size_t k = n; k-- &gt; 0; )          /* correct: 2, 1, 0, then stops */
+    use(k);</code></pre></figure>
+    <p><b>Warnings will not save you every time.</b> With <code>-Wall -Wextra</code>, your compiler flagged <code>i &lt; u</code> on two variables, but said nothing about <code>-1 &lt; 1u</code> or the loop above. Runtime sanitizers only catch code paths that actually run. You need to know these rules yourself.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">6</span> Undefined behavior and the optimizer</h3>
+    <p>The C standard sorts surprising behavior into three groups. Interviewers like this distinction.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Category</th><th>Meaning</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><b>Implementation-defined</b></td><td>The compiler picks and must document it</td><td>Size of <code>int</code>, whether <code>char</code> is signed, right-shifting a negative value</td></tr>
+        <tr><td><b>Unspecified</b></td><td>Several results are allowed and need not be documented</td><td>Whether <code>g()</code> or <code>h()</code> runs first in <code>f(g(), h())</code></td></tr>
+        <tr><td><b>Undefined (UB)</b></td><td>The standard sets no rules at all</td><td>Signed overflow, reading out of bounds, using an uninitialized variable, shifting by the type's width or more</td></tr>
+      </tbody>
+    </table></div>
+    <p>Here is the key idea: <b>the optimizer assumes UB never happens</b>, and it simplifies your code on that assumption. Take this function:</p>
+    <figure class="cb code"><figcaption><span>ub.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;limits.h&gt;
+
+__attribute__((noinline)) int will_grow(int x)
+{
+    return x + 1 &gt; x;
+}
+
+int main(void)
+{
+    printf("will_grow(INT_MAX) = %d\n", will_grow(INT_MAX));
+    return 0;
+}</code></pre></figure>
+    <p>In real math, <code>x + 1 &gt; x</code> is always true. In C, the only case where it could be false is signed overflow, which is UB, so the compiler may ignore that case. Run it both ways:</p>
+    <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -O0 -w ub.c -o ub_O0 &amp;&amp; ./ub_O0
+clang -std=c11 -O2 -w ub.c -o ub_O2 &amp;&amp; ./ub_O2
+clang -std=c11 -O0 -w -fsanitize=undefined ub.c -o ub_san &amp;&amp; ./ub_san</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>-O0:        will_grow(INT_MAX) = 0
+-O2:        will_grow(INT_MAX) = 1
+sanitizer:  runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'</code></pre></figure>
+    <p><b>The same source gives different answers at different optimization levels.</b> This is how you get a bug that only appears in the release build. Here is what the compiler generated for Cortex-M4 at <code>-O2</code>:</p>
+    <div class="side">
+      <figure class="cb asm"><figcaption><span>int x: comparison deleted</span></figcaption><pre><code>will_grow:
+    movs  r0, #1      @ always return 1
+    bx    lr</code></pre></figure>
+      <figure class="cb asm"><figcaption><span>unsigned x: real check kept</span></figcaption><pre><code>u_will_grow:
+    subs.w r0, r0, #-1  @ r0 = x + 1
+    it     ne           @ if the result is not zero
+    movne  r0, #1       @ return 1
+    bx     lr           @ else return 0</code></pre></figure>
+    </div>
+    <p>Unsigned overflow is well defined (it wraps around), so that check has to stay. This matters for real safety checks:</p>
+    <figure class="cb code"><figcaption><span>Checking for overflow</span></figcaption><pre><code>if (a + b &lt; a) { ... }                      /* WRONG for signed. The overflow already happened, so the compiler may delete this */
+if (b &gt; 0 &amp;&amp; a &gt; INT_MAX - b) { ... }       /* correct: tests before adding */
+if (__builtin_add_overflow(a, b, &amp;r)) { ... }  /* correct: gcc and clang built-in */</code></pre></figure>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">7</span> Reading assembly: -O0 against -O2</h3>
+    <p>You only need four facts to read simple Arm code. Under the Arm calling convention:</p>
+    <ul>
+      <li>Function arguments arrive in <code>r0</code>, <code>r1</code>, <code>r2</code>, <code>r3</code>.</li>
+      <li>The return value goes in <code>r0</code>.</li>
+      <li><code>bx lr</code> means return to the caller.</li>
+      <li><code>ldr</code> loads from memory into a register, and <code>str</code> stores a register to memory. <code>[sp, #4]</code> means the memory at the stack pointer plus 4.</li>
+    </ul>
+    <figure class="cb code"><figcaption><span>The C</span></figcaption><pre><code>int add3(int a, int b)
+{
+    return a + b + 3;
+}</code></pre></figure>
+    <div class="side">
+      <figure class="cb asm"><figcaption><span>-O0: every variable lives in memory</span></figcaption><pre><code>add3:
+    sub   sp, #8        @ make room on the stack
+    str   r0, [sp, #4]  @ save a
+    str   r1, [sp]      @ save b
+    ldr   r0, [sp, #4]  @ load a
+    ldr   r1, [sp]      @ load b
+    add   r0, r1        @ a + b
+    adds  r0, #3        @ + 3
+    add   sp, #8        @ release the stack
+    bx    lr</code></pre></figure>
+      <figure class="cb asm"><figcaption><span>-O2: registers only</span></figcaption><pre><code>add3:
+    add   r0, r1        @ a + b
+    adds  r0, #3        @ + 3
+    bx    lr</code></pre></figure>
+    </div>
+    <p><code>-O0</code> keeps every variable in memory, so a debugger can show it. <code>-O2</code> keeps values in registers or removes them, which is why a debugger says "optimized out". It is also why memory-mapped hardware registers need <code>volatile</code>, which you will cover on Day 6.</p>
+    <p>The optimizer can also remove a whole loop:</p>
+    <figure class="cb code"><figcaption><span>A loop in C</span></figcaption><pre><code>int sum_to(int n)
+{
+    int s = 0;
+    for (int i = 1; i &lt;= n; i++)
+        s += i;
+    return s;
+}</code></pre></figure>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 at -O2: there is no loop</span></figcaption><pre><code>sum_to:
+    cmp    r0, #1             @ if n &lt; 1
+    itt    lt
+    movlt  r0, #0             @   return 0
+    bxlt   lr
+    subs   r1, r0, #1         @ n - 1
+    subs   r2, r0, #2         @ n - 2
+    umull  r1, r2, r1, r2     @ multiply them
+    and    r2, r2, #1
+    lsrs.w r2, r2, #1
+    rrx    r1, r1             @ divide by 2
+    add.w  r0, r1, r0, lsl #1 @ add 2n
+    subs   r0, #1             @ subtract 1
+    bx     lr</code></pre></figure>
+    <p>The compiler replaced your loop with the closed-form sum formula. It takes the same time for any <code>n</code>. So when you read optimized code, expect its shape to differ from the source.</p>
+    <div class="recap">
+      <h4>Before you move on, say these from memory</h4>
+      <ol>
+        <li>The four build stages, and one error each can produce.</li>
+        <li>Declaration against definition.</li>
+        <li>How to negate a number in two's complement.</li>
+        <li>The two arithmetic conversion rules.</li>
+        <li>Why <code>x + 1 &gt; x</code> can compile to a constant.</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<section id="code" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-code" data-tick="code"> Done</label>
+    <div class="eyebrow">Step 3 · 55 minutes</div>
+    <h2>Solve three problems</h2>
+  </div>
+  <p>Spend up to 15 minutes on each one by yourself, in your plain editor. Then open the solution and read it even if you solved it, because the explanations include the follow-up questions interviewers ask next. If you needed the solution, mark the problem red in your notes and solve it again on Day 4.</p>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 1 of 3 · Easy · LeetCode 191</div>
+    <h3>Number of 1 Bits</h3>
+    <p>Write a function that takes a 32-bit number and returns how many of its bits are 1.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>In binary</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td>11</td><td><code>1011</code></td><td>3</td></tr>
+        <tr><td>128</td><td><code>1000 0000</code></td><td>1</td></tr>
+        <tr><td>0xFFFFFFFD</td><td>all ones except bit 1</td><td>31</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>int popcount(uint32_t n);</code></p>
+    <details class="hint"><summary>Hint</summary><p><code>n &amp; 1</code> gives you the lowest bit. <code>n &gt;&gt; 1</code> moves the next bit into its place.</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <h4>Way 1: check every bit</h4>
+      <figure class="cb code"><figcaption><span>pop_loop.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int popcount_loop(uint32_t n)
+{
+    int count = 0;
+    while (n != 0) {
+        count += n &amp; 1u;   /* add the lowest bit */
+        n &gt;&gt;= 1;           /* move the next bit into position 0 */
+    }
+    return count;
+}</code></pre></figure>
+      <p>Takes up to 32 steps, one per bit position. Always say this version first in an interview because it is obviously correct.</p>
+      <p><b>The trap:</b> the input must be unsigned. Use <code>int n = -1</code> and the right shift copies the sign bit back in, so <code>n</code> stays −1 and the loop never ends. I ran this with a guard, and after 40 iterations <code>n</code> was still −1. LeetCode's C version may hand you <code>int n</code>, so cast to <code>uint32_t</code> first.</p>
+
+      <h4>Way 2: Kernighan's trick, the answer they want</h4>
+      <figure class="cb code"><figcaption><span>pop_k.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int popcount_kernighan(uint32_t n)
+{
+    int count = 0;
+    while (n != 0) {
+        n &amp;= n - 1;        /* clear the lowest set bit */
+        count++;
+    }
+    return count;
+}</code></pre></figure>
+      <p>Subtracting 1 turns the lowest 1 bit into 0 and every 0 below it into 1. ANDing with the original then removes just that one bit. The loop runs once per set bit, so a number with three bits set takes three steps.</p>
+      <figure class="cb code"><figcaption><span>Trace with n = 44</span></figcaption><pre><code>n      = 101100
+n - 1  = 101011
+n &amp; .. = 101000    count = 1
+n - 1  = 100111
+n &amp; .. = 100000    count = 2
+n - 1  = 011111
+n &amp; .. = 000000    count = 3, stop</code></pre></figure>
+      <p>Way 1 always shifts until the top set bit is gone. Way 2 does only as many steps as there are 1 bits. Both use no extra memory.</p>
+
+      <h4>Way 3: count in parallel, constant time with no loop</h4>
+      <p>This follow-up separates senior candidates. It treats one register as many small counters, adding neighbors in groups of 2, then 4, then 8 bits.</p>
+      <figure class="cb code"><figcaption><span>pop_swar.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int popcount_swar(uint32_t n)
+{
+    n = n - ((n &gt;&gt; 1) &amp; 0x55555555u);                  /* count in each 2-bit group */
+    n = (n &amp; 0x33333333u) + ((n &gt;&gt; 2) &amp; 0x33333333u);  /* count in each 4-bit group */
+    n = (n + (n &gt;&gt; 4)) &amp; 0x0F0F0F0Fu;                  /* count in each byte */
+    return (int)((n * 0x01010101u) &gt;&gt; 24);             /* add the four bytes */
+}</code></pre></figure>
+      <figure class="cb out"><figcaption><span>Real trace with n = 0xF00F1234</span></figcaption><pre><code>start    F00F1234
+2-bit    A00A1124
+4-bit    40041121
+byte     04040203
+multiply 0D090503
+answer   13</code></pre></figure>
+      <p>Each step's groups hold the counts so far. The last line works because multiplying by <code>0x01010101</code> adds all four bytes into the top byte: 4 + 4 + 2 + 3 = 13 = <code>0x0D</code>.</p>
+
+      <h4>What the interviewer asks next</h4>
+      <ul>
+        <li><b>"You call this millions of times. How do you speed it up?"</b> Use a hardware instruction through <code>__builtin_popcount</code> if the chip has one. x86 has <code>POPCNT</code>, and Arm A-class has it through NEON. Cortex-M4 has no population count instruction, so choose between the parallel method and a table.</li>
+        <li><b>"What about a lookup table?"</b> A 256-entry table is fast but costs 256 bytes of flash, and four lookups per word. A 16-entry nibble table costs 16 bytes and needs eight lookups. On a small MCU, that tradeoff is exactly what they want you to discuss.</li>
+      </ul>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 2 of 3 · Easy · LeetCode 231</div>
+    <h3>Power of Two</h3>
+    <p>Given an integer <code>n</code>, return true if it is a power of two: 1, 2, 4, 8 and so on. Do it without a loop.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>Output</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>true</td><td>2<sup>0</sup></td></tr>
+        <tr><td>16</td><td>true</td><td>2<sup>4</sup></td></tr>
+        <tr><td>3</td><td>false</td><td>two bits set</td></tr>
+        <tr><td>0</td><td>false</td><td>no bits set</td></tr>
+        <tr><td>−16</td><td>false</td><td>negative</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>bool is_power_of_two(int n);</code></p>
+    <details class="hint"><summary>Hint</summary><p>Write 1, 2, 4 and 8 in binary. How many bits does each have set? Now connect that to the trick from Problem 1.</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <figure class="cb code"><figcaption><span>pow2.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>bool is_power_of_two(int n)
+{
+    return n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0;
+}</code></pre></figure>
+      <p>A power of two has exactly one bit set. <code>n &amp; (n - 1)</code> clears the lowest set bit. If nothing remains, there was only one bit.</p>
+      <figure class="cb code"><figcaption><span>Trace</span></figcaption><pre><code>n = 16:  10000 &amp; 01111 = 00000    true
+n = 12:  01100 &amp; 01011 = 01000    false, a second bit remains</code></pre></figure>
+      <p>It runs in constant time with no extra memory.</p>
+      <h4>Why <code>n &gt; 0</code> has to be there</h4>
+      <ul>
+        <li><b>n = 0:</b> <code>0 &amp; -1</code> is 0, so without this check you would wrongly return true.</li>
+        <li><b>n = INT_MIN:</b> it has one bit set, and <code>n - 1</code> would overflow, which is UB. <code>&amp;&amp;</code> is guaranteed to evaluate left to right and to stop early, so <code>n &gt; 0</code> fails first and <code>n - 1</code> never runs. Say that out loud in the interview.</li>
+      </ul>
+      <h4>Where this shows up in firmware</h4>
+      <ul>
+        <li><b>Ring buffers:</b> a power-of-two size lets you wrap with <code>i &amp; (size - 1)</code> instead of a slow modulo (Day 10).</li>
+        <li><b>Alignment:</b> <code>(addr &amp; (align - 1)) == 0</code> tests if an address is aligned, when <code>align</code> is a power of two.</li>
+      </ul>
+      <h4>What the interviewer asks next: round up to the next power of two</h4>
+      <figure class="cb code"><figcaption><span>round.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>uint32_t round_up_pow2(uint32_t v)
+{
+    v--;
+    v |= v &gt;&gt; 1;
+    v |= v &gt;&gt; 2;
+    v |= v &gt;&gt; 4;
+    v |= v &gt;&gt; 8;
+    v |= v &gt;&gt; 16;
+    return v + 1;
+}</code></pre></figure>
+      <p>The shifts copy the highest set bit into every lower position, giving all ones. Adding 1 then carries to the next power of two. The first <code>v--</code> keeps exact powers unchanged.</p>
+      <figure class="cb out"><figcaption><span>Tested results</span></figcaption><pre><code>round_up_pow2(1)  = 1
+round_up_pow2(5)  = 8
+round_up_pow2(64) = 64
+round_up_pow2(65) = 128
+round_up_pow2(0)  = 0     edge case: wraps around, so state how you handle it</code></pre></figure>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 3 of 3 · Easy · LeetCode 136</div>
+    <h3>Single Number</h3>
+    <p>Every number in an array appears exactly twice, except one which appears once. Find that one. Use O(n) time and no extra memory.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td><code>[2, 2, 1]</code></td><td>1</td></tr>
+        <tr><td><code>[4, 1, 2, 1, 2]</code></td><td>4</td></tr>
+        <tr><td><code>[1]</code></td><td>1</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>int single_number(const int *nums, int len);</code></p>
+    <details class="hint"><summary>Hint</summary><p>What is <code>x ^ x</code>? What is <code>x ^ 0</code>? Does the order of XOR operations matter?</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <figure class="cb code"><figcaption><span>single.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int single_number(const int *nums, int len)
+{
+    int result = 0;
+    for (int i = 0; i &lt; len; i++)
+        result ^= nums[i];
+    return result;
+}</code></pre></figure>
+      <p>Three properties of XOR make this work:</p>
+      <ul>
+        <li><code>x ^ x = 0</code>, because a number cancels itself.</li>
+        <li><code>x ^ 0 = x</code>, because zero changes nothing.</li>
+        <li>Order does not matter, so all pairs cancel wherever they appear.</li>
+      </ul>
+      <figure class="cb code"><figcaption><span>Trace with [4, 1, 2, 1, 2]</span></figcaption><pre><code>0 ^ 4 = 4
+4 ^ 1 = 5
+5 ^ 2 = 7
+7 ^ 1 = 6
+6 ^ 2 = 4    answer</code></pre></figure>
+      <p>Each bit position works independently: a bit in the result is 1 only if an odd number of inputs had that bit set. One pass, O(n) time, O(1) memory, and it handles negative numbers. A hash set also works, but it uses O(n) memory, which is the reason the question forbids it.</p>
+      <h4>What the interviewer asks next</h4>
+      <ul>
+        <li><b>"What if every other number appears three times?"</b> XOR no longer cancels, so you count bits per position, modulo 3. You will solve this on Day 3.</li>
+        <li><b>"What if two numbers appear once?"</b> Also on Day 3. XOR all of them, then use any set bit of the result to split the array into two groups.</li>
+        <li><b>"Where is XOR used in real systems?"</b> Parity checks, RAID recovery of a lost disk, and many checksums.</li>
+        <li><b>"Is XOR swap a good idea?"</b> No. <code>a ^= b; b ^= a; a ^= b;</code> sets the value to 0 when both names refer to the same address. It is also harder to read, and a compiler can already swap efficiently with a temporary.</li>
+      </ul>
+    </div></details>
+  </article>
+</section>
+
+<section id="build" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-build" data-tick="build"> Done</label>
+    <div class="eyebrow">Step 4 · 25 minutes</div>
+    <h2>Build and break things</h2>
+  </div>
+  <h3 class="sub">Part A: test your solutions</h3>
+  <p>Put your three solutions into this test program in <code>~/embedded-portfolio/day01</code>. It includes the edge cases that fail in interviews. Compile with the flags you will use for all 60 days. They turn warnings into errors and catch memory and UB bugs at runtime.</p>
+  <figure class="cb code"><figcaption><span>bits.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;assert.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+
+int popcount_loop(uint32_t n)
+{
+    int count = 0;
+    while (n != 0) {
+        count += n &amp; 1u;   /* add the lowest bit */
+        n &gt;&gt;= 1;           /* move the next bit into position 0 */
+    }
+    return count;
+}
+
+int popcount_kernighan(uint32_t n)
+{
+    int count = 0;
+    while (n != 0) {
+        n &amp;= n - 1;        /* clear the lowest set bit */
+        count++;
+    }
+    return count;
+}
+
+int popcount_swar(uint32_t n)
+{
+    n = n - ((n &gt;&gt; 1) &amp; 0x55555555u);                  /* count in each 2-bit group */
+    n = (n &amp; 0x33333333u) + ((n &gt;&gt; 2) &amp; 0x33333333u);  /* count in each 4-bit group */
+    n = (n + (n &gt;&gt; 4)) &amp; 0x0F0F0F0Fu;                  /* count in each byte */
+    return (int)((n * 0x01010101u) &gt;&gt; 24);             /* add the four bytes */
+}
+
+bool is_power_of_two(int n)
+{
+    return n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0;
+}
+
+int single_number(const int *nums, int len)
+{
+    int result = 0;
+    for (int i = 0; i &lt; len; i++)
+        result ^= nums[i];
+    return result;
+}
+
+int main(void)
+{
+    uint32_t cases[] = {0u, 1u, 11u, 128u, 44u, 0x80000000u, 0xFFFFFFFDu, 0xFFFFFFFFu};
+    int expected[]   = {0,  1,  3,   1,    3,   1,           31,          32};
+    for (size_t i = 0; i &lt; sizeof cases / sizeof cases[0]; i++) {
+        assert(popcount_loop(cases[i]) == expected[i]);
+        assert(popcount_kernighan(cases[i]) == expected[i]);
+        assert(popcount_swar(cases[i]) == expected[i]);
+        assert(__builtin_popcount(cases[i]) == expected[i]);
+    }
+
+    assert(is_power_of_two(1));
+    assert(is_power_of_two(16));
+    assert(is_power_of_two(1073741824));
+    assert(!is_power_of_two(0));
+    assert(!is_power_of_two(3));
+    assert(!is_power_of_two(-16));
+    assert(!is_power_of_two(-2147483647 - 1));   /* INT_MIN */
+
+    int a[] = {2, 2, 1};
+    int b[] = {4, 1, 2, 1, 2};
+    int c[] = {1};
+    int d[] = {-3, 7, -3};
+    assert(single_number(a, 3) == 1);
+    assert(single_number(b, 5) == 4);
+    assert(single_number(c, 1) == 1);
+    assert(single_number(d, 3) == 7);
+
+    printf("all tests passed\n");
+    return 0;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>cd ~/embedded-portfolio/day01
+mkdir -p build
+clang -std=c11 -g -Wall -Wextra -Werror -fsanitize=address,undefined bits.c -o build/bits
+./build/bits</code></pre></figure>
+  <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>all tests passed</code></pre></figure>
+
+  <h3 class="sub">Part B: predict, then run</h3>
+  <p>Type in this program. Before running it, write your predicted value for each numbered line on paper. Then compare. Any line you got wrong goes in your notes.</p>
+  <figure class="cb code"><figcaption><span>traps.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;limits.h&gt;
+
+int main(void)
+{
+    printf("char=%zu short=%zu int=%zu long=%zu long long=%zu pointer=%zu\n",
+           sizeof(char), sizeof(short), sizeof(int), sizeof(long),
+           sizeof(long long), sizeof(void *));
+
+    printf("1. (unsigned)-1 = %u, &gt; 0 ? %d\n", (unsigned)-1, (unsigned)-1 &gt; 0);
+    printf("2. -1 &lt; 1u ? %d\n", -1 &lt; 1u);
+
+    uint8_t a = 200, b = 100;
+    uint8_t c = a + b;
+    printf("3. a + b = %d, stored in uint8_t = %u, sizeof(a + b) = %zu\n",
+           a + b, c, sizeof(a + b));
+
+    uint8_t x = 0x0F;
+    printf("4. ~x == 0xF0 ? %d, ~x = 0x%X\n", ~x == 0xF0, (unsigned)~x);
+    printf("5. (uint8_t)~x == 0xF0 ? %d\n", (uint8_t)~x == 0xF0);
+
+    uint8_t h = 0x80;
+    printf("6. h &lt;&lt; 1 = 0x%X, h &gt;&gt; 7 = %d\n", h &lt;&lt; 1, h &gt;&gt; 7);
+
+    int8_t s = -1;
+    printf("7. (int)s = %d, (uint8_t)s = %u, (uint32_t)s = %u\n",
+           (int)s, (uint8_t)s, (uint32_t)s);
+
+    int16_t t = -2;
+    printf("8. (uint16_t)t = 0x%X, (uint32_t)t = 0x%X, (uint32_t)(uint16_t)t = 0x%X\n",
+           (uint16_t)t, (uint32_t)t, (uint32_t)(uint16_t)t);
+
+    printf("9. sizeof('a') = %zu\n", sizeof('a'));
+    printf("10. INT_MIN = %d, -7 / 2 = %d, -7 %% 2 = %d, -8 &gt;&gt; 1 = %d\n",
+           INT_MIN, -7 / 2, -7 % 2, -8 &gt;&gt; 1);
+    return 0;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -w traps.c -o build/traps
+./build/traps</code></pre></figure>
+  <details class="sol"><summary>Show the correct output</summary><div class="sol-body">
+  <figure class="cb out"><figcaption><span>Output on your Mac</span></figcaption><pre><code>char=1 short=2 int=4 long=8 long long=8 pointer=8
+1. (unsigned)-1 = 4294967295, &gt; 0 ? 1
+2. -1 &lt; 1u ? 0
+3. a + b = 300, stored in uint8_t = 44, sizeof(a + b) = 4
+4. ~x == 0xF0 ? 0, ~x = 0xFFFFFFF0
+5. (uint8_t)~x == 0xF0 ? 1
+6. h &lt;&lt; 1 = 0x100, h &gt;&gt; 7 = 1
+7. (int)s = -1, (uint8_t)s = 255, (uint32_t)s = 4294967295
+8. (uint16_t)t = 0xFFFE, (uint32_t)t = 0xFFFFFFFE, (uint32_t)(uint16_t)t = 0xFFFE
+9. sizeof('a') = 4
+10. INT_MIN = -2147483648, -7 / 2 = -3, -7 % 2 = -1, -8 &gt;&gt; 1 = -4</code></pre></figure>
+  <p>Line 10's <code>-8 &gt;&gt; 1</code> gives −4 here because your compiler uses an arithmetic shift, which is implementation-defined. Line 9 is 4 because a character literal has type <code>int</code> in C. In C++ the answer is 1.</p>
+  </div></details>
+
+  <h3 class="sub">Part C: see Arm code from your own compiler</h3>
+  <p>You can already generate Cortex-M4 assembly with no extra install. Save <code>m4.c</code>, generate both versions and find the functions from Lesson 7.</p>
+  <figure class="cb code"><figcaption><span>m4.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int will_grow(int x)
+{
+    return x + 1 &gt; x;
+}
+
+unsigned u_will_grow(unsigned x)
+{
+    return x + 1 &gt; x;
+}
+
+int sum_to(int n)
+{
+    int s = 0;
+    for (int i = 1; i &lt;= n; i++)
+        s += i;
+    return s;
+}
+
+int add3(int a, int b)
+{
+    return a + b + 3;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang --target=thumbv7em-none-eabi -mcpu=cortex-m4 -mfloat-abi=soft -O0 -S m4.c -o build/m4_O0.s
+clang --target=thumbv7em-none-eabi -mcpu=cortex-m4 -mfloat-abi=soft -O2 -S m4.c -o build/m4_O2.s
+grep -A4 '^will_grow:' build/m4_O2.s</code></pre></figure>
+  <p>Now make one edit of your own: change <code>sum_to</code> to use <code>unsigned</code>, regenerate at <code>-O2</code>, and see if the loop is still gone.</p>
+
+  <h3 class="sub">Part D: save your work</h3>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>cd ~/embedded-portfolio
+git add .
+git commit -m "Day 1: build stages, integer rules, popcount, power of two, single number"</code></pre></figure>
+  <p>Optional: <code>gh repo create embedded-portfolio --private --source=. --push</code> puts it on GitHub as a private repo. You can make it public when it is ready to show employers.</p>
+</section>
+
+<section id="explain" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-explain" data-tick="explain"> Done</label>
+    <div class="eyebrow">Step 5 · 20 minutes</div>
+    <h2>Answer these out loud</h2>
+  </div>
+  <p>Say your answer first, as if an interviewer just asked it. Then open the model answer and compare. Keep each answer under a minute. Record yourself on at least two of them.</p>
+  <div class="qa">
+    <details><summary>Walk me through what happens when you run gcc on a C file.</summary><div class="ans"><p>"Four stages. The preprocessor handles includes and macros and produces pure C text. The compiler translates that one translation unit into assembly, and that is where type checking and optimization happen. The assembler turns it into an object file containing machine code, a symbol table and relocations for addresses it doesn't know yet. The linker combines all the object files, resolves each undefined symbol to one definition and assigns final addresses. On an embedded target, a linker script decides what goes in flash and what goes in RAM."</p></div></details>
+    <details><summary>What is the difference between a compile error and a link error?</summary><div class="ans"><p>"A compile error is a problem within one file, such as a type error or an undeclared name. A link error is a problem between files. The compiler accepted the code because a declaration promised the symbol exists, but the linker can't find a definition, or finds two. Undefined symbol usually means a missing source file or library. Duplicate symbol often means a variable was defined in a header rather than declared <code>extern</code>."</p></div></details>
+    <details><summary>What does (unsigned)-1 > 0 evaluate to, and why?</summary><div class="ans"><p>"True. Converting −1 to unsigned is well defined: the value is taken modulo 2<sup>32</sup>, giving 4294967295, which has all bits set. That is greater than zero. The related trap is <code>-1 &lt; 1u</code>, which is false, because the usual arithmetic conversions turn the −1 into unsigned before comparing."</p></div></details>
+    <details><summary>Signed overflow is undefined. What can the optimizer do with that?</summary><div class="ans"><p>"It can assume overflow never happens and optimize on that basis. For example, <code>x + 1 &gt; x</code> compiles to a constant 1. I've confirmed that: with <code>INT_MAX</code> it returned 0 at <code>-O0</code> and 1 at <code>-O2</code>. It also lets the compiler reason about loop bounds. The practical risk is that an overflow check written as <code>a + b &lt; a</code> can be deleted. You check before adding, or use <code>__builtin_add_overflow</code>, and test with UBSan."</p></div></details>
+    <details><summary>Give the sizes of int, long and a pointer on ILP32 and LP64.</summary><div class="ans"><p>"ILP32, which is Cortex-M and 32-bit Arm: int 4, long 4, pointer 4. LP64, which is 64-bit Linux and macOS: int 4, long 8, pointer 8. 64-bit Windows is LLP64, where long stays 4 and pointers are 8. So I use <code>stdint.h</code> types where width matters, and <code>size_t</code> or <code>uintptr_t</code> for sizes and addresses rather than <code>int</code>."</p></div></details>
+    <details><summary>uint8_t a = 200, b = 100. What is a + b?</summary><div class="ans"><p>"300, and its type is int. Both operands are promoted to int first, so nothing overflows, and <code>sizeof(a + b)</code> is 4. If you assign the result back to a <code>uint8_t</code> you get 44, which is 300 modulo 256. Conversion to unsigned is well defined, so this wraps silently without UB."</p></div></details>
+    <details><summary>uint16_t a = 65535, b = 65535. What is wrong with uint32_t c = a * b?</summary><div class="ans"><p>"Both promote to signed int on a 32-bit platform, because int can hold every uint16_t value. The product, about 4.29 billion, doesn't fit in a signed int, so it's signed overflow and undefined behavior, even though every variable you can see is unsigned. The fix is to cast one operand: <code>(uint32_t)a * b</code>."</p></div></details>
+    <details><summary>Explain two's complement. How do you negate a number?</summary><div class="ans"><p>"The top bit has a negative place value, so in 8 bits it's worth −128. To negate, flip all bits and add one. It's used because addition and subtraction use the same circuit for signed and unsigned. The range is asymmetric, −128 to 127, so negating or taking <code>abs</code> of the minimum value overflows."</p></div></details>
+    <details><summary>Undefined, unspecified and implementation-defined: what is the difference?</summary><div class="ans"><p>"Implementation-defined means the compiler chooses and documents it, like the size of int or whether char is signed. Unspecified means several outcomes are allowed with no documentation required, like the evaluation order of function arguments. Undefined means the standard places no requirement at all, like signed overflow or reading out of bounds. The compiler may assume undefined behavior never occurs, so it's the dangerous one."</p></div></details>
+    <details><summary>Is char signed or unsigned?</summary><div class="ans"><p>"It's implementation-defined. On x86 it's normally signed. On Arm, including Cortex-M, it's normally unsigned. I saw <code>c &lt; 0</code> compile to a constant zero for Cortex-M. So I use <code>char</code> only for text, and <code>int8_t</code> or <code>uint8_t</code> for numbers. Plain <code>char</code> used to hold a return value that can be negative is a classic porting bug."</p></div></details>
+    <details><summary>A bug only appears in the release build, not in debug. How do you approach it?</summary><div class="ans"><p>"I treat it as likely UB, an uninitialized variable, a missing <code>volatile</code>, or a timing problem. First I turn on all warnings and build with ASan and UBSan, plus <code>-O2 -g</code> so I keep the optimization and still get symbols. I reduce the optimization file by file to find which translation unit triggers it. Then I compare the generated assembly around the failure. On a target, I also check stack size, because optimization changes stack use, and any shared variable used by an interrupt. If timing changes the bug, I use a GPIO toggle or a trace buffer rather than printf."</p></div></details>
+    <details><summary>What does static do on a function, and on a global variable?</summary><div class="ans"><p>"At file scope, <code>static</code> gives internal linkage: the name is private to that translation unit. <code>nm</code> shows a lowercase <code>t</code> instead of <code>T</code>. This prevents name collisions, and it lets the compiler inline the function and drop the standalone copy. In a large firmware image, this can also reduce code size. Inside a function, <code>static</code> means something else: the variable keeps its value between calls and has static storage."</p></div></details>
+  </div>
+</section>
+
+<section id="quiz" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="tick-quiz" data-tick="quiz"> Done</label>
+    <div class="eyebrow">Step 6 · 10 minutes</div>
+    <h2>Predict the output</h2>
+  </div>
+  <p>Write your answer before opening each one. These are all new variations. Every answer was run on your Mac unless it says otherwise. Assume the needed headers are included.</p>
+  <div class="quiz">
+    <div class="q"><div class="q-n">Q1</div><pre class="snip"><code>unsigned a = 1;
+int b = -2;
+printf("%d", a + b &gt; 0);</code></pre><details><summary>Answer</summary><p><b>1.</b> <code>b</code> converts to unsigned, so <code>a + b</code> is 4294967295, which is greater than 0.</p></details></div>
+    <div class="q"><div class="q-n">Q2</div><pre class="snip"><code>uint8_t x = 255;
+x++;
+printf("%u", x);</code></pre><details><summary>Answer</summary><p><b>0.</b> The value becomes 256 as an int, then is stored back in 8 bits. Well defined.</p></details></div>
+    <div class="q"><div class="q-n">Q3</div><pre class="snip"><code>int8_t y = 127;
+y++;
+printf("%d", y);</code></pre><details><summary>Answer</summary><p><b>−128.</b> The addition happens in int and gives 128, so there is no overflow. Converting 128 back to <code>int8_t</code> is implementation-defined rather than undefined. Clang and gcc wrap it.</p></details></div>
+    <div class="q"><div class="q-n">Q4</div><pre class="snip"><code>uint8_t n = 0xF0;
+printf("%X", n &gt;&gt; 4 | n &lt;&lt; 4);</code></pre><details><summary>Answer</summary><p><b>F0F.</b> You might have expected a nibble swap giving <code>0F</code>. Promotion to int keeps the upper bits from <code>n &lt;&lt; 4</code>, which is <code>0xF00</code>. To fix it, cast the result: <code>(uint8_t)(n &gt;&gt; 4 | n &lt;&lt; 4)</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q5</div><pre class="snip"><code>char c = 0xFF;
+printf("%d", c == 0xFF);</code></pre><details><summary>Answer</summary><p><b>0 on your Mac, 1 on Cortex-M.</b> On the Mac, <code>c</code> is signed and holds −1, compared against 255. On Cortex-M, <code>c</code> is unsigned and holds 255. I checked the Cortex-M result in its generated assembly.</p></details></div>
+    <div class="q"><div class="q-n">Q6</div><pre class="snip"><code>short s = 1;
+printf("%zu %zu", sizeof(s), sizeof(s + s));</code></pre><details><summary>Answer</summary><p><b>2 4.</b> <code>s + s</code> is promoted to int. Note that <code>sizeof</code> does not evaluate its operand.</p></details></div>
+    <div class="q"><div class="q-n">Q7</div><pre class="snip"><code>long long z = -1;
+unsigned u = 1;
+printf("%d", z &lt; u);</code></pre><details><summary>Answer</summary><p><b>1.</b> <code>long long</code> is wider, so <code>u</code> converts to a signed <code>long long</code> and −1 stays −1. Unsigned wins only at equal width.</p></details></div>
+    <div class="q"><div class="q-n">Q8</div><pre class="snip"><code>printf("%d %d %d", -7 / 2, -7 % 2, -7 &gt;&gt; 1);</code></pre><details><summary>Answer</summary><p><b>−3 −1 −4.</b> Division truncates toward zero, the remainder takes the sign of the dividend, and the arithmetic shift rounds down.</p></details></div>
+    <div class="q"><div class="q-n">Q9</div><pre class="snip"><code>size_t len = strlen("");
+printf("%d", len - 1 &gt; 5);</code></pre><details><summary>Answer</summary><p><b>1.</b> <code>len - 1</code> wraps around to the largest <code>size_t</code> value. Writing <code>i &lt; strlen(s) - 1</code> has the same bug with an empty string. Use <code>i + 1 &lt; strlen(s)</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q10</div><pre class="snip"><code>uint32_t w = 0xFFFFFFFF;
+uint64_t v = w + 1;
+printf("%llu", (unsigned long long)v);</code></pre><details><summary>Answer</summary><p><b>0.</b> The addition happens in 32 bits and wraps before the result is widened. The type you assign to doesn't change how the right side is calculated. Writing <code>(uint64_t)w + 1</code> gives 4294967296.</p></details></div>
+  </div>
+</section>
+
+<section id="finish" class="block finish">
+  <div class="eyebrow">Finish</div>
+  <h2>You are done with Day 1 when you can</h2>
+  <ul class="exit">
+    <li>Name the four build stages and read an error to tell which one failed.</li>
+    <li>Explain what <code>T</code> and <code>U</code> mean in <code>nm</code> output.</li>
+    <li>Negate a number in binary by hand.</li>
+    <li>State both conversion rules and predict all ten lines of <code>traps.c</code>.</li>
+    <li>Write Kernighan's popcount and the power-of-two check from memory.</li>
+    <li>Explain why <code>x + 1 &gt; x</code> can compile to a constant.</li>
+  </ul>
+  <div class="done-row">
+    <label class="done-box" for="dayDone"><input type="checkbox" id="dayDone"> Mark Day 1 done in my plan</label>
+    <a class="next-link" href="#top" data-open="plan">Back to the plan</a>
+  </div>
+  <p class="tomorrow"><b>Tomorrow, Day 2:</b> setting, clearing and testing bits, shifts, and reading and writing register fields. You will use <code>x &amp; (x - 1)</code> again, so try writing it from memory before you start.</p>
+</section>
+
+</main>
+
+</div>
+<script>
+const WEEKS=[
+ {n:1,title:"C, rebuilt from the metal",goal:"Re-learn how C maps to machine code and become fluent with bits, the most common low-level screening topic."},
+ {n:2,title:"Memory and embedded data structures",goal:"Pointers, linked lists, ring buffers, allocators and protocol parsing: the building blocks every firmware codebase has."},
+ {n:3,title:"Modern C++ for embedded engineers",goal:"Object model, ownership, templates and the C++ subset that ships on microcontrollers."},
+ {n:4,title:"Concurrency, RTOS and the memory model",goal:"Threads, atomics, interrupts and RTOS scheduling, plus trees and graphs on the coding side."},
+ {n:5,title:"Bare-metal ARM Cortex-M",goal:"From an empty folder to interrupts and DMA with your own startup code, linker script and register definitions."},
+ {n:6,title:"Protocols and writing drivers",goal:"I2C, SPI, CAN and a UART bootloader, written from datasheets and verified on a logic analyzer."},
+ {n:7,title:"Embedded Linux, kernel and device drivers",goal:"Boot chain, device tree, char, platform and I2C client drivers on a Raspberry Pi."},
+ {n:8,title:"Bring-up, performance, safety and design",goal:"The principal layer: bring-up playbooks, optimization, safety and security, system design and leadership stories."},
+ {n:9,title:"Final sprint",goal:"Close weak spots and run full mock loops."}
+];
+const D=[
+/* ---------- Week 1 ---------- */
+{w:1,lesson:1,t:"How C becomes machine code",l:"Compilation stages (preprocess, compile, assemble, link) with gcc -E, -S, -c and objdump. Type sizes, two's complement, integer promotion and the usual arithmetic conversions.",r:"Everything you need is in the lesson. No book required.",c:["LC 191 Number of 1 Bits","LC 231 Power of Two","LC 136 Single Number"],b:"Set up gcc/clang with sanitizers, Anki and the GitHub repo. Compile a 20-line program and read its assembly on godbolt at -O0 and -O2.",e:["What does (unsigned)-1 > 0 evaluate to, and why?","Signed overflow is undefined. What can the optimizer do with that?","int, long and pointer sizes on ILP32 vs LP64."]},
+{w:1,t:"Bit manipulation I",l:"Set, clear, toggle and test bits. Masks, logical vs arithmetic shift, why shifting into the sign bit is a trap. x & (x-1) and x & -x. Read-modify-write on a register field.",r:"Hacker's Delight ch. 2 · Bit Twiddling Hacks",c:["LC 190 Reverse Bits","LC 338 Counting Bits","LC 268 Missing Number"],b:"Write SET_FIELD(reg, mask, shift, val) and GET_FIELD macros, a nibble swap and a 32-bit byte swap. Test edge values.",e:["Why is 1 << 31 on an int a problem? How do you write it safely?","Extract bits [11:4] of a 32-bit register in one expression.","How does hardware popcount differ from the software loop?"]},
+{w:1,t:"Bit manipulation II",l:"XOR tricks, sign extension, Gray code, parity, rounding up to an alignment with (x + a - 1) & ~(a - 1), endianness detection, bit arrays.",r:"Hacker's Delight ch. 2–3",c:["LC 371 Sum of Two Integers","LC 137 Single Number II","LC 260 Single Number III","LC 89 Gray Code"],b:"Sign-extend a 12-bit ADC sample to int16_t. Build a bitset with set, clear, test and find-first-zero.",e:["Little vs big endian, and what network byte order is.","Detect endianness at runtime and at compile time.","Why use Gray code for encoders and FIFO pointers?"]},
+{w:1,t:"Pointers and arrays, done properly",l:"Pointer arithmetic, array decay, pointer-to-array vs array-of-pointers, multi-dimensional arrays, const placement, void*, function pointers and callback tables, restrict.",r:"K&R ch. 5 · Expert C Programming ch. 4 and 9",c:["LC 238 Product of Array Except Self","LC 48 Rotate Image","LC 54 Spiral Matrix"],b:"Write a command dispatcher using a table of {name, function pointer} and a qsort comparator for an array of structs.",e:["Decode int (*(*fp)(int))[10] in words.","sizeof(arr) inside the declaring function vs inside a callee.","const int *p vs int *const p vs const int *const p."]},
+{w:1,t:"The memory map of a C program",l:"text, data, bss, stack and heap. Storage classes and linkage. Stack frames and the ARM AAPCS (r0–r3 arguments, r0 return). Alignment, padding, offsetof, #pragma pack.",r:"CS:APP 3.7 · ARM AAPCS summary",c:["LC 1 Two Sum","LC 49 Group Anagrams","LC 128 Longest Consecutive Sequence"],b:"Predict sizeof for five tricky structs, then verify. Reorder fields to minimize padding and measure the saving.",e:["Where do a static local, a string literal and a const global live?","Why can an unaligned access through a packed struct fault on Cortex-M0?","What does the stack frame of a non-leaf ARM function contain?"]},
+{w:1,t:"volatile, const and undefined behavior",weekend:1,l:"What volatile guarantees (every access happens) and what it does not (atomicity, ordering across cores). MMIO access patterns. Unsequenced modifications, strict aliasing, char signedness, implementation-defined vs undefined behavior.",r:"Expert C Programming ch. 1–2 · cppreference ‘Undefined behavior’",c:["LC 7 Reverse Integer","LC 8 String to Integer (atoi)","LC 29 Divide Two Integers"],b:"Implement memcpy, memmove (handle overlap), memset, strlen, strcpy, atoi and itoa from scratch with assert-based tests under ASan and UBSan.",e:["When is volatile required? Give three cases.","Why is volatile not enough on a multi-core SoC?","What is wrong with i = i++ + 1?"]},
+{w:1,t:"Checkpoint 1",weekend:1,mock:1,l:"45-minute timed set on unseen variants, then 20 minutes of C questions out loud. Rewrite every failed problem from memory.",r:"Use the self-test questions at the bottom of this page",c:["LC 393 UTF-8 Validation","LC 201 Bitwise AND of Numbers Range"],b:"Order the hardware kit. Build your first 40 Anki cards from this week: C traps and bit tricks.",e:["Explain integer promotion with uint8_t a = 200, b = 100; a + b.","Explain sizeof('a') in C vs C++."]},
+/* ---------- Week 2 ---------- */
+{w:2,t:"Linked lists and intrusive lists",l:"Singly and doubly linked lists, sentinel nodes, intrusive lists as in the Linux kernel, and container_of built on offsetof.",r:"Linux include/linux/list.h (read it)",c:["LC 206 Reverse Linked List","LC 21 Merge Two Sorted Lists","LC 141 Linked List Cycle","LC 19 Remove Nth Node From End of List"],b:"Implement container_of and an intrusive doubly linked list with add, delete and for-each.",e:["Why do kernels prefer intrusive lists?","How does container_of work, step by step?"]},
+{w:2,t:"Pointer gymnastics",l:"Pointer-to-pointer idioms, such as deleting from a list with Node **pp and no special case for the head. Floyd's cycle detection. Fast and slow pointers.",r:"Linus Torvalds' ‘good taste’ linked-list example",c:["LC 143 Reorder List","LC 138 Copy List with Random Pointer","LC 2 Add Two Numbers","LC 25 Reverse Nodes in k-Group"],b:"Rewrite list delete with a double pointer. Benchmark nothing; aim for zero special cases.",e:["Delete a node when you only have a pointer to that node.","Find the start of a cycle and prove why it works."]},
+{w:2,t:"Stacks, queues and ring buffers",l:"Circular buffer design: full vs empty, power-of-two masking, one-slot-empty vs a count. Single-producer single-consumer between an ISR and the main loop.",r:"Embedded Artistry ‘Creating a Circular Buffer in C and C++’",c:["LC 20 Valid Parentheses","LC 155 Min Stack","LC 622 Design Circular Queue","LC 232 Implement Queue using Stacks"],b:"Write a UART RX ring buffer (ISR producer, main consumer) with unit tests for wrap-around and full/empty.",e:["Why make the size a power of two?","What race appears if both sides update a shared count?"]},
+{w:2,t:"Dynamic memory in embedded",l:"How malloc works (free lists, first-fit vs best-fit, coalescing), fragmentation, why safety codebases forbid heap use after init, fixed-block pools, stack sizing and canaries.",r:"Making Embedded Systems, memory chapter · K&R 8.7",c:["LC 705 Design HashSet","LC 706 Design HashMap","LC 707 Design Linked List"],b:"Implement an O(1) fixed-block memory pool and a simple malloc/free with coalescing over a static array.",e:["What causes fragmentation, and how do pools avoid it?","How would you measure stack high-water mark on an MCU?"]},
+{w:2,t:"Hashing, sorting and searching",l:"FNV-1a and other cheap hashes, open addressing vs chaining, quicksort, mergesort and heapsort complexity and stability, binary-search pitfalls such as mid overflow.",r:"CLRS or any algorithms text, sorting chapter",c:["LC 704 Binary Search","LC 33 Search in Rotated Sorted Array","LC 153 Find Minimum in Rotated Sorted Array","LC 74 Search a 2D Matrix"],b:"Write an in-place heapsort and a generic binary search using void* and a comparator.",e:["Which sorts are stable, and when does that matter?","Why compute mid as lo + (hi - lo) / 2?"]},
+{w:2,t:"Strings and protocol parsing",weekend:1,l:"Robust byte-stream parsing with explicit state machines. CRC-8, CRC-16-CCITT and table-driven CRC-32. Endianness in serialization. Why you never memcpy a struct onto the wire.",r:"Ross Williams ‘A Painless Guide to CRC Error Detection Algorithms’",c:["LC 3 Longest Substring Without Repeating Characters","LC 76 Minimum Window Substring","LC 424 Longest Repeating Character Replacement"],b:"Write a framed packet parser (SOF, length, payload, CRC-16) as a state machine. Test corrupted, truncated and back-to-back frames.",e:["How does a table-driven CRC work?","Why not send a struct by memcpy?"]},
+{w:2,t:"Checkpoint 2",weekend:1,mock:1,l:"30 minutes: LRU cache in C++. 20 minutes: whiteboard a thread-safe ring buffer. 15 minutes of rapid-fire on memory and pointers.",r:"Self-test questions",c:["LC 146 LRU Cache"],b:"Review every red problem from weeks 1–2. Add 30 Anki cards.",e:["Walk through your ring buffer's full/empty logic.","What does your memory pool do on double free?"]},
+/* ---------- Week 3 ---------- */
+{w:3,t:"The C++ object model",l:"Constructor and destructor order, RAII, the rules of 0, 3 and 5, copy vs move, value categories (lvalue, prvalue, xvalue).",r:"Effective Modern C++ items 17 and 23–25",c:["LC 15 3Sum","LC 11 Container With Most Water","LC 167 Two Sum II"],b:"Write a RAII wrapper for a file descriptor or GPIO handle, and a buffer class that obeys the rule of five.",e:["What does std::move actually do?","When does the compiler generate a move constructor?"]},
+{w:3,t:"Smart pointers and ownership",l:"unique_ptr (zero overhead, custom deleters), shared_ptr costs (control block, atomic refcount), weak_ptr, make_unique. Ownership in API design. When to avoid the heap entirely.",r:"Effective Modern C++ items 18–22",c:["LC 42 Trapping Rain Water","LC 125 Valid Palindrome","LC 680 Valid Palindrome II"],b:"Write a minimal unique_ptr yourself, then a unique_ptr with a custom deleter that closes a C handle.",e:["What does shared_ptr cost in memory and time?","How do you break a shared_ptr cycle?"]},
+{w:3,t:"Templates and compile-time code",l:"Function and class templates, specialization, constexpr, if constexpr, static_assert, type traits, C++20 concepts. CRTP for zero-overhead static polymorphism.",r:"cppreference: templates, constexpr, CRTP",c:["LC 739 Daily Temperatures","LC 84 Largest Rectangle in Histogram","LC 150 Evaluate Reverse Polish Notation"],b:"Build a CRTP driver interface and a CRC table generated at compile time with constexpr.",e:["CRTP vs virtual functions: tradeoffs.","What does constexpr guarantee and what does it not?"]},
+{w:3,t:"Virtual functions and their cost",l:"vtable and vptr layout, virtual destructors, slicing, multiple-inheritance layout, override and final, dynamic_cast cost, devirtualization.",r:"Inside the C++ Object Model ch. 1 (skim) · godbolt",c:["LC 239 Sliding Window Maximum","LC 621 Task Scheduler","LC 347 Top K Frequent Elements"],b:"Inspect a class hierarchy on godbolt and draw the memory layout and vtables.",e:["What is in memory for an object with virtual functions?","Why must a base class have a virtual destructor?"]},
+{w:3,t:"STL internals and complexity",l:"vector growth and iterator invalidation, deque, list, map (red-black tree) vs unordered_map (buckets), priority_queue, std::array, std::span, std::string small-string optimization, reserve.",r:"cppreference container pages",c:["LC 215 Kth Largest Element in an Array","LC 295 Find Median from Data Stream","LC 703 Kth Largest Element in a Stream"],b:"Solve LC 215 twice: with a heap and with quickselect. Compare.",e:["When does push_back invalidate references?","map vs unordered_map for 1,000 entries on an MCU?"]},
+{w:3,t:"C++ on constrained systems",weekend:1,l:"-fno-exceptions and -fno-rtti, placement new, static allocation, the Embedded Template Library, optional, variant and expected for errors, MISRA C++ and AUTOSAR C++14 rules, code-size impact.",r:"ETL docs (etlcpp.com) · AUTOSAR C++14 guidelines overview",c:["LC 380 Insert Delete GetRandom O(1)","LC 981 Time Based Key-Value Store"],b:"Port your ring buffer to template&lt;typename T, size_t N&gt; with static_asserts. Build it with arm-none-eabi-g++ and compare .text size to the C version using arm-none-eabi-size.",e:["Why disable exceptions on many MCUs?","What does placement new do, and when would you use it?"]},
+{w:3,t:"Checkpoint 3",weekend:1,mock:1,l:"Two timed mediums in C++, then rapid-fire on move semantics, vtables and smart pointers.",r:"Self-test questions",c:["LC 56 Merge Intervals","LC 435 Non-overlapping Intervals"],b:"Write a one-page C++ cheat sheet in your own words.",e:["Explain rule of five to a junior engineer.","Explain small-string optimization."]},
+/* ---------- Week 4 ---------- */
+{w:4,t:"Threads and synchronization",l:"std::thread, mutex, lock_guard and unique_lock, condition_variable and spurious wakeups, deadlock conditions, lock ordering, producer-consumer.",r:"C++ Concurrency in Action ch. 2–4",c:["LC 1114 Print in Order","LC 1115 Print FooBar Alternately","LC 1116 Print Zero Even Odd"],b:"Write a bounded blocking queue with a mutex and two condition variables (LC 1188, premium; build it locally if you do not have premium).",e:["Name the four conditions for deadlock.","Why must you wait on a condition variable in a loop?"]},
+{w:4,t:"Atomics and memory ordering",l:"std::atomic, relaxed, acquire, release and seq_cst, happens-before, compiler vs CPU reordering, ARM barriers DMB, DSB and ISB, volatile vs atomic.",r:"C++ Concurrency in Action ch. 5 · Preshing ‘Acquire and Release Semantics’",c:["LC 1117 Building H2O","LC 1195 Fizz Buzz Multithreaded"],b:"Write a lock-free SPSC queue with acquire/release and run it under ThreadSanitizer.",e:["What does a release store pair with?","When do you need DSB vs DMB on ARM?"]},
+{w:4,t:"RTOS fundamentals",l:"Preemptive priority scheduling, round-robin, the Cortex-M context switch (PendSV, SysTick), semaphore vs mutex, priority inversion and inheritance (Mars Pathfinder), queues, event groups, FromISR APIs, stack sizing.",r:"Mastering the FreeRTOS Real Time Kernel ch. 1–4",c:["LC 207 Course Schedule","LC 210 Course Schedule II"],b:"Draw the stack contents before and after a context switch on Cortex-M.",e:["Walk through a context switch.","Why use a mutex rather than a binary semaphore for a shared resource?"]},
+{w:4,t:"Interrupts in depth",l:"Latency and nesting, NVIC priority grouping, critical sections (PRIMASK vs BASEPRI), reentrancy, deferring work out of ISRs, sharing data between ISR and task, debouncing.",r:"Yiu, Definitive Guide, ch. 7–8",c:["LC 200 Number of Islands","LC 695 Max Area of Island","LC 994 Rotting Oranges"],b:"Design (on paper) a latency measurement using a GPIO toggle and a scope or logic analyzer.",e:["What must never happen inside an ISR?","PRIMASK vs BASEPRI: when do you use each?"]},
+{w:4,t:"Trees I",l:"Recursive vs iterative traversals. On MCUs recursion depth is stack depth: know how to convert recursion to an explicit stack to bound memory.",r:"NeetCode trees playlist",c:["LC 104 Maximum Depth of Binary Tree","LC 226 Invert Binary Tree","LC 102 Binary Tree Level Order Traversal","LC 98 Validate Binary Search Tree","LC 235 Lowest Common Ancestor of a BST"],b:"Rewrite one recursive traversal iteratively with a fixed-size stack array.",e:["How would you bound stack use for tree code on a 20 KB-RAM MCU?"]},
+{w:4,t:"Trees II and an RTOS lab",weekend:1,hw:1,l:"Harder tree problems, serialization, graph cloning.",r:"FreeRTOS POSIX/Linux simulator port, or the Nucleo if it has arrived",c:["LC 236 Lowest Common Ancestor of a Binary Tree","LC 230 Kth Smallest Element in a BST","LC 105 Construct Binary Tree from Preorder and Inorder","LC 297 Serialize and Deserialize Binary Tree","LC 133 Clone Graph"],b:"FreeRTOS: three tasks, a queue and a mutex. Reproduce priority inversion, then fix it with priority inheritance. Log a timeline.",e:["Show the inversion on your timeline and explain the fix."]},
+{w:4,t:"Checkpoint 4",weekend:1,mock:1,l:"60 minutes: one graph medium, one concurrency design question (‘design a logger callable from ISRs and tasks’), then RTOS rapid-fire.",r:"Self-test questions",c:["LC 417 Pacific Atlantic Water Flow"],b:"Review red problems from weeks 3–4.",e:["Design an ISR-safe logger: buffers, formatting, flushing, overflow policy."]},
+/* ---------- Week 5 ---------- */
+{w:5,t:"Cortex-M architecture",hw:1,l:"Registers, thread vs handler mode, MSP vs PSP, exception entry and stacking, the vector table, the reset sequence, Thumb-2, the memory map (code, SRAM, peripherals, PPB).",r:"Yiu ch. 2–4 · STM32F446 reference manual RM0390, memory map · Nucleo user manual",c:["LC 70 Climbing Stairs","LC 198 House Robber"],b:"Install arm-none-eabi-gcc and OpenOCD (or STM32CubeIDE). Flash an example and single-step Reset_Handler in GDB.",e:["Which registers does hardware push on exception entry?","What is EXC_RETURN?"]},
+{w:5,t:"Startup code and linker scripts",hw:1,l:"Write the vector table and Reset_Handler: copy .data from flash, zero .bss, call main. Linker scripts: MEMORY, SECTIONS, VMA vs LMA, KEEP, alignment. Read a map file.",r:"Memfault Interrupt ‘From Zero to main()’ series",c:["LC 213 House Robber II","LC 322 Coin Change"],b:"Bare-metal blink with no vendor HAL: your own startup.c, linker script and register definitions (RCC, GPIOA MODER and ODR).",e:["Explain VMA vs LMA for the .data section.","Why must the vector table be at a specific address?"]},
+{w:5,t:"Clocks, timers and SysTick",hw:1,l:"Clock tree (HSI, HSE, PLL), bus prescalers, a 1 ms SysTick, general-purpose timers, PWM and input capture.",r:"RM0390 RCC and TIM chapters",c:["LC 300 Longest Increasing Subsequence","LC 139 Word Break"],b:"1 ms SysTick delay and PWM LED dimming by direct TIM register configuration. Measure frequency and duty on the logic analyzer.",e:["How do you compute the PWM frequency from prescaler and ARR?"]},
+{w:5,t:"GPIO interrupts and UART",hw:1,l:"EXTI and NVIC configuration, debouncing, UART baud-rate math with oversampling, polling then interrupt-driven RX/TX with your ring buffer, printf retargeting via _write.",r:"RM0390 EXTI and USART chapters",c:["LC 62 Unique Paths","LC 1143 Longest Common Subsequence"],b:"Interrupt-driven UART echo plus a debounced button counter on EXTI.",e:["Where do you clear the interrupt flag, and what happens if you forget?"]},
+{w:5,t:"DMA and caches",hw:1,l:"DMA streams and channels, circular mode, half and full transfer interrupts, double buffering. Cache coherency on Cortex-M7 and A-class: clean before TX, invalidate after RX, cache-line alignment.",r:"RM0390 DMA chapter · ARM application note on Cortex-M7 cache maintenance",c:["LC 416 Partition Equal Subset Sum","LC 494 Target Sum"],b:"UART RX by circular DMA plus the idle-line interrupt to delimit packets.",e:["Why must DMA buffers be cache-line aligned on an M7?"]},
+{w:5,t:"Faults and debugging",weekend:1,hw:1,l:"HardFault, MemManage, BusFault and UsageFault. Decode CFSR, HFSR, MMFAR and BFAR. Find the faulting line from the stacked PC. Stack overflow detection with an MPU guard region, watchdog strategy, SWD/JTAG, OpenOCD plus GDB, SWO/ITM trace.",r:"Memfault ‘How to debug a HardFault on an ARM Cortex-M MCU’",c:["LC 72 Edit Distance"],b:"Trigger four different faults on purpose. Write a HardFault handler that dumps stacked registers over UART and resolve the PC with addr2line.",e:["Walk me through debugging a HardFault from a field report with only a register dump."]},
+{w:5,t:"Checkpoint 5",weekend:1,mock:1,l:"Whiteboard ‘power-on to main() on a Cortex-M’ in 10 minutes with no notes, then two timed DP problems.",r:"Your week-5 notes",c:["LC 152 Maximum Product Subarray","LC 91 Decode Ways"],b:"Push the bare-metal project to GitHub with a README explaining startup, linker script and fault handler.",e:["Power-on to main(), every step."]},
+/* ---------- Week 6 ---------- */
+{w:6,t:"I2C in depth",hw:1,l:"Open-drain lines and pull-ups, rise time, START, STOP and repeated START, ACK and NACK, clock stretching, multi-master arbitration, 7- and 10-bit addresses, recovering a stuck bus with nine clocks.",r:"NXP UM10204 I2C-bus specification · Bosch BME280 datasheet",c:["LC 55 Jump Game","LC 45 Jump Game II"],b:"Register-level I2C driver: read the BME280 chip ID (0x60), then compensated temperature. Verify the transaction on the logic analyzer.",e:["How do you recover an I2C bus with SDA stuck low?"]},
+{w:6,t:"SPI in depth",hw:1,l:"CPOL and CPHA modes, chip-select timing, full duplex, SPI with DMA. NOR flash commands: JEDEC ID 0x9F, read 0x03, page program 0x02, sector erase 0x20, write-enable and busy status bits.",r:"Winbond W25Q64 datasheet",c:["LC 134 Gas Station","LC 763 Partition Labels"],b:"SPI flash driver: read the JEDEC ID, erase a sector, program and read back a page, verify.",e:["Explain SPI mode 0 vs mode 3.","Why must you poll the busy bit after erase?"]},
+{w:6,t:"Driver architecture and HAL design",hw:1,l:"Layering (BSP, HAL, driver, service), non-blocking APIs with callbacks, state machines, timeouts and error handling, testability through dependency injection and fakes, portability.",r:"Making Embedded Systems, architecture chapter · Zephyr device driver model docs",c:["LC 57 Insert Interval","LC 56 Merge Intervals (re-solve)"],b:"Put your I2C and SPI drivers behind interfaces. Unit-test the BME280 driver on the host against a fake I2C bus.",e:["How do you unit-test a driver without hardware?"]},
+{w:6,t:"CAN and automotive networks",l:"CAN frames (11- and 29-bit IDs, DLC, CRC), bitwise arbitration, bit timing and sample point, error-active, error-passive and bus-off, CAN FD, LIN, automotive Ethernet (100BASE-T1, MDIO/MDC), SOME/IP and DoIP, common UDS services (0x10, 0x22, 0x27, 0x2E, 0x31, 0x34/0x36/0x37).",r:"Bosch CAN 2.0 specification · your own 88Q5050 and UDS experience",c:["LC 127 Word Ladder","LC 743 Network Delay Time"],b:"Optional: two MCP2515 modules exchanging frames; capture arbitration on the logic analyzer.",e:["How does CAN arbitration work bit by bit?","What sequence of UDS services flashes an ECU?"]},
+{w:6,t:"Bootloaders and firmware update",l:"Boot flow, bootloader and application split, VTOR relocation, jumping to the app (set MSP, branch to reset vector), image headers, CRC and signatures, A/B slots, rollback and anti-brick, MCUboot.",r:"MCUboot design docs",c:["LC 787 Cheapest Flights Within K Stops","LC 684 Redundant Connection"],b:"Write the design for your UART bootloader: memory map, image header, update protocol, failure cases.",e:["Design a fail-safe OTA for a vehicle ECU."]},
+{w:6,t:"Build a UART bootloader",weekend:1,hw:1,l:"Bootloader at 0x08000000 that receives an application over UART using your Day-13 packet format, writes flash, verifies CRC, relocates VTOR and jumps.",r:"RM0390 flash programming chapter",c:["LC 1584 Min Cost to Connect All Points"],b:"Working bootloader plus a host-side Python uploader. Test power loss mid-update.",e:["What happens if power fails during the flash write, and how do you survive it?"]},
+{w:6,t:"Checkpoint 6",weekend:1,mock:1,l:"Driver-design interview: write a driver for a sensor from one datasheet page in 40 minutes (use the BME280), then one timed graph problem.",r:"BME280 datasheet",c:["LC 210 Course Schedule II (re-solve)"],b:"Review red problems from weeks 5–6.",e:["Explain your driver's error handling and timeout strategy."]},
+/* ---------- Week 7 ---------- */
+{w:7,t:"The Linux boot chain",hw:1,l:"Boot ROM, SPL, U-Boot, kernel, initramfs, init/systemd. U-Boot environment, bootargs, FIT images. Device tree basics: nodes, compatible, reg, interrupts, status.",r:"Bootlin ‘Embedded Linux system development’ slides",c:["LC 5 Longest Palindromic Substring","LC 647 Palindromic Substrings"],b:"Set up cross-compilation for the Pi. Browse /proc/device-tree and the boot log on the serial console.",e:["Walk me through Linux boot on an ARM board."]},
+{w:7,t:"Kernel modules and char drivers",hw:1,l:"module_init and module_exit, Kbuild, printk and dmesg, file_operations, copy_to_user and copy_from_user, major and minor numbers, misc devices, ioctl design.",r:"LDD3 ch. 2–3 · Bootlin ‘Linux kernel and driver development’ slides",c:["LC 208 Implement Trie","LC 211 Design Add and Search Words Data Structure"],b:"A char driver backed by a kernel ring buffer, with a user-space test program.",e:["Why copy_to_user instead of memcpy?"]},
+{w:7,t:"Kernel concurrency and memory",l:"Spinlocks vs mutexes, atomic_t, RCU concepts, interrupt-context restrictions, kmalloc vs vmalloc, GFP flags, per-CPU data, kernel memory barriers.",r:"LDD3 ch. 5 and 8",c:["LC 79 Word Search","LC 39 Combination Sum","LC 78 Subsets"],b:"Add a spinlock or mutex to your char driver and justify which one.",e:["Why can you not sleep while holding a spinlock?","GFP_ATOMIC vs GFP_KERNEL."]},
+{w:7,t:"Platform drivers and device tree",hw:1,l:"The platform bus, probe and remove, of_match_table, devm_* managed resources, reading DT properties, pinctrl, regmap, sysfs attributes.",r:"Kernel docs: driver-model and devicetree usage",c:["LC 46 Permutations","LC 31 Next Permutation"],b:"A device-tree overlay plus a platform driver for an LED and a button, using request_threaded_irq.",e:["How does the kernel bind a driver to a DT node?"]},
+{w:7,t:"Kernel interrupts and deferred work",l:"Top and bottom halves, threaded IRQs, tasklets (legacy) vs workqueues, timers and hrtimers, wait queues and poll().",r:"LDD3 ch. 7 and 10 · current kernel docs on threaded IRQs",c:["LC 23 Merge k Sorted Lists","LC 4 Median of Two Sorted Arrays"],b:"Add poll() support to your char driver so user space can wait for data.",e:["Design the interrupt path for a 10 kHz sensor on Linux."]},
+{w:7,t:"An I2C client driver in the kernel",weekend:1,hw:1,l:"i2c_driver, probe via device tree, regmap-i2c, exposing readings through sysfs, then a look at the IIO subsystem.",r:"drivers/iio/pressure/bmp280-core.c in the kernel tree",c:["LC 778 Swim in Rising Water"],b:"Your own BME280 kernel driver on the Pi exposing temperature in sysfs. Compare it with the upstream bmp280 driver and note three style differences.",e:["What does regmap give you over raw i2c_transfer?"]},
+{w:7,t:"Build systems and Linux debugging",weekend:1,mock:1,l:"Buildroot (build a minimal image), Yocto concepts (layers, recipes, bitbake), gdb with gdbserver, kgdb concepts, ftrace and trace-cmd, perf, strace, decoding a kernel oops with addr2line or decode_stacktrace.sh.",r:"Buildroot manual · Bootlin Yocto slides",c:["LC 332 Reconstruct Itinerary"],b:"Build a Buildroot image for the Pi or QEMU. Cause an oops in your module and decode it.",e:["Explain Linux boot to a hiring manager in 3 minutes.","Buildroot vs Yocto: when would you pick each?"]},
+/* ---------- Week 8 ---------- */
+{w:8,t:"Board bring-up playbook",l:"Pre-power checks, rails and sequencing, oscillators and reset, first JTAG contact, DDR init and memory tests (walking ones, address-line tests), first UART output, reading schematics, scope and logic-analyzer method, a bring-up log.",r:"Your Bosch bring-up history · Memfault bring-up posts",c:["LC 287 Find the Duplicate Number","LC 41 First Missing Positive"],b:"Write a one-page bring-up checklist you can talk through in interviews.",e:["A new board does not boot. What do you check, in order?"]},
+{w:8,t:"Performance and low-level optimization",hw:1,l:"Cache lines and locality, false sharing, branch prediction, alignment, unrolling, inlining, LTO, -O2 vs -Os, fixed-point Q15 and Q31 vs float, CMSIS-DSP, measuring with the DWT cycle counter and perf.",r:"CS:APP ch. 5–6 · CMSIS-DSP docs",c:["LC 50 Pow(x, n)","LC 69 Sqrt(x)","LC 43 Multiply Strings"],b:"Measure memcpy variants and a Q15 FIR vs a float FIR with DWT->CYCCNT.",e:["How would you find and fix a 20% CPU regression?"]},
+{w:8,t:"Power management and real time",l:"Sleep modes, WFI and WFE, tickless idle, clock gating, wake sources, worst-case execution time, rate-monotonic scheduling and its utilization bound, jitter.",r:"Yiu, low-power chapter · Liu and Layland (1973) summary",c:["LC 1046 Last Stone Weight","LC 973 K Closest Points to Origin"],b:"Put the Nucleo into Stop mode and wake it from a button; measure current if you have a meter.",e:["State the RMS utilization bound n(2^(1/n) - 1) and what it means."]},
+{w:8,t:"Safety and security",l:"ISO 26262 (ASIL, freedom from interference, safety mechanisms), MISRA C:2012 key rules, defensive programming, windowed watchdogs, MPU isolation, secure boot and chain of trust, image signing, TrustZone-M, fuzzing.",r:"MISRA C:2012 summary · ARM TrustZone for Cortex-M overview",c:["LC 146 LRU Cache in C, no STL","LC 460 LFU Cache"],b:"Add signature verification to your bootloader design (on paper is fine).",e:["Where should the watchdog be kicked from, and why?"]},
+{w:8,t:"System design I",l:"A design-interview framework: requirements, constraints, block diagram, data flow, failure modes, testing, tradeoffs. Design a fleet OTA system for one million vehicles, ECU side and cloud side.",r:"Your OTA and bootloader notes",c:["LC 621 Task Scheduler (re-solve)","LC 435 Non-overlapping Intervals (re-solve)"],b:"Write the OTA design up as one page plus a diagram.",e:["Present the OTA design in 35 minutes, out loud."]},
+{w:8,t:"System design II",weekend:1,mock:1,l:"Three designs out loud, 35 minutes each: a power-loss-safe data logger on flash (wear leveling, journaling), a camera pipeline on an SoC (capture, ISP, inference, CAN alert), and an IPC framework between QNX and Android VMs.",r:"Your edge-AI and IPC work at Bosch",c:[],b:"Record one design session and review it for structure and tradeoffs.",e:["Which failure mode worries you most in each design, and how do you test it?"]},
+{w:8,t:"Principal behaviors and story bank",weekend:1,mock:1,l:"STAR stories with numbers: 14-carline delivery, the die-crack recall containment, thermal mitigation that removed 2% BoM, the triage platform that cut resolution time 60%, the release dashboard that lifted efficiency 40%, a disagreement, a failure.",r:"Your resume_master.json bullets",c:[],b:"Full mock loop with a peer or on interviewing.io: one coding round and one embedded deep dive.",e:["Tell me about the hardest bug you ever debugged, in 3 minutes."]},
+/* ---------- Week 9 ---------- */
+{w:9,t:"Weak-area day",l:"Re-solve every red problem. Run 50 Anki cards of C and C++ traps.",r:"Your error log",c:["All red problems"],b:"Fix any lab that is still broken and update READMEs.",e:["Pick your three weakest topics and explain each out loud."]},
+{w:9,t:"Mock loop A",mock:1,l:"Timed: implement memmove and reverse bits from memory, one unseen medium, then an embedded deep dive on interrupt latency, DMA and caches.",r:"NeetCode 150 unseen problems",c:["Two unseen NeetCode mediums"],b:"Review the recording and list three fixes.",e:["Interrupt latency: what contributes to it and how do you measure it?"]},
+{w:9,t:"Mock loop B",mock:1,l:"System design (OTA or logger), a Linux driver deep dive, then behavioral questions.",r:"Your design write-ups",c:[],b:"Tighten your two weakest STAR stories.",e:["Why are you the right principal engineer for this team?"]},
+{w:9,t:"Final review and launch",l:"One-page cheat sheets for C, C++, ARM, Linux and protocols. Update your resume with what you built and link the GitHub repo. Schedule interviews.",r:"Everything above",c:[],b:"Publish the embedded-portfolio repo with a top-level README.",e:["Walk me through your GitHub repo in 5 minutes."]}
+];
+const QA=[
+["What does volatile guarantee?","Every read and write in the source happens, in program order relative to other volatile accesses. It does not make an access atomic and does not order it against other cores or non-volatile memory. For that you need atomics or barriers."],
+["When would a variable be const volatile?","A read-only hardware status register: your code may not write it, but its value can change at any time."],
+["Little vs big endian?","Little endian stores the least significant byte at the lowest address. Cortex-M is normally little endian. Network byte order is big endian, so use htonl and ntohl at the boundary."],
+["How do you detect endianness?","At runtime: uint16_t x = 1; check whether the first byte is 1. In C++20 use std::endian. Compilers also define __BYTE_ORDER__."],
+["What does x & (x - 1) do?","It clears the lowest set bit. x != 0 && (x & (x - 1)) == 0 tests for a power of two."],
+["How is struct padding decided?","Each member is aligned to its natural alignment and the struct size is rounded up to the largest member alignment. Ordering members from largest to smallest usually minimizes padding."],
+["memcpy vs memmove?","memmove handles overlapping regions, copying backwards when the destination is above the source. memcpy assumes no overlap."],
+["What does static mean in C?","Inside a function it gives a variable static storage duration. At file scope it gives internal linkage. In a C++ class it makes a member shared by all instances."],
+["Integer promotion example?","uint8_t a = 200, b = 100; a + b is computed as int and equals 300. Assigning it back to uint8_t gives 44."],
+["sizeof('a') in C vs C++?","In C a character constant has type int, so it is usually 4. In C++ it has type char, so it is 1."],
+["Mutex vs semaphore?","A mutex has an owner, is used for mutual exclusion and supports priority inheritance. A semaphore is a signaling or counting primitive with no owner."],
+["What is priority inversion?","A low-priority task holds a mutex a high-priority task needs, and a medium-priority task preempts the low one, so the high task waits on the medium one. Fix it with priority inheritance or a priority ceiling."],
+["Rules for an ISR?","Keep it short, never block, avoid malloc and printf, use FromISR APIs, clear the interrupt source, share data through volatile or atomic variables, and defer work to a task."],
+["Cortex-M reset sequence?","The core loads the initial MSP from the first vector-table word and the Reset_Handler address from the second. Startup code copies .data from flash to RAM, zeros .bss, configures clocks and calls main."],
+["What does hardware stack on exception entry?","R0–R3, R12, LR, PC and xPSR, plus FPU registers when lazy stacking applies. LR is loaded with an EXC_RETURN value."],
+["How do you detect a stack overflow?","An MPU guard region below the stack, stack painting with a high-water-mark check, or a canary word checked on context switch."],
+["What is I2C clock stretching?","A slave holds SCL low to make the master wait until it is ready."],
+["SPI CPOL and CPHA?","CPOL sets the idle clock level. CPHA selects whether data is sampled on the first or second clock edge. Mode 0 is CPOL 0, CPHA 0."],
+["How does CAN arbitration work?","A dominant bit (0) overrides a recessive bit (1). Each node monitors the bus while sending its ID; a node that sends recessive but reads dominant stops. The lowest ID wins."],
+["DMA and cache coherency?","Before a DMA transmit, clean the cache lines of the buffer. After a DMA receive, invalidate them. Align buffers to the cache line, 32 bytes on Cortex-M7."],
+["Spinlock vs mutex in the Linux kernel?","A spinlock busy-waits, may be used in interrupt context and must never be held across a sleep. A mutex sleeps and is only for process context."],
+["GFP_KERNEL vs GFP_ATOMIC?","GFP_KERNEL may sleep while reclaiming memory. GFP_ATOMIC never sleeps, so it is used in interrupt context or under a spinlock."],
+["Why copy_to_user?","User pointers are untrusted and may point to unmapped or swapped-out memory. copy_to_user checks access and handles faults safely."],
+["How is a driver bound to a device-tree node?","The node's compatible string is matched against the driver's of_match_table, then the driver's probe function runs."],
+["What is a threaded IRQ?","The hard handler acknowledges the device quickly; the threaded handler runs in process context and may sleep."],
+["Why a virtual destructor?","Deleting a derived object through a base pointer without one is undefined behavior and skips the derived destructor."],
+["What does std::move do?","Nothing at runtime. It casts its argument to an rvalue reference so a move constructor or move assignment can be selected."],
+["Cost of unique_ptr?","With a stateless deleter it is the size of a raw pointer and has no runtime overhead."],
+["When does vector::push_back invalidate references?","When size equals capacity it reallocates and invalidates all iterators and references. Otherwise only the end iterator changes."],
+["Acquire and release?","A release store makes all earlier writes visible to any thread whose acquire load reads that stored value."],
+["Where should a watchdog be kicked?","From a supervisor that confirms every critical task has checked in, never from a timer interrupt that keeps running when tasks hang."],
+["How does A/B OTA work?","Write the inactive slot, verify integrity and signature, switch the boot flag, trial-boot, then confirm or roll back automatically on failure."]
+];
+
+/* ---------- render ---------- */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let done=store.get("p60.done",{});
+const startDefault="2026-11-09";
+const startEl=document.getElementById("startDate");
+startEl.value=store.get("p60.start",startDefault);
+const fmt=new Intl.DateTimeFormat(undefined,{weekday:"short",month:"short",day:"numeric"});
+function dateFor(i){const s=new Date(startEl.value+"T12:00:00");if(isNaN(s))return "";s.setDate(s.getDate()+i);return fmt.format(s)}
+function esc(s){return s}
+const plan=document.getElementById("plan"),nav=document.getElementById("weekNav");
+let lc=0,labs=0;
+D.forEach(d=>{d.c.forEach(x=>{if(/^LC \d/.test(x))lc++}); if(d.hw)labs++;});
+document.getElementById("lcCount").textContent=lc;
+document.getElementById("labCount").textContent=labs;
+
+function render(){
+  plan.innerHTML="";nav.innerHTML="";
+  WEEKS.forEach(W=>{
+    const days=D.map((d,i)=>({...d,i})).filter(d=>d.w===W.n);
+    const sec=document.createElement("section");sec.className="week";sec.id="week-"+W.n;
+    sec.innerHTML=`<div class="week-head"><div class="eyebrow">Week ${W.n} · Days ${days[0].i+1}–${days[days.length-1].i+1}</div><h2>${W.title}</h2><p>${W.goal}</p></div>`;
+    days.forEach(d=>{
+      const n=d.i+1,id="d"+n,isDone=!!done[n];
+      const a=document.createElement("article");a.className="day"+(isDone?" done":"");a.id=id;
+      const tags=[d.weekend?'<span class="tag wk">Weekend · 5 h</span>':'',d.mock?'<span class="tag mock">Mock</span>':'',d.hw?'<span class="tag hw">Hardware</span>':''].join("");
+      const code=d.c.length?`<ul>${d.c.map(x=>`<li class="lc">${x}</li>`).join("")}</ul>`:'<p class="res">No new problems today. Use the time for the build and the out-loud practice.</p>';
+      a.innerHTML=`<div class="day-top"><input type="checkbox" id="cb${n}" aria-label="Mark day ${n} done" ${isDone?"checked":""}><span class="addr">D${String(n).padStart(2,"0")} · 0x${n.toString(16).toUpperCase().padStart(2,"0")}<small>${dateFor(d.i)}</small></span><h3>${d.t}</h3><div class="tags">${tags}</div></div>
+      <div class="day-body">
+        <div class="cell"><h4>Learn</h4><p>${d.l}</p><p class="res">${d.r}</p>${d.lesson?`<a class="lesson-link" href="#lesson-1" data-open="1">Open the full lesson</a>`:""}</div>
+        <div class="cell"><h4>Code</h4>${code}</div>
+        <div class="cell"><h4>Build</h4><p>${d.b}</p></div>
+        <div class="cell"><h4>Explain out loud</h4><ul>${d.e.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      </div>`;
+      a.querySelector("input").addEventListener("change",ev=>{if(ev.target.checked)done[n]=1;else delete done[n];store.set("p60.done",done);a.classList.toggle("done",ev.target.checked);progress()});
+      sec.appendChild(a);
+    });
+    plan.appendChild(sec);
+    const link=document.createElement("a");link.href="#week-"+W.n;link.dataset.week=W.n;link.innerHTML=`W${W.n} <em></em>`;nav.appendChild(link);
+  });
+  progress();
+}
+function progress(){
+  const count=Object.keys(done).length;
+  document.getElementById("progText").textContent=`${count} of 60 days done`;
+  document.getElementById("barFill").style.width=(count/60*100)+"%";
+  document.querySelector(".bar").setAttribute("aria-valuenow",count);
+  nav.querySelectorAll("a").forEach(l=>{const w=+l.dataset.week;const ids=D.map((d,i)=>d.w===w?i+1:0).filter(Boolean);const k=ids.filter(i=>done[i]).length;l.querySelector("em").textContent=`${k}/${ids.length}`;l.classList.toggle("full",k===ids.length)});
+}
+startEl.addEventListener("change",()=>{store.set("p60.start",startEl.value);render()});
+const hide=document.getElementById("hideDone");hide.checked=store.get("p60.hide",false);
+function applyHide(){plan.classList.toggle("hidden-done",hide.checked)}
+hide.addEventListener("change",()=>{store.set("p60.hide",hide.checked);applyHide()});
+document.getElementById("jumpNext").addEventListener("click",()=>{for(let n=1;n<=60;n++){if(!done[n]){document.getElementById("d"+n).scrollIntoView({behavior:"smooth",block:"start"});break}}});
+document.getElementById("qa").innerHTML=QA.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+render();applyHide();
+</script>
+<script>
+(function(){
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  };
+
+  // Copy buttons
+  document.querySelectorAll(".copy").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var code=btn.closest("figure").querySelector("code");
+      var flash=function(t){btn.textContent=t;setTimeout(function(){btn.textContent="Copy"},1400)};
+      var selectIt=function(){var r=document.createRange();r.selectNodeContents(code);var s=getSelection();s.removeAllRanges();s.addRange(r);flash("Selected")};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code.textContent).then(function(){flash("Copied")},selectIt)}else{selectIt()}
+    });
+  });
+
+  // 8-bit register
+  var host=document.getElementById("regBits"),value=0xFA,PLACES=[-128,64,32,16,8,4,2,1];
+  function paint(){
+    host.querySelectorAll(".bit").forEach(function(b){
+      var on=(value>>Number(b.dataset.bit))&1;
+      b.setAttribute("aria-pressed",on?"true":"false");
+      b.querySelector("b").textContent=on;
+    });
+    var hex=function(v){return "0x"+v.toString(16).toUpperCase().padStart(2,"0")};
+    document.getElementById("regHex").textContent=hex(value);
+    document.getElementById("regU").textContent=value;
+    document.getElementById("regS").textContent=value>=128?value-256:value;
+    document.getElementById("regN").textContent=hex((~value+1)&0xFF);
+  }
+  PLACES.forEach(function(place,i){
+    var bit=7-i,b=document.createElement("button");
+    b.type="button";b.className="bit";b.dataset.bit=bit;
+    b.setAttribute("aria-label","Bit "+bit+", place value "+place);
+    b.innerHTML="<b>0</b><small>"+place+"</small>";
+    b.addEventListener("click",function(){value^=(1<<bit);paint()});
+    host.appendChild(b);
+  });
+  paint();
+
+  // Step ticks, saved in this browser
+  var ticks=store.get("p60.d1.ticks",{});
+  document.querySelectorAll("[data-tick]").forEach(function(c){
+    var k=c.dataset.tick;c.checked=!!ticks[k];
+    c.addEventListener("change",function(){if(c.checked)ticks[k]=1;else delete ticks[k];store.set("p60.d1.ticks",ticks)});
+  });
+
+  // Shares its record with the plan page
+  var done=store.get("p60.done",{}),box=document.getElementById("dayDone");
+  box.checked=!!done[1];
+  box.addEventListener("change",function(){
+    done=store.get("p60.done",{});
+    if(box.checked)done[1]=1;else delete done[1];
+    store.set("p60.done",done);
+  });
+})();
+</script>
+<script>
+(function(){
+  var planV=document.getElementById("planView"),lesV=document.getElementById("lessonView");
+  function show(which){
+    var lesson=which!=="plan";
+    planV.hidden=lesson;lesV.hidden=!lesson;
+    if(!lesson){done=store.get("p60.done",{});render();applyHide()}
+    document.title=lesson?"Day 1 · How C Becomes Machine Code":"Sixty Days to Principal Embedded";
+    window.scrollTo(0,0);
+  }
+  document.addEventListener("click",function(ev){
+    var a=ev.target.closest("[data-open]");
+    if(!a)return;
+    ev.preventDefault();show(a.dataset.open);
+  });
+  var h=(location.hash||"").slice(1);
+  if(h==="lesson-1"||(h&&lesV.querySelector("#"+CSS.escape(h)))){show("1");var t=document.getElementById(h);if(t)t.scrollIntoView()}
+})();
+</script>
+<script>
+/* Where you are: first unfinished day, and the market panel. */
+(function(){
+  var LESSONS=[1];
+  var panel=document.getElementById("resumePanel");
+  function doneMap(){try{return JSON.parse(localStorage.getItem("p60.done")||"{}")}catch(e){return {}}}
+  window.p60Resume=function(){
+    var d=doneMap(),n=1;while(n<=60&&d[n])n++;
+    var count=Object.keys(d).length;
+    if(n>60){panel.innerHTML='<div><div class="eyebrow">All 60 days done</div><div class="big">Finished</div><p class="sub">Every day is ticked. Use the market panel below to pick what to sharpen next.</p></div>';return}
+    var has=LESSONS.indexOf(n)>=0;
+    panel.innerHTML='<div><div class="eyebrow">You are here · '+count+' of 60 days done</div><div class="big">Day '+n+'</div>'+
+      '<p class="sub">'+(has?'The full lesson is ready: reading, solved problems, interview answers and a quiz.':
+      'The full lesson for this day is not written yet. Work from the outline below until it is.')+'</p></div>'+
+      (has?'<a class="lesson-link" href="#lesson-'+n+'" data-open="'+n+'">Continue Day '+n+'</a>':
+           '<a class="lesson-link" href="#d'+n+'" data-goto="d'+n+'">Go to Day '+n+'</a>');
+  };
+  document.addEventListener("click",function(ev){var a=ev.target.closest("[data-goto]");if(!a)return;ev.preventDefault();
+    var t=document.getElementById(a.dataset.goto);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})});
+  document.addEventListener("click",function(ev){if(ev.target.closest('[data-open="plan"]'))setTimeout(window.p60Resume,0)});
+  window.p60Resume();
+
+  var mp=document.getElementById("marketPanel");
+  fetch("market.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(m){
+    if(!m)return;
+    var W={1:"W1",2:"W2",3:"W3",4:"W4",5:"W5",6:"W6",7:"W7",8:"W8"};
+    function row(s){return '<tr><td>'+s.skill+'</td><td><span class="share"><b style="width:'+Math.round(s.share*80)+'px"></b>'+Math.round(s.share*100)+'%</span></td>'+
+      '<td class="wk'+(s.week?'':' no')+'">'+(s.week?W[s.week]:'Not in plan')+'</td></tr>'}
+    var top=m.skills.slice(0,12),rest=m.skills.slice(12);
+    mp.innerHTML='<div class="eyebrow">What the market asks for · updated '+m.date+'</div>'+
+      '<h3>Skills named in '+m.postings+' engineering postings you applied to or queued</h3>'+
+      (m.gaps.length?'<div class="gaps">'+m.gaps.map(function(g){return '<span class="gap">Add: '+g+'</span>'}).join("")+'</div>':'')+
+      '<div class="scroll"><table><thead><tr><th>Skill</th><th>Postings</th><th>Plan</th></tr></thead><tbody>'+top.map(row).join("")+'</tbody></table></div>'+
+      '<details><summary>All '+m.skills.length+' skills</summary><div class="scroll"><table><tbody>'+rest.map(row).join("")+'</tbody></table></div></details>'+
+      '<p class="note">Share of postings that mention the skill at least once. Mentions include company boilerplate, and postings rarely list fundamentals (pointers, bits, interrupts) that interviews still test, so this adds to the core plan and never replaces it.</p>';
+    mp.hidden=false;
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
