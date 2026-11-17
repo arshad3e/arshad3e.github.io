@@ -32,117 +32,233 @@
   --copper:#E48A4E; --copper-soft:#3A2618; --teal:#55B8B0; --teal-soft:#16302E; --done:#5CC08A; --done-soft:#17301F;
   --code-bg:#1C2530; --term-bg:#0A0E13; --term-ink:#E3E8EE; --term-muted:#97A3B1; --term-line:#2A3440;
 }
-#lessonView *{box-sizing:border-box}
+#lesson1 *{box-sizing:border-box}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-#lessonView header.top,#lessonView nav.blocks,#lessonView main{max-width:800px;margin-inline:auto}
-#lessonView h1,#lessonView h2,#lessonView h3,#lessonView h4{font-family:var(--display);font-weight:600;letter-spacing:.01em;line-height:1.12;text-wrap:balance;margin:0}
-#lessonView h1{font-size:clamp(38px,8vw,60px)}
-#lessonView h2{font-size:34px}
-#lessonView h3{font-size:26px}
-#lessonView h4{font-size:20px;margin-top:10px}
-#lessonView h3.sub{font-size:22px;margin-top:10px}
-#lessonView p,#lessonView ul,#lessonView ol,#lessonView figure,#lessonView dl{margin:0}
-#lessonView ul,#lessonView ol{padding-left:22px;display:flex;flex-direction:column;gap:6px}
-#lessonView a{color:var(--teal)}
-#lessonView a:focus-visible,#lessonView button:focus-visible,#lessonView input:focus-visible,#lessonView summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
-#lessonView code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.08em .32em;border-radius:3px;overflow-wrap:anywhere}
-#lessonView pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
-#lessonView .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
-#lessonView header.top{padding-block:28px 22px;display:flex;flex-direction:column;gap:12px}
-#lessonView .back{font-size:14px;width:fit-content}
-#lessonView .lede{color:var(--muted);max-width:66ch}
-#lessonView .plan-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
-#lessonView .plan-grid a{background:var(--surface);padding:10px 12px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:2px;min-width:0}
-#lessonView .plan-grid a:hover{background:var(--teal-soft)}
-#lessonView .plan-grid b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--teal)}
-#lessonView .plan-grid span{font-size:13.5px;line-height:1.3}
-#lessonView nav.blocks{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:8px;border-bottom:1px solid var(--line)}
-#lessonView nav.blocks a{font-family:var(--mono);font-size:12.5px;white-space:nowrap;text-decoration:none;color:var(--ink);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
-#lessonView nav.blocks a:hover{border-color:var(--copper)}
-#lessonView main{display:flex;flex-direction:column;gap:44px;padding-block:28px 72px}
-#lessonView .block{display:flex;flex-direction:column;gap:16px;min-width:0}
-#lessonView .block-head{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:start;border-bottom:2px solid var(--ink);padding-bottom:10px}
-#lessonView .block-head .eyebrow{grid-column:1;grid-row:1}
-#lessonView .block-head h2{grid-column:1;grid-row:2}
-#lessonView .tick{grid-column:2;grid-row:1/3;align-self:center;font-size:14px;display:flex;gap:7px;align-items:center;cursor:pointer;color:var(--muted)}
-#lessonView .tick input,#lessonView .done-box input{width:20px;height:20px;accent-color:var(--done);cursor:pointer;margin:0}
-#lessonView .lesson{display:flex;flex-direction:column;gap:13px;min-width:0;padding-block:6px 24px;border-bottom:1px solid var(--line)}
-#lessonView .lesson:last-child{border-bottom:0;padding-bottom:0}
-#lessonView .lesson h3{display:flex;gap:10px;align-items:baseline}
-#lessonView .lesson h3 .n{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--copper);flex:none}
-#lessonView .lesson>p,#lessonView .block>p,#lessonView .sol-body>p{max-width:72ch}
-#lessonView .cb{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--code-bg);min-width:0}
-#lessonView .cb figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 10px;font-family:var(--mono);font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);min-height:32px}
-#lessonView .cb pre{margin:0;padding:11px 12px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
-#lessonView .cb.term{background:var(--term-bg);border-color:var(--term-bg)}
-#lessonView .cb.term figcaption{color:var(--term-muted);border-bottom-color:var(--term-line)}
-#lessonView .cb.term pre{color:var(--term-ink)}
-#lessonView .cb.out{background:var(--teal-soft);border-color:var(--teal)}
-#lessonView .cb.out figcaption{color:var(--teal);border-bottom-color:var(--teal)}
-#lessonView .cb.asm{background:var(--surface)}
-#lessonView .copy{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border:1px solid currentColor;border-radius:3px;background:transparent;color:inherit;cursor:pointer}
-#lessonView .copy:hover{color:var(--copper)}
-#lessonView .side{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-#lessonView .side>*{min-width:0}
-#lessonView .pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:4px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
-#lessonView .stage{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:8px 4px;border:1px solid var(--line);border-radius:4px;min-width:0}
-#lessonView .stage small{font-size:11.5px;color:var(--muted);line-height:1.2}
-#lessonView .arrow{font-family:var(--mono);font-size:10.5px;color:var(--copper);text-align:center;line-height:1.3}
-#lessonView .arrow::after{content:"\2192";display:block;font-size:15px}
-#lessonView .arrow code{background:none;padding:0;font-size:inherit}
-#lessonView .scroll{overflow-x:auto;min-width:0}
-#lessonView table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--surface)}
-#lessonView th,#lessonView td{text-align:left;padding:7px 10px;border:1px solid var(--line);vertical-align:top}
-#lessonView th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted)}
-#lessonView th small{font-size:11px;font-family:var(--body)}
-#lessonView table.nums td{font-variant-numeric:tabular-nums}
-#lessonView tr.hit td{background:var(--copper-soft)}
-#lessonView .reg{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}
-#lessonView .reg-bits{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
-#lessonView .bit{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 6px;border:1px solid var(--line);border-radius:4px;background:var(--soft);color:var(--ink);cursor:pointer;font-family:var(--mono);min-width:0}
-#lessonView .bit b{font-size:20px;font-weight:500;line-height:1.1}
-#lessonView .bit small{font-size:10.5px;color:var(--muted)}
-#lessonView .bit[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--surface)}
-#lessonView .bit[aria-pressed="true"] small{color:var(--surface)}
-#lessonView .reg-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-#lessonView .reg-vals dt{font-size:12px;color:var(--muted)}
-#lessonView .reg-vals dd{margin:0;font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
-#lessonView .rule{background:var(--copper-soft);border-radius:5px;padding:11px 14px;max-width:72ch}
-#lessonView .rule code{background:var(--surface)}
-#lessonView .recap{background:var(--teal-soft);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-#lessonView .recap h4{margin:0}
-#lessonView .problem{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
-#lessonView details{min-width:0}
-#lessonView summary{cursor:pointer;font-weight:500}
-#lessonView .hint{border-top:1px solid var(--line);padding-top:10px}
-#lessonView .hint p{margin-top:6px;color:var(--muted)}
-#lessonView .sol{border:1px solid var(--line);border-radius:5px;background:var(--bg);padding:10px 12px}
-#lessonView .sol-body{display:flex;flex-direction:column;gap:12px;margin-top:12px;min-width:0}
-#lessonView .qa{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px}
-#lessonView .qa details{border-bottom:1px solid var(--line);padding:12px 14px}
-#lessonView .qa details:last-child{border-bottom:0}
-#lessonView .ans{margin-top:8px;padding-left:12px;border-left:3px solid var(--teal);max-width:72ch}
-#lessonView .quiz{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-#lessonView .q{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
-#lessonView .q-n{font-family:var(--mono);font-size:12px;color:var(--copper)}
-#lessonView .snip{margin:0;background:var(--code-bg);border-radius:4px;padding:9px 10px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.5}
-#lessonView .q details p{margin-top:6px;font-size:14.5px}
-#lessonView .finish{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
-#lessonView .exit{font-size:15px}
-#lessonView .done-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
-#lessonView .done-box{display:flex;gap:9px;align-items:center;font-weight:500;cursor:pointer}
-#lessonView .tomorrow{color:var(--muted);font-size:14.5px}
-@media (max-width:700px){#lessonView .plan-grid{grid-template-columns:repeat(3,1fr)}
-#lessonView .pipe{grid-template-columns:1fr;justify-items:stretch}
-#lessonView .arrow::after{content:"\2193"}
-#lessonView .side,#lessonView .quiz{grid-template-columns:1fr}
-#lessonView .reg-vals{grid-template-columns:1fr 1fr}
-#lessonView .bit b{font-size:17px}
-#lessonView h2{font-size:30px}}
+#lesson1 header.top,#lesson1 nav.blocks,#lesson1 main{max-width:800px;margin-inline:auto}
+#lesson1 h1,#lesson1 h2,#lesson1 h3,#lesson1 h4{font-family:var(--display);font-weight:600;letter-spacing:.01em;line-height:1.12;text-wrap:balance;margin:0}
+#lesson1 h1{font-size:clamp(38px,8vw,60px)}
+#lesson1 h2{font-size:34px}
+#lesson1 h3{font-size:26px}
+#lesson1 h4{font-size:20px;margin-top:10px}
+#lesson1 h3.sub{font-size:22px;margin-top:10px}
+#lesson1 p,#lesson1 ul,#lesson1 ol,#lesson1 figure,#lesson1 dl{margin:0}
+#lesson1 ul,#lesson1 ol{padding-left:22px;display:flex;flex-direction:column;gap:6px}
+#lesson1 a{color:var(--teal)}
+#lesson1 a:focus-visible,#lesson1 button:focus-visible,#lesson1 input:focus-visible,#lesson1 summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#lesson1 code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.08em .32em;border-radius:3px;overflow-wrap:anywhere}
+#lesson1 pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+#lesson1 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+#lesson1 header.top{padding-block:28px 22px;display:flex;flex-direction:column;gap:12px}
+#lesson1 .back{font-size:14px;width:fit-content}
+#lesson1 .lede{color:var(--muted);max-width:66ch}
+#lesson1 .plan-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
+#lesson1 .plan-grid a{background:var(--surface);padding:10px 12px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:2px;min-width:0}
+#lesson1 .plan-grid a:hover{background:var(--teal-soft)}
+#lesson1 .plan-grid b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--teal)}
+#lesson1 .plan-grid span{font-size:13.5px;line-height:1.3}
+#lesson1 nav.blocks{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:8px;border-bottom:1px solid var(--line)}
+#lesson1 nav.blocks a{font-family:var(--mono);font-size:12.5px;white-space:nowrap;text-decoration:none;color:var(--ink);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+#lesson1 nav.blocks a:hover{border-color:var(--copper)}
+#lesson1 main{display:flex;flex-direction:column;gap:44px;padding-block:28px 72px}
+#lesson1 .block{display:flex;flex-direction:column;gap:16px;min-width:0}
+#lesson1 .block-head{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:start;border-bottom:2px solid var(--ink);padding-bottom:10px}
+#lesson1 .block-head .eyebrow{grid-column:1;grid-row:1}
+#lesson1 .block-head h2{grid-column:1;grid-row:2}
+#lesson1 .tick{grid-column:2;grid-row:1/3;align-self:center;font-size:14px;display:flex;gap:7px;align-items:center;cursor:pointer;color:var(--muted)}
+#lesson1 .tick input,#lesson1 .done-box input{width:20px;height:20px;accent-color:var(--done);cursor:pointer;margin:0}
+#lesson1 .lesson{display:flex;flex-direction:column;gap:13px;min-width:0;padding-block:6px 24px;border-bottom:1px solid var(--line)}
+#lesson1 .lesson:last-child{border-bottom:0;padding-bottom:0}
+#lesson1 .lesson h3{display:flex;gap:10px;align-items:baseline}
+#lesson1 .lesson h3 .n{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--copper);flex:none}
+#lesson1 .lesson>p,#lesson1 .block>p,#lesson1 .sol-body>p{max-width:72ch}
+#lesson1 .cb{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--code-bg);min-width:0}
+#lesson1 .cb figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 10px;font-family:var(--mono);font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);min-height:32px}
+#lesson1 .cb pre{margin:0;padding:11px 12px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+#lesson1 .cb.term{background:var(--term-bg);border-color:var(--term-bg)}
+#lesson1 .cb.term figcaption{color:var(--term-muted);border-bottom-color:var(--term-line)}
+#lesson1 .cb.term pre{color:var(--term-ink)}
+#lesson1 .cb.out{background:var(--teal-soft);border-color:var(--teal)}
+#lesson1 .cb.out figcaption{color:var(--teal);border-bottom-color:var(--teal)}
+#lesson1 .cb.asm{background:var(--surface)}
+#lesson1 .copy{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border:1px solid currentColor;border-radius:3px;background:transparent;color:inherit;cursor:pointer}
+#lesson1 .copy:hover{color:var(--copper)}
+#lesson1 .side{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+#lesson1 .side>*{min-width:0}
+#lesson1 .pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:4px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
+#lesson1 .stage{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:8px 4px;border:1px solid var(--line);border-radius:4px;min-width:0}
+#lesson1 .stage small{font-size:11.5px;color:var(--muted);line-height:1.2}
+#lesson1 .arrow{font-family:var(--mono);font-size:10.5px;color:var(--copper);text-align:center;line-height:1.3}
+#lesson1 .arrow::after{content:"\2192";display:block;font-size:15px}
+#lesson1 .arrow code{background:none;padding:0;font-size:inherit}
+#lesson1 .scroll{overflow-x:auto;min-width:0}
+#lesson1 table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--surface)}
+#lesson1 th,#lesson1 td{text-align:left;padding:7px 10px;border:1px solid var(--line);vertical-align:top}
+#lesson1 th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted)}
+#lesson1 th small{font-size:11px;font-family:var(--body)}
+#lesson1 table.nums td{font-variant-numeric:tabular-nums}
+#lesson1 tr.hit td{background:var(--copper-soft)}
+#lesson1 .reg{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}
+#lesson1 .reg-bits{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+#lesson1 .bit{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 6px;border:1px solid var(--line);border-radius:4px;background:var(--soft);color:var(--ink);cursor:pointer;font-family:var(--mono);min-width:0}
+#lesson1 .bit b{font-size:20px;font-weight:500;line-height:1.1}
+#lesson1 .bit small{font-size:10.5px;color:var(--muted)}
+#lesson1 .bit[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+#lesson1 .bit[aria-pressed="true"] small{color:var(--surface)}
+#lesson1 .reg-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#lesson1 .reg-vals dt{font-size:12px;color:var(--muted)}
+#lesson1 .reg-vals dd{margin:0;font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+#lesson1 .rule{background:var(--copper-soft);border-radius:5px;padding:11px 14px;max-width:72ch}
+#lesson1 .rule code{background:var(--surface)}
+#lesson1 .recap{background:var(--teal-soft);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+#lesson1 .recap h4{margin:0}
+#lesson1 .problem{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+#lesson1 details{min-width:0}
+#lesson1 summary{cursor:pointer;font-weight:500}
+#lesson1 .hint{border-top:1px solid var(--line);padding-top:10px}
+#lesson1 .hint p{margin-top:6px;color:var(--muted)}
+#lesson1 .sol{border:1px solid var(--line);border-radius:5px;background:var(--bg);padding:10px 12px}
+#lesson1 .sol-body{display:flex;flex-direction:column;gap:12px;margin-top:12px;min-width:0}
+#lesson1 .qa{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+#lesson1 .qa details{border-bottom:1px solid var(--line);padding:12px 14px}
+#lesson1 .qa details:last-child{border-bottom:0}
+#lesson1 .ans{margin-top:8px;padding-left:12px;border-left:3px solid var(--teal);max-width:72ch}
+#lesson1 .quiz{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#lesson1 .q{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+#lesson1 .q-n{font-family:var(--mono);font-size:12px;color:var(--copper)}
+#lesson1 .snip{margin:0;background:var(--code-bg);border-radius:4px;padding:9px 10px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.5}
+#lesson1 .q details p{margin-top:6px;font-size:14.5px}
+#lesson1 .finish{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+#lesson1 .exit{font-size:15px}
+#lesson1 .done-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+#lesson1 .done-box{display:flex;gap:9px;align-items:center;font-weight:500;cursor:pointer}
+#lesson1 .tomorrow{color:var(--muted);font-size:14.5px}
+@media (max-width:700px){#lesson1 .plan-grid{grid-template-columns:repeat(3,1fr)}
+#lesson1 .pipe{grid-template-columns:1fr;justify-items:stretch}
+#lesson1 .arrow::after{content:"\2193"}
+#lesson1 .side,#lesson1 .quiz{grid-template-columns:1fr}
+#lesson1 .reg-vals{grid-template-columns:1fr 1fr}
+#lesson1 .bit b{font-size:17px}
+#lesson1 h2{font-size:30px}}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+#lesson2 *{box-sizing:border-box}
+#lesson2{font-size:16px;line-height:1.6}
+#lesson2 header.top,#lesson2 nav.blocks,#lesson2 main{max-width:800px;margin-inline:auto}
+#lesson2 h1,#lesson2 h2,#lesson2 h3,#lesson2 h4{font-family:var(--display);font-weight:600;letter-spacing:.01em;line-height:1.12;text-wrap:balance;margin:0}
+#lesson2 h1{font-size:clamp(38px,8vw,60px)}
+#lesson2 h2{font-size:34px}
+#lesson2 h3{font-size:26px}
+#lesson2 h4{font-size:20px;margin-top:10px}
+#lesson2 h3.sub{font-size:22px;margin-top:10px}
+#lesson2 p,#lesson2 ul,#lesson2 ol,#lesson2 figure,#lesson2 dl{margin:0}
+#lesson2 ul,#lesson2 ol{padding-left:22px;display:flex;flex-direction:column;gap:6px}
+#lesson2 a{color:var(--teal)}
+#lesson2 a:focus-visible,#lesson2 button:focus-visible,#lesson2 input:focus-visible,#lesson2 summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#lesson2 code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.08em .32em;border-radius:3px;overflow-wrap:anywhere}
+#lesson2 pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+#lesson2 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+#lesson2 header.top{padding-block:28px 22px;display:flex;flex-direction:column;gap:12px}
+#lesson2 .back{font-size:14px;width:fit-content}
+#lesson2 .lede{color:var(--muted);max-width:66ch}
+#lesson2 .plan-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
+#lesson2 .plan-grid a{background:var(--surface);padding:10px 12px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:2px;min-width:0}
+#lesson2 .plan-grid a:hover{background:var(--teal-soft)}
+#lesson2 .plan-grid b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--teal)}
+#lesson2 .plan-grid span{font-size:13.5px;line-height:1.3}
+#lesson2 nav.blocks{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:8px;border-bottom:1px solid var(--line)}
+#lesson2 nav.blocks a{font-family:var(--mono);font-size:12.5px;white-space:nowrap;text-decoration:none;color:var(--ink);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+#lesson2 nav.blocks a:hover{border-color:var(--copper)}
+#lesson2 main{display:flex;flex-direction:column;gap:44px;padding-block:28px 72px}
+#lesson2 .block{display:flex;flex-direction:column;gap:16px;min-width:0}
+#lesson2 .block-head{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:start;border-bottom:2px solid var(--ink);padding-bottom:10px}
+#lesson2 .block-head .eyebrow{grid-column:1;grid-row:1}
+#lesson2 .block-head h2{grid-column:1;grid-row:2}
+#lesson2 .tick{grid-column:2;grid-row:1/3;align-self:center;font-size:14px;display:flex;gap:7px;align-items:center;cursor:pointer;color:var(--muted)}
+#lesson2 .tick input,#lesson2 .done-box input{width:20px;height:20px;accent-color:var(--done);cursor:pointer;margin:0}
+#lesson2 .lesson{display:flex;flex-direction:column;gap:13px;min-width:0;padding-block:6px 24px;border-bottom:1px solid var(--line)}
+#lesson2 .lesson:last-child{border-bottom:0;padding-bottom:0}
+#lesson2 .lesson h3{display:flex;gap:10px;align-items:baseline}
+#lesson2 .lesson h3 .n{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--copper);flex:none}
+#lesson2 .lesson>p,#lesson2 .block>p,#lesson2 .sol-body>p{max-width:72ch}
+#lesson2 .cb{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--code-bg);min-width:0}
+#lesson2 .cb figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 10px;font-family:var(--mono);font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);min-height:32px}
+#lesson2 .cb pre{margin:0;padding:11px 12px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+#lesson2 .cb.term{background:var(--term-bg);border-color:var(--term-bg)}
+#lesson2 .cb.term figcaption{color:var(--term-muted);border-bottom-color:var(--term-line)}
+#lesson2 .cb.term pre{color:var(--term-ink)}
+#lesson2 .cb.out{background:var(--teal-soft);border-color:var(--teal)}
+#lesson2 .cb.out figcaption{color:var(--teal);border-bottom-color:var(--teal)}
+#lesson2 .cb.asm{background:var(--surface)}
+#lesson2 .copy{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border:1px solid currentColor;border-radius:3px;background:transparent;color:inherit;cursor:pointer}
+#lesson2 .copy:hover{color:var(--copper)}
+#lesson2 .side{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+#lesson2 .side>*{min-width:0}
+#lesson2 .pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:4px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
+#lesson2 .stage{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:8px 4px;border:1px solid var(--line);border-radius:4px;min-width:0}
+#lesson2 .stage small{font-size:11.5px;color:var(--muted);line-height:1.2}
+#lesson2 .arrow{font-family:var(--mono);font-size:10.5px;color:var(--copper);text-align:center;line-height:1.3}
+#lesson2 .arrow::after{content:"\2192";display:block;font-size:15px}
+#lesson2 .arrow code{background:none;padding:0;font-size:inherit}
+#lesson2 .scroll{overflow-x:auto;min-width:0}
+#lesson2 table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--surface)}
+#lesson2 th,#lesson2 td{text-align:left;padding:7px 10px;border:1px solid var(--line);vertical-align:top}
+#lesson2 th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted)}
+#lesson2 th small{font-size:11px;font-family:var(--body)}
+#lesson2 table.nums td{font-variant-numeric:tabular-nums}
+#lesson2 tr.hit td{background:var(--copper-soft)}
+#lesson2 .reg{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}
+#lesson2 .reg-bits{display:grid;grid-template-columns:repeat(16,1fr);gap:3px}
+#lesson2 .bit{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 6px;border:1px solid var(--line);border-radius:4px;background:var(--soft);color:var(--ink);cursor:pointer;font-family:var(--mono);min-width:0}
+#lesson2 .bit b{font-size:18px;font-weight:500;line-height:1.1}
+#lesson2 .bit small{font-size:10.5px;color:var(--muted)}
+#lesson2 .bit.fld{border-color:var(--copper);border-width:2px;padding:6px 0 5px}
+#lesson2 .bit.fld small{color:var(--copper)}
+#lesson2 .bit[aria-pressed="true"]{background:var(--teal);color:var(--surface)}
+#lesson2 .bit[aria-pressed="true"]:not(.fld){border-color:var(--teal)}
+#lesson2 .bit[aria-pressed="true"] small{color:var(--surface)}
+#lesson2 .reg-bin{font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#lesson2 .reg-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#lesson2 .reg-vals dt{font-size:12px;color:var(--muted)}
+#lesson2 .reg-vals dd{margin:0;font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums}
+#lesson2 .reg-acts{display:flex;flex-wrap:wrap;gap:8px}
+#lesson2 .act{font-family:var(--mono);font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:4px;background:var(--soft);color:var(--ink);cursor:pointer}
+#lesson2 .act:hover{border-color:var(--copper)}
+#lesson2 .act:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+#lesson2 .rule{background:var(--copper-soft);border-radius:5px;padding:11px 14px;max-width:72ch}
+#lesson2 .rule code{background:var(--surface)}
+#lesson2 .recap{background:var(--teal-soft);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+#lesson2 .recap h4{margin:0}
+#lesson2 .problem{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+#lesson2 details{min-width:0}
+#lesson2 summary{cursor:pointer;font-weight:500}
+#lesson2 .hint{border-top:1px solid var(--line);padding-top:10px}
+#lesson2 .hint p{margin-top:6px;color:var(--muted)}
+#lesson2 .sol{border:1px solid var(--line);border-radius:5px;background:var(--bg);padding:10px 12px}
+#lesson2 .sol-body{display:flex;flex-direction:column;gap:12px;margin-top:12px;min-width:0}
+#lesson2 .qa{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+#lesson2 .qa details{border-bottom:1px solid var(--line);padding:12px 14px}
+#lesson2 .qa details:last-child{border-bottom:0}
+#lesson2 .ans{margin-top:8px;padding-left:12px;border-left:3px solid var(--teal);max-width:72ch}
+#lesson2 .quiz{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#lesson2 .q{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+#lesson2 .q-n{font-family:var(--mono);font-size:12px;color:var(--copper)}
+#lesson2 .snip{margin:0;background:var(--code-bg);border-radius:4px;padding:9px 10px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.5}
+#lesson2 .q details p{margin-top:6px;font-size:14.5px}
+#lesson2 .finish{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+#lesson2 .exit{font-size:15px}
+#lesson2 .done-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+#lesson2 .done-box{display:flex;gap:9px;align-items:center;font-weight:500;cursor:pointer}
+#lesson2 .tomorrow{color:var(--muted);font-size:14.5px}
+@media (max-width:700px){#lesson2 .plan-grid{grid-template-columns:repeat(3,1fr)}
+#lesson2 .pipe{grid-template-columns:1fr;justify-items:stretch}
+#lesson2 .arrow::after{content:"\2193"}
+#lesson2 .side,#lesson2 .quiz{grid-template-columns:1fr}
+#lesson2 .reg-bits{grid-template-columns:repeat(8,1fr)}
+#lesson2 .reg-vals{grid-template-columns:1fr 1fr}
+#lesson2 .bit b{font-size:17px}
+#lesson2 h2{font-size:30px}}
 /* ---- plan view */
 #planView *{box-sizing:border-box}
 #planView{font-size:15px;line-height:1.55}
@@ -492,7 +608,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div>
 
 </div>
-<div id="lessonView" hidden>
+<div id="lesson1" class="lessonView" hidden>
 <header class="top">
   <a class="back" href="#top" data-open="plan">Back to the 60-day plan</a>
   <div class="eyebrow">D01 · 0x01 · Week 1 · C, rebuilt from the metal</div>
@@ -1307,6 +1423,1324 @@ printf("%llu", (unsigned long long)v);</code></pre><details><summary>Answer</sum
 </main>
 
 </div>
+<div id="lesson2" class="lessonView" hidden>
+<header class="top">
+  <a class="back" href="#top" data-open="plan">Back to the 60-day plan</a>
+  <div class="eyebrow">D02 · 0x02 · Week 1 · C, rebuilt from the metal</div>
+  <h1>Bits, Masks and Register Fields</h1>
+  <p class="lede">Everything for today is on this page. You do not need a book. Every number is shown in binary, one step at a time. Every code sample, output and assembly listing below was compiled and run on your Mac (Intel, Apple clang 15), or compiled for Cortex-M4 with the same clang.</p>
+  <div class="plan-grid" role="list" aria-label="Today's three hours">
+    <a role="listitem" href="#d2-setup"><b>10 min</b><span>Set up, warm up</span></a>
+    <a role="listitem" href="#d2-read"><b>65 min</b><span>Read</span></a>
+    <a role="listitem" href="#d2-code"><b>50 min</b><span>Solve 3 problems</span></a>
+    <a role="listitem" href="#d2-build"><b>25 min</b><span>Build and test</span></a>
+    <a role="listitem" href="#d2-explain"><b>20 min</b><span>Answer out loud</span></a>
+    <a role="listitem" href="#d2-quiz"><b>10 min</b><span>Predict the output</span></a>
+  </div>
+</header>
+
+<nav class="blocks" aria-label="Lesson sections">
+  <a href="#d2-setup">Set up</a><a href="#d2-read">Read</a><a href="#d2-code">Solve</a><a href="#d2-build">Build</a><a href="#d2-explain">Explain</a><a href="#d2-quiz">Quiz</a><a href="#d2-finish">Finish</a>
+</nav>
+
+<main>
+
+<section id="d2-setup" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-setup" data-tick="setup"> Done</label>
+    <div class="eyebrow">Step 1 · 10 minutes</div>
+    <h2>Set up and warm up</h2>
+  </div>
+  <p>Make today's folder inside the portfolio you started yesterday.</p>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>mkdir -p ~/embedded-portfolio/day02/build
+cd ~/embedded-portfolio/day02</code></pre></figure>
+  <h3 class="sub">Warm-up: x &amp; (x − 1) from memory</h3>
+  <p>Yesterday ended with a promise: today reuses <code>x &amp; (x - 1)</code>. Before you read on, answer these on paper.</p>
+  <ol>
+    <li>What does <code>x &amp; (x - 1)</code> do to a number?</li>
+    <li>Work it out by hand for 44, 12 and 40. Write each one in binary first.</li>
+  </ol>
+  <details class="sol"><summary>Check your answer</summary><div class="sol-body">
+    <p>It <b>removes the lowest 1 bit</b> and keeps every other bit. Here is why, in two short steps:</p>
+    <ul>
+      <li>Subtracting 1 turns the lowest 1 into a 0, and turns every 0 below it into a 1.</li>
+      <li>ANDing with the original keeps only the bits that are 1 in both. Those changed bits are now different in the two numbers, so they all become 0.</li>
+    </ul>
+    <figure class="cb code"><figcaption><span>bin.h</span><button class="copy" type="button">Copy</button></figcaption><pre><code>/* bin.h: print a number as binary, with a space every 4 bits. */
+#ifndef BIN_H
+#define BIN_H
+#include &lt;stdint.h&gt;
+
+static const char *bin(uint32_t v, int width)
+{
+    static char buf[4][48];
+    static int k;
+    char *p = buf[k = (k + 1) &amp; 3], *s = p;
+    for (int i = width - 1; i &gt;= 0; i--) {
+        *s++ = (char)('0' + ((v &gt;&gt; i) &amp; 1u));
+        if (i % 4 == 0 &amp;&amp; i != 0)
+            *s++ = ' ';
+    }
+    *s = '\0';
+    return p;
+}
+
+#endif</code></pre></figure>
+    <p><code>bin.h</code> is a small helper you will use all day. It prints a number in binary with a space every 4 bits. Save it in <code>day02</code>.</p>
+    <figure class="cb code"><figcaption><span>warm.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "bin.h"
+
+int main(void)
+{
+    uint32_t xs[] = {44, 12, 40};
+    for (int i = 0; i &lt; 3; i++) {
+        uint32_t x = xs[i];
+        printf("x           = %s   (%u)\n", bin(x, 8), x);
+        printf("x - 1       = %s   (%u)\n", bin(x - 1, 8), x - 1);
+        printf("x &amp; (x - 1) = %s   (%u)\n\n", bin(x &amp; (x - 1), 8), x &amp; (x - 1));
+    }
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>x           = 0010 1100   (44)
+x - 1       = 0010 1011   (43)
+x &amp; (x - 1) = 0010 1000   (40)
+
+x           = 0000 1100   (12)
+x - 1       = 0000 1011   (11)
+x &amp; (x - 1) = 0000 1000   (8)
+
+x           = 0010 1000   (40)
+x - 1       = 0010 0111   (39)
+x &amp; (x - 1) = 0010 0000   (32)</code></pre></figure>
+    <p>Look at the three rows for 44. Only bit 2 changed, from 1 to 0. That is the whole trick. Today you will also meet its partner, <code>x &amp; -x</code>, which keeps the lowest 1 and removes everything else.</p>
+  </div></details>
+</section>
+
+<section id="d2-read" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-read" data-tick="read"> Done</label>
+    <div class="eyebrow">Step 2 · 65 minutes</div>
+    <h2>Read this</h2>
+  </div>
+
+  <article class="lesson">
+    <h3><span class="n">1</span> Bits, positions and masks</h3>
+    <p>A 32-bit register is 32 switches in a row. Each switch is a <b>bit</b>, and it is either 0 or 1.</p>
+    <p>Bits are numbered from the <b>right</b>, starting at 0. So the rightmost bit is bit 0, and the leftmost bit of a 32-bit value is bit 31. Bit <code>n</code> is worth 2<sup>n</sup>: bit 0 is worth 1, bit 3 is worth 8, bit 5 is worth 32.</p>
+    <figure class="cb code"><figcaption><span>Bit numbers for one byte</span></figcaption><pre><code>bit number:   7 6 5 4  3 2 1 0
+value 0xA5:   1 0 1 0  0 1 0 1      = 128 + 32 + 4 + 1 = 165</code></pre></figure>
+    <p><b>Hex is just shorthand for binary.</b> Each hex digit is exactly 4 bits. So you can turn hex into binary one digit at a time, with no arithmetic. Learn this table until you can read it without looking.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Hex</th><th>Binary</th><th>Hex</th><th>Binary</th><th>Hex</th><th>Binary</th><th>Hex</th><th>Binary</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td><code>0000</code></td><td>4</td><td><code>0100</code></td><td>8</td><td><code>1000</code></td><td>C</td><td><code>1100</code></td></tr>
+        <tr><td>1</td><td><code>0001</code></td><td>5</td><td><code>0101</code></td><td>9</td><td><code>1001</code></td><td>D</td><td><code>1101</code></td></tr>
+        <tr><td>2</td><td><code>0010</code></td><td>6</td><td><code>0110</code></td><td>A</td><td><code>1010</code></td><td>E</td><td><code>1110</code></td></tr>
+        <tr><td>3</td><td><code>0011</code></td><td>7</td><td><code>0111</code></td><td>B</td><td><code>1011</code></td><td>F</td><td><code>1111</code></td></tr>
+      </tbody>
+    </table></div>
+    <p>Example: <code>0x12345678</code> is <code>0001 0010 0011 0100 0101 0110 0111 1000</code>. Each group of four is one hex digit.</p>
+    <p>A <b>mask</b> is a number whose 1 bits mark the bits you care about. The 0 bits mark the bits you want to leave alone. To make a mask for a single bit <code>n</code>, write <code>1u &lt;&lt; n</code>, which means "take 1 and move it left <code>n</code> places".</p>
+    <figure class="cb code"><figcaption><span>Masks for single bits</span></figcaption><pre><code>1u &lt;&lt; 0  = 0000 0001   = 0x01
+1u &lt;&lt; 5  = 0010 0000   = 0x20
+1u &lt;&lt; 7  = 1000 0000   = 0x80</code></pre></figure>
+    <p>Datasheets write a group of bits as <b>[hi:lo]</b>. For example, bits [11:4] means bits 11 down to 4, both included. That is 8 bits. You will extract exactly that field in Lesson 6.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">2</span> The four basic moves: set, clear, toggle, test</h3>
+    <p>Almost all register code is one of these four. Each one uses a mask and one operator. First, what each operator does to <b>one</b> bit:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Operator</th><th>With a mask bit of 0</th><th>With a mask bit of 1</th><th>So it is used to</th></tr></thead>
+      <tbody>
+        <tr><td><code>|</code> OR</td><td>bit stays the same</td><td>bit becomes 1</td><td>set bits</td></tr>
+        <tr><td><code>&amp;</code> AND</td><td>bit becomes 0</td><td>bit stays the same</td><td>clear bits, or pick bits out</td></tr>
+        <tr><td><code>^</code> XOR</td><td>bit stays the same</td><td>bit flips</td><td>toggle bits</td></tr>
+      </tbody>
+    </table></div>
+    <p>The operator works on all 32 bit positions at the same time, each one separately. So the 1s in the mask choose which bits change.</p>
+    <div class="rule"><b>Set bit n:</b> <code>r |= 1u &lt;&lt; n;</code> &nbsp;·&nbsp; <b>Clear bit n:</b> <code>r &amp;= ~(1u &lt;&lt; n);</code> &nbsp;·&nbsp; <b>Toggle bit n:</b> <code>r ^= 1u &lt;&lt; n;</code> &nbsp;·&nbsp; <b>Test bit n:</b> <code>(r &gt;&gt; n) &amp; 1u</code></div>
+    <p>Clearing needs one extra step. <code>~</code> flips every bit of the mask, so the mask becomes "1 everywhere except bit <code>n</code>". ANDing with that keeps every bit except bit <code>n</code>, which becomes 0.</p>
+    <p>Here are all four on a real byte, <code>r = 0xA5</code>. Each line starts again from <code>0xA5</code>.</p>
+    <figure class="cb code"><figcaption><span>ops.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "bin.h"
+
+int main(void)
+{
+    uint8_t r = 0xA5;
+    printf("start            r = %s   0x%02X\n\n", bin(r, 8), r);
+
+    printf("mask for bit 1     = %s\n", bin(1u &lt;&lt; 1, 8));
+    printf("SET    r | mask    = %s   0x%02X\n\n", bin(r | (1u &lt;&lt; 1), 8), r | (1u &lt;&lt; 1));
+
+    printf("mask for bit 7     = %s\n", bin(1u &lt;&lt; 7, 8));
+    printf("~mask              = %s\n", bin(~(1u &lt;&lt; 7), 8));
+    printf("CLEAR  r &amp; ~mask   = %s   0x%02X\n\n", bin(r &amp; ~(1u &lt;&lt; 7), 8), (uint8_t)(r &amp; ~(1u &lt;&lt; 7)));
+
+    printf("mask for bit 0     = %s\n", bin(1u &lt;&lt; 0, 8));
+    printf("TOGGLE r ^ mask    = %s   0x%02X\n", bin(r ^ (1u &lt;&lt; 0), 8), r ^ (1u &lt;&lt; 0));
+    printf("toggle again       = %s   0x%02X   back to the start\n\n", bin(r ^ 1u ^ 1u, 8), r ^ 1u ^ 1u);
+
+    printf("TEST bit 2: (r &gt;&gt; 2) &amp; 1u    = %u\n", (r &gt;&gt; 2) &amp; 1u);
+    printf("TEST bit 3: (r &gt;&gt; 3) &amp; 1u    = %u\n", (r &gt;&gt; 3) &amp; 1u);
+    printf("TEST bit 2: r &amp; (1u &lt;&lt; 2)    = %u   not 1, it is the bit's place value\n", r &amp; (1u &lt;&lt; 2));
+    printf("TEST bit 2: !!(r &amp; (1u &lt;&lt; 2)) = %d\n", !!(r &amp; (1u &lt;&lt; 2)));
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>start            r = 1010 0101   0xA5
+
+mask for bit 1     = 0000 0010
+SET    r | mask    = 1010 0111   0xA7
+
+mask for bit 7     = 1000 0000
+~mask              = 0111 1111
+CLEAR  r &amp; ~mask   = 0010 0101   0x25
+
+mask for bit 0     = 0000 0001
+TOGGLE r ^ mask    = 1010 0100   0xA4
+toggle again       = 1010 0101   0xA5   back to the start
+
+TEST bit 2: (r &gt;&gt; 2) &amp; 1u    = 1
+TEST bit 3: (r &gt;&gt; 3) &amp; 1u    = 0
+TEST bit 2: r &amp; (1u &lt;&lt; 2)    = 4   not 1, it is the bit's place value
+TEST bit 2: !!(r &amp; (1u &lt;&lt; 2)) = 1</code></pre></figure>
+    <h4>Trap 1: a test gives the place value, not 1</h4>
+    <p>Look at the last three lines. <code>r &amp; (1u &lt;&lt; 2)</code> gives <b>4</b>, not 1, because it keeps bit 2 where it is, and bit 2 is worth 4. So never write <code>if ((r &amp; mask) == 1)</code>. It is only true for bit 0. Write one of these instead:</p>
+    <figure class="cb code"><figcaption><span>Three correct ways to test bit 2</span></figcaption><pre><code>if (r &amp; (1u &lt;&lt; 2)) { ... }        /* any non-zero value means true */
+if ((r &gt;&gt; 2) &amp; 1u) { ... }        /* move the bit down to position 0 first */
+bool on = !!(r &amp; (1u &lt;&lt; 2));      /* !! turns any non-zero value into exactly 1 */</code></pre></figure>
+    <h4>Trap 2: <code>&amp;</code> is weaker than <code>==</code></h4>
+    <p>In C, <code>==</code> is done <b>before</b> <code>&amp;</code>. So <code>r &amp; mask == 1</code> means <code>r &amp; (mask == 1)</code>, which is almost never what you meant. This is a real bug in real drivers. Here is a short program with that bug, and what clang says about it:</p>
+    <figure class="cb code"><figcaption><span>prec.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+int main(void)
+{
+    uint8_t r = 0xA5;               /* bit 2 is set */
+    if (r &amp; (1u &lt;&lt; 2) == 1)         /* meant: is bit 2 set? */
+        printf("bit 2 is set\n");
+    else
+        printf("bit 2 is NOT set\n");
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>$ clang -std=c11 -Wall prec.c -o prec
+prec.c:7:11: warning: &amp; has lower precedence than ==; == will be evaluated first [-Wparentheses]
+
+$ ./prec
+bit 2 is NOT set</code></pre></figure>
+    <p><code>(1u &lt;&lt; 2) == 1</code> is false, which is 0. Then <code>r &amp; 0</code> is 0. So the <code>if</code> fails even though bit 2 is set. Clang warned about this, but only because <code>-Wall</code> was on. <b>Always put parentheses around <code>&amp;</code>, <code>|</code> and <code>^</code> when you compare the result.</b></p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">3</span> Shifts: left, and the two kinds of right shift</h3>
+    <p><b>Left shift</b>, <code>x &lt;&lt; n</code>, moves every bit <code>n</code> places toward the top. Zeros come in on the right. Bits pushed past the top are lost. As long as nothing is lost, <code>x &lt;&lt; n</code> is the same as multiplying by 2<sup>n</sup>.</p>
+    <figure class="cb code"><figcaption><span>Left shift</span></figcaption><pre><code>0000 0101  &lt;&lt; 2  =  0001 0100        5 becomes 20, which is 5 x 4</code></pre></figure>
+    <p><b>Right shift</b>, <code>x &gt;&gt; n</code>, moves every bit <code>n</code> places toward the bottom. Bits that fall off the right are lost. The question is: what comes in on the left? There are two answers, and each has a name.</p>
+    <ul>
+      <li><b>Logical shift:</b> zeros come in on the left. This is what happens for <b>unsigned</b> types, always.</li>
+      <li><b>Arithmetic shift:</b> copies of the top bit (the sign bit) come in on the left. This keeps a negative number negative.</li>
+    </ul>
+    <p>For a <b>negative signed</b> value, the C standard does not choose. It says the result is <b>implementation-defined</b>. That means: each compiler picks one behavior and must write it down in its manual. Clang and gcc both pick arithmetic shift. Here is the same bit pattern shifted both ways on your Mac:</p>
+    <figure class="cb code"><figcaption><span>shift.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include "bin.h"
+
+int main(void)
+{
+    int8_t  s = -8;        /* signed:   1111 1000 */
+    uint8_t u = 0xF8;      /* unsigned: the same 8 bits, value 248 */
+
+    printf("s       = %s   %d\n", bin((uint8_t)s, 8), s);
+    printf("s &gt;&gt; 1  = %s   %d    arithmetic: copies of the sign bit come in\n",
+           bin((uint8_t)(s &gt;&gt; 1), 8), s &gt;&gt; 1);
+    printf("u       = %s   %u\n", bin(u, 8), u);
+    printf("u &gt;&gt; 1  = %s   %u    logical: zeros come in\n\n", bin((uint8_t)(u &gt;&gt; 1), 8), u &gt;&gt; 1);
+
+    int x = -7;
+    printf("-7 &gt;&gt; 1 = %d   but  -7 / 2 = %d\n", x &gt;&gt; 1, x / 2);
+    printf("-1 &gt;&gt; 31 = %d\n", -1 &gt;&gt; 31);
+    printf("(unsigned)-8 &gt;&gt; 1 = 0x%08X\n", (unsigned)-8 &gt;&gt; 1);
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>s       = 1111 1000   -8
+s &gt;&gt; 1  = 1111 1100   -4    arithmetic: copies of the sign bit come in
+u       = 1111 1000   248
+u &gt;&gt; 1  = 0111 1100   124    logical: zeros come in
+
+-7 &gt;&gt; 1 = -4   but  -7 / 2 = -3
+-1 &gt;&gt; 31 = -1
+(unsigned)-8 &gt;&gt; 1 = 0x7FFFFFFC</code></pre></figure>
+    <p>Read the first four lines slowly. <code>s</code> and <code>u</code> hold the <b>same 8 bits</b>. Shifting <code>s</code> brought in a 1 at the top, because <code>s</code> is signed and negative. Shifting <code>u</code> brought in a 0, because <code>u</code> is unsigned. The type decides, not the bits.</p>
+    <p>The CPU has a separate instruction for each kind. Here is what the same clang produces for Cortex-M4:</p>
+    <div class="side">
+      <figure class="cb asm"><figcaption><span>int x &gt;&gt; 1: arithmetic</span></figcaption><pre><code>sar:
+    asrs  r0, r0, #1    @ Arithmetic Shift Right
+    bx    lr</code></pre></figure>
+      <figure class="cb asm"><figcaption><span>unsigned x &gt;&gt; 1: logical</span></figcaption><pre><code>shr:
+    lsrs  r0, r0, #1    @ Logical Shift Right
+    bx    lr</code></pre></figure>
+    </div>
+    <ul>
+      <li><code>-7 &gt;&gt; 1</code> is −4, but <code>-7 / 2</code> is −3. Arithmetic shift rounds down. Division rounds toward zero. You saw this on Day 1, and it is why you must not swap a division for a shift on signed values.</li>
+      <li><code>-1 &gt;&gt; 31</code> is still −1, because every bit coming in is a copy of the 1 at the top.</li>
+    </ul>
+    <div class="rule"><b>Rule:</b> do bit work on unsigned types (<code>uint8_t</code>, <code>uint32_t</code>, <code>1u</code>). Then right shift always brings in zeros and you never depend on the compiler's choice.</div>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">4</span> The two shift traps: the sign bit, and shifting too far</h3>
+    <p>First, one plain definition, because the rest of this lesson depends on it.</p>
+    <div class="rule"><b>Undefined behavior (UB)</b> means the C standard gives <b>no answer at all</b> for that line. It is not "you get a strange number". It is "anything is allowed". The program may print what you expect today. A new compiler version or a higher <code>-O</code> level may do something different tomorrow, with no warning. On Day 1 you saw <code>x + 1 &gt; x</code> become a constant because of this.</div>
+    <p>Most UB in bit code comes from two mistakes with <code>&lt;&lt;</code>.</p>
+
+    <h4>Trap A: shifting a 1 into the sign bit of an int</h4>
+    <p>A plain <code>1</code> in C has type <code>int</code>. An <code>int</code> is 32 bits and <b>signed</b>, and its bit 31 is the sign bit. Step by step:</p>
+    <ol>
+      <li><code>1 &lt;&lt; 31</code> asks for the value 2<sup>31</sup>, which is 2,147,483,648.</li>
+      <li>The largest value an <code>int</code> can hold is 2,147,483,647. One less.</li>
+      <li>The answer does not fit, so in C it is <b>undefined behavior</b>.</li>
+    </ol>
+    <p>Even when it seems to work, it produces the wrong mask in a common case. The bit pattern is <code>0x80000000</code>, but its <b>value</b> is negative: −2,147,483,648. When you store it in a 64-bit variable, C keeps the value negative by copying the sign bit into all 32 new bits. You get 33 bits set instead of one. Here is the proof:</p>
+    <figure class="cb code"><figcaption><span>shift_ub.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+int main(void)
+{
+    volatile int sh = 31;          /* volatile so the compiler cannot work it out early */
+    volatile unsigned n = 32;
+
+    int a = 1 &lt;&lt; sh;               /* 1. shifts a 1 into the sign bit of an int */
+    printf("1. 1 &lt;&lt; 31          = %d\n", a);
+
+    uint64_t m1 = 1 &lt;&lt; sh;         /* 2. the same bad value, widened to 64 bits */
+    printf("2. uint64_t m = 1 &lt;&lt; 31   = 0x%016llX\n", (unsigned long long)m1);
+
+    uint64_t m2 = 1u &lt;&lt; sh;        /* 3. the safe spelling */
+    printf("3. uint64_t m = 1u &lt;&lt; 31  = 0x%016llX\n", (unsigned long long)m2);
+
+    unsigned b = 1u &lt;&lt; n;          /* 4. shift count equals the width */
+    printf("4. 1u &lt;&lt; 32         = %u\n", b);
+
+    uint64_t m3 = 1ull &lt;&lt; 40;      /* 5. a 64-bit 1 for a 64-bit mask */
+    printf("5. 1ull &lt;&lt; 40       = 0x%016llX\n", (unsigned long long)m3);
+    return 0;
+}</code></pre></figure>
+    <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -O0 -w shift_ub.c -o build/shift_ub &amp;&amp; ./build/shift_ub
+clang -std=c11 -O0 -w -fsanitize=undefined shift_ub.c -o build/shift_ub_san &amp;&amp; ./build/shift_ub_san</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output at -O0</span></figcaption><pre><code>1. 1 &lt;&lt; 31          = -2147483648
+2. uint64_t m = 1 &lt;&lt; 31   = 0xFFFFFFFF80000000
+3. uint64_t m = 1u &lt;&lt; 31  = 0x0000000080000000
+4. 1u &lt;&lt; 32         = 1
+5. 1ull &lt;&lt; 40       = 0x0000010000000000</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output with -fsanitize=undefined (its warnings)</span></figcaption><pre><code>line 1: left shift of 1 by 31 places cannot be represented in type 'int'
+line 2: left shift of 1 by 31 places cannot be represented in type 'int'
+line 4: shift exponent 32 is too large for 32-bit type 'unsigned int'</code></pre></figure>
+    <p>Line 2 is the bug you would ship: <code>0xFFFFFFFF80000000</code>. Line 3 is correct. The only change is the <code>u</code>.</p>
+    <p><b>The fix is the <code>u</code> suffix.</b> <code>1u</code> has type <code>unsigned int</code>. Unsigned types have no sign bit, so <code>1u &lt;&lt; 31</code> is exactly 2,147,483,648, which fits. It is well defined, and it widens with zeros. For a 64-bit mask, start from a 64-bit 1: <code>1ull &lt;&lt; 40</code> or <code>UINT64_C(1) &lt;&lt; 40</code>. Writing <code>1u &lt;&lt; 40</code> is still wrong, because <code>1u</code> is only 32 bits wide.</p>
+    <p>One note for C++: since C++20, <code>1 &lt;&lt; 31</code> is defined and gives −2,147,483,648. That removes the UB, but the 64-bit widening problem on line 2 is the same. Use <code>1u</code> in both languages.</p>
+
+    <h4>Trap B: shifting by the full width or more</h4>
+    <p>For a 32-bit value, the shift count must be 0 to 31. Shifting by 32 or more is <b>undefined behavior</b>, even for unsigned types. Look at line 4 above: your Mac printed <b>1</b>, not 0. Here is why:</p>
+    <ul>
+      <li>The x86 shift instruction only looks at the bottom 5 bits of the count. 32 is <code>10 0000</code> in binary, and its bottom 5 bits are 0. So x86 shifted by 0 and left the 1 where it was.</li>
+      <li>Cortex-M is different. Its shift-by-register instruction uses the bottom 8 bits of the count (per the Arm architecture manual), so a shift by 32 gives 0.</li>
+    </ul>
+    <figure class="cb asm"><figcaption><span>Cortex-M4: x &lt;&lt; n is one instruction, so the chip decides what n = 32 means</span></figcaption><pre><code>shl:
+    lsls  r0, r1        @ r0 = x &lt;&lt; n, the count comes from a register
+    bx    lr</code></pre></figure>
+    <p>The same C line gives 1 on your Mac and 0 on the target. That is exactly why C calls it undefined: the standard does not force one answer on every chip. Where it bites in real code: building a mask for a field that can be 32 bits wide.</p>
+    <figure class="cb code"><figcaption><span>The mask formula and its edge case</span></figcaption><pre><code>mask = (1u &lt;&lt; width) - 1u;    /* fine for width 1 to 31. width 32 is UB */</code></pre></figure>
+    <p>In the build exercise you will write a mask macro that never shifts by 32.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">5</span> Two tricks for the lowest 1 bit</h3>
+    <p>You already know the first one from the warm-up. The second one is new.</p>
+    <div class="rule"><code>x &amp; (x - 1)</code> removes the lowest 1 bit. &nbsp;·&nbsp; <code>x &amp; -x</code> keeps <b>only</b> the lowest 1 bit.</div>
+    <p>Why does <code>x &amp; -x</code> work? On Day 1 you learned that <code>-x</code> equals <code>~x + 1</code>: flip every bit, then add 1. Follow it on <code>x = 0x58</code>:</p>
+    <ol>
+      <li>Flipping turns the lowest 1 into a 0, and the zeros below it into ones.</li>
+      <li>Adding 1 carries through those ones, turns them back to 0, and stops at the lowest 1's position, which becomes 1 again.</li>
+      <li>Above that position, every bit of <code>-x</code> is the opposite of <code>x</code>. So AND gives 0 there. Only the lowest 1 survives.</li>
+    </ol>
+    <figure class="cb code"><figcaption><span>lowbit.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "bin.h"
+
+int main(void)
+{
+    uint8_t x = 0x58;                       /* 88 */
+    printf("x             = %s   %u\n", bin(x, 8), x);
+    printf("x - 1         = %s\n", bin((uint8_t)(x - 1), 8));
+    printf("x &amp; (x - 1)   = %s   lowest 1 cleared\n\n", bin((uint8_t)(x &amp; (x - 1)), 8));
+
+    printf("~x            = %s\n", bin((uint8_t)~x, 8));
+    printf("-x = ~x + 1   = %s\n", bin((uint8_t)-x, 8));
+    printf("x &amp; -x        = %s   lowest 1 kept, all else cleared\n\n", bin((uint8_t)(x &amp; -x), 8));
+
+    uint32_t w = x;
+    printf("walk the set bits of %s:\n", bin(w, 8));
+    while (w != 0) {
+        uint32_t low = w &amp; -w;
+        printf("  low = %s   bit index %d\n", bin(low, 8), __builtin_ctz(w));
+        w &amp;= w - 1;
+    }
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>x             = 0101 1000   88
+x - 1         = 0101 0111
+x &amp; (x - 1)   = 0101 0000   lowest 1 cleared
+
+~x            = 1010 0111
+-x = ~x + 1   = 1010 1000
+x &amp; -x        = 0000 1000   lowest 1 kept, all else cleared
+
+walk the set bits of 0101 1000:
+  low = 0000 1000   bit index 3
+  low = 0001 0000   bit index 4
+  low = 0100 0000   bit index 6</code></pre></figure>
+    <p>The last part, "walk the set bits", is a pattern you will see in real firmware. It visits only the bits that are 1, which is useful for a mask of pending interrupts or ready tasks. <code>__builtin_ctz</code> (count trailing zeros) gives the position number of the lowest 1.</p>
+    <p>Try them yourself on a 16-bit register. Click any bit to flip it. The button applies <code>x &amp;= x - 1</code> so you can watch the lowest 1 disappear, one press at a time. The copper bits are the field [11:4], which Lesson 6 covers.</p>
+    <div class="reg" id="d2reg">
+      <div class="reg-bits" id="d2regBits"></div>
+      <div class="reg-bin" id="d2regBin">0001 1010 0101 1000</div>
+      <dl class="reg-vals">
+        <div><dt>x (hex)</dt><dd id="d2regHex">0x1A58</dd></div>
+        <div><dt>x &amp; (x − 1)</dt><dd id="d2regClr">0x1A50</dd></div>
+        <div><dt>x &amp; −x</dt><dd id="d2regLow">0x0008</dd></div>
+        <div><dt>bits [11:4]</dt><dd id="d2regFld">0xA5</dd></div>
+      </dl>
+      <div class="reg-acts">
+        <button type="button" class="act" id="d2regStep">x &amp;= x − 1</button>
+        <button type="button" class="act" id="d2regReset">Reset to 0x1A58</button>
+      </div>
+    </div>
+    <p>Each trick is two instructions on Cortex-M4:</p>
+    <div class="side">
+      <figure class="cb asm"><figcaption><span>x &amp; (x - 1)</span></figcaption><pre><code>clear_low:
+    subs  r1, r0, #1    @ r1 = x - 1
+    ands  r0, r1        @ r0 = x &amp; r1
+    bx    lr</code></pre></figure>
+      <figure class="cb asm"><figcaption><span>x &amp; -x</span></figcaption><pre><code>keep_low:
+    rsbs  r1, r0, #0    @ r1 = 0 - x = -x
+    ands  r0, r1        @ r0 = x &amp; r1
+    bx    lr</code></pre></figure>
+    </div>
+    <h4>Edge cases to say out loud</h4>
+    <ul>
+      <li><b>x = 0:</b> both tricks give 0. That is fine. But <code>__builtin_ctz(0)</code> is undefined, so check for zero first.</li>
+      <li><b>Use unsigned:</b> for a signed <code>int</code> holding <code>INT_MIN</code>, <code>-x</code> overflows, which is UB. For <code>uint32_t</code>, <code>-x</code> is well defined: it wraps around.</li>
+    </ul>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">6</span> Register fields: read and write a group of bits</h3>
+    <p>A <b>field</b> is a group of bits inside a register that holds one setting. For example, a made-up control register might keep a clock divider in bits [11:4]. The other bits hold other settings, and you must not disturb them.</p>
+    <h4>Reading a field: shift, then mask</h4>
+    <p>To read bits [11:4]: first shift right by 4, so bit 4 lands in bit 0. Then AND with <code>0xFF</code> (eight 1s) to throw away everything above the field.</p>
+    <div class="rule"><code>(reg &gt;&gt; 4) &amp; 0xFFu</code> &nbsp;·&nbsp; the same thing the other way round: <code>(reg &amp; 0x00000FF0u) &gt;&gt; 4</code></div>
+    <h4>Writing a field: read, clear, place, write</h4>
+    <p>You cannot just OR a new value in, because the old bits of the field would stay. Writing a field takes three steps:</p>
+    <ol>
+      <li><b>Clear</b> the field: <code>reg &amp; ~mask</code>. All 8 field bits become 0. Every other bit stays.</li>
+      <li><b>Place</b> the new value: <code>(val &lt;&lt; 4) &amp; mask</code>. The value moves up into the field's position. The <code>&amp; mask</code> cuts off any extra bits if the value is too big.</li>
+      <li><b>Combine</b> with OR, and write the result back.</li>
+    </ol>
+    <p>Here are both, on <code>reg = 0x12345678</code>, writing <code>0xAB</code> into bits [11:4]:</p>
+    <figure class="cb code"><figcaption><span>field.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "bin.h"
+
+int main(void)
+{
+    uint32_t reg = 0x12345678u;
+    printf("GET bits [11:4]\n");
+    printf("reg               = %s   0x%08X\n", bin(reg, 32), reg);
+    printf("reg &gt;&gt; 4          = %s   0x%08X\n", bin(reg &gt;&gt; 4, 32), reg &gt;&gt; 4);
+    printf("0xFFu             = %s\n", bin(0xFFu, 32));
+    printf("(reg &gt;&gt; 4) &amp; 0xFF = %s   0x%02X\n\n", bin((reg &gt;&gt; 4) &amp; 0xFFu, 32), (reg &gt;&gt; 4) &amp; 0xFFu);
+
+    uint32_t mask = 0xFFu &lt;&lt; 4;
+    uint32_t val = 0xABu;
+    uint32_t cleared = reg &amp; ~mask;
+    uint32_t placed = (val &lt;&lt; 4) &amp; mask;
+    printf("SET bits [11:4] to 0xAB\n");
+    printf("mask = 0xFFu &lt;&lt; 4 = %s   0x%08X\n", bin(mask, 32), mask);
+    printf("reg &amp; ~mask       = %s   0x%08X   step 1: clear the field\n", bin(cleared, 32), cleared);
+    printf("(val &lt;&lt; 4) &amp; mask = %s   0x%08X   step 2: move the new value into place\n", bin(placed, 32), placed);
+    printf("OR them           = %s   0x%08X   step 3: combine\n", bin(cleared | placed, 32), cleared | placed);
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>GET bits [11:4]
+reg               = 0001 0010 0011 0100 0101 0110 0111 1000   0x12345678
+reg &gt;&gt; 4          = 0000 0001 0010 0011 0100 0101 0110 0111   0x01234567
+0xFFu             = 0000 0000 0000 0000 0000 0000 1111 1111
+(reg &gt;&gt; 4) &amp; 0xFF = 0000 0000 0000 0000 0000 0000 0110 0111   0x67
+
+SET bits [11:4] to 0xAB
+mask = 0xFFu &lt;&lt; 4 = 0000 0000 0000 0000 0000 1111 1111 0000   0x00000FF0
+reg &amp; ~mask       = 0001 0010 0011 0100 0101 0000 0000 1000   0x12345008   step 1: clear the field
+(val &lt;&lt; 4) &amp; mask = 0000 0000 0000 0000 0000 1010 1011 0000   0x00000AB0   step 2: move the new value into place
+OR them           = 0001 0010 0011 0100 0101 1010 1011 1000   0x12345AB8   step 3: combine</code></pre></figure>
+    <p>The field was <code>0110 0111</code> (0x67). After the write it is <code>1010 1011</code> (0xAB). Every bit outside [11:4] is unchanged. Compare the first and last lines to check.</p>
+    <p>This is so common that Cortex-M4 has one instruction for each direction:</p>
+    <div class="side">
+      <figure class="cb asm"><figcaption><span>Read: (reg &gt;&gt; 4) &amp; 0xFFu</span></figcaption><pre><code>get_11_4:
+    ubfx  r0, r0, #4, #8   @ take 8 bits starting at bit 4
+    bx    lr</code></pre></figure>
+      <figure class="cb asm"><figcaption><span>Write: clear, place, combine</span></figcaption><pre><code>set_11_4:
+    bfi   r0, r1, #4, #8   @ put the low 8 bits of r1 into bits [11:4]
+    bx    lr</code></pre></figure>
+    </div>
+    <p><code>ubfx</code> means Unsigned Bit Field eXtract. <code>bfi</code> means Bit Field Insert. You wrote the long C form, and the compiler recognized it. Write the clear C form and let the compiler find the instruction.</p>
+    <p><b>The general mask</b> for a field <code>width</code> bits wide starting at bit <code>shift</code> is <code>((1u &lt;&lt; width) - 1u) &lt;&lt; shift</code>. For width 8 and shift 4, that is <code>0xFF &lt;&lt; 4</code> = <code>0x00000FF0</code>. Remember Trap B: width 32 breaks this formula.</p>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">7</span> volatile: telling the compiler a register is real hardware</h3>
+    <p>A <b>memory-mapped register</b> is a hardware register that you reach through a normal memory address. On an STM32F4, GPIOA's registers start at <code>0x40020000</code>, and its input data register, IDR, is at <code>0x40020010</code>. Reading IDR gives the level of each pin right now. That value can change at any time without your code doing anything, for example when a button is pressed.</p>
+    <p>The compiler does not know this. It assumes memory only changes when your code writes to it. So if you poll a register without telling the compiler, it reads <b>once</b> and reuses the answer forever.</p>
+    <figure class="cb code"><figcaption><span>Wait until input pin 5 reads 1 (from m4.c)</span></figcaption><pre><code>#define GPIOA_IDR     (*(volatile uint32_t *)0x40020010u)   /* input pins */
+#define GPIOA_IDR_NV  (*(uint32_t *)0x40020010u)            /* the same address, no volatile */
+
+void wait_pin_nv(void) { while ((GPIOA_IDR_NV &amp; (1u &lt;&lt; 5)) == 0) { } }
+void wait_pin(void)    { while ((GPIOA_IDR &amp; (1u &lt;&lt; 5)) == 0) { } }</code></pre></figure>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2, without volatile: one read, then a loop that never ends</span></figcaption><pre><code>wait_pin_nv:
+    movs  r0, #16           @ r0 = 0x0010
+    movt  r0, #16386        @ top half = 0x4002, so r0 = 0x40020010
+    ldrb  r0, [r0]          @ read ONE byte, ONE time
+    lsls  r0, r0, #26       @ move bit 5 up to bit 31
+    it    mi                @ if bit 31 is now 1
+    bxmi  lr                @   return
+.LBB4_1:
+    b     .LBB4_1           @ jump to itself, forever. No more reads.</code></pre></figure>
+    <p>Read the last line. If the bit was 0 the first time, the program jumps to the same line forever, and it never reads the register again. The hardware could set the bit a million times and the loop would not notice. The compiler also shrank the read to a single byte (<code>ldrb</code>). Some peripherals only work with full 32-bit reads, so that alone can break a driver.</p>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2, with volatile: a real 32-bit read every time round</span></figcaption><pre><code>wait_pin:
+    movs  r0, #16
+    movt  r0, #16386        @ r0 = 0x40020010
+    b     .LBB5_2
+.LBB5_1:
+    ldr   r1, [r0]          @ read the register
+    lsls  r1, r1, #26       @ bit 5 to the top
+    it    mi
+    bxmi  lr                @ return if it is set
+.LBB5_2:
+    ldr   r1, [r0]          @ read again
+    lsls  r1, r1, #26
+    bmi   .LBB5_4
+    ldr   r1, [r0]          @ and again (the loop is unrolled)
+    lsls  r1, r1, #26
+    itt   pl
+    ldrpl r1, [r0]          @ and again
+    lslspl.w r1, r1, #26
+    bpl   .LBB5_1           @ still 0: go round
+.LBB5_4:
+    bx    lr</code></pre></figure>
+    <div class="rule"><b>What volatile does:</b> every read and write you wrote really happens, as many times as you wrote it, at the full width, and in the order you wrote them compared with other volatile accesses.</div>
+    <p><b>What volatile does NOT do</b>, and interviewers check this:</p>
+    <ul>
+      <li>It does not make anything <b>atomic</b>. Atomic means "happens as one step that nothing can split". The next lesson shows a volatile line being split.</li>
+      <li>It does not stop interrupts.</li>
+      <li>It does not stop the compiler or CPU from moving <b>non-volatile</b> memory accesses around it. For that you need a memory barrier.</li>
+      <li>It is not a lock between two CPU cores.</li>
+    </ul>
+  </article>
+
+  <article class="lesson">
+    <h3><span class="n">8</span> Read-modify-write is not atomic</h3>
+    <p><code>GPIOA_ODR |= 1u &lt;&lt; 5;</code> looks like one action: "turn on output 5". But the CPU cannot change one bit of memory by itself. It does three steps:</p>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: GPIOA_ODR |= 1u &lt;&lt; 5 (ODR is at 0x40020014, volatile)</span></figcaption><pre><code>led_on_rmw:
+    movs  r0, #20
+    movt  r0, #16386        @ r0 = 0x40020014
+    ldr   r1, [r0]          @ 1. READ   the whole register
+    orr   r1, r1, #32       @ 2. MODIFY set bit 5 in the CPU's copy
+    str   r1, [r0]          @ 3. WRITE  the whole register back
+    bx    lr</code></pre></figure>
+    <p>An interrupt can happen between any two instructions. Suppose the interrupt runs between step 1 and step 3, and it changes a <b>different</b> bit of the same register. Then step 3 writes back the old copy and erases the interrupt's change. This program acts out that exact order on your Mac. Nothing is random: the "interrupt" is called right after the read.</p>
+    <figure class="cb code"><figcaption><span>race.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+static volatile uint32_t ODR;     /* stands in for a GPIO output register */
+
+static void timer_isr(void)       /* an interrupt that turns on LED 0 */
+{
+    ODR |= 1u &lt;&lt; 0;
+}
+
+/* Hardware set/reset register: writing 1 to bit n sets output n,
+   writing 1 to bit n + 16 clears it. Zeros change nothing. */
+static void BSRR_write(uint32_t v)
+{
+    ODR = (ODR | (v &amp; 0xFFFFu)) &amp; ~(v &gt;&gt; 16);
+}
+
+int main(void)
+{
+    ODR = 0;
+    /* main wants LED 5 on: ODR |= 1u &lt;&lt; 5. The CPU does that in 3 steps. */
+    uint32_t tmp = ODR;               /* step 1: read       tmp = 0x00 */
+    timer_isr();                      /* the interrupt fires right here */
+    printf("after the ISR ran:      ODR = 0x%02X   LED 0 is on\n", ODR);
+    tmp |= 1u &lt;&lt; 5;                   /* step 2: modify     tmp = 0x20 */
+    ODR = tmp;                        /* step 3: write      ODR = 0x20 */
+    printf("after main's write:     ODR = 0x%02X   LED 0 is off again, the ISR's work is lost\n\n", ODR);
+
+    ODR = 0;
+    BSRR_write(1u &lt;&lt; 5);              /* main: one single store */
+    BSRR_write(1u &lt;&lt; 0);              /* the ISR: one single store */
+    printf("with set/reset writes:  ODR = 0x%02X   both LEDs on, in any order\n", ODR);
+    BSRR_write(1u &lt;&lt; (5 + 16));       /* turn LED 5 off */
+    printf("clear LED 5 only:       ODR = 0x%02X\n", ODR);
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>after the ISR ran:      ODR = 0x01   LED 0 is on
+after main's write:     ODR = 0x20   LED 0 is off again, the ISR's work is lost
+
+with set/reset writes:  ODR = 0x21   both LEDs on, in any order
+clear LED 5 only:       ODR = 0x01</code></pre></figure>
+    <p>Step by step: main read <code>0x00</code>. The interrupt set bit 0, so the register became <code>0x01</code>. Main still held its old copy <code>0x00</code>, set bit 5 in it to get <code>0x20</code>, and wrote <code>0x20</code>. Bit 0 was lost. This bug is real, rare and very hard to find, because it needs the interrupt to land in a window two instructions wide.</p>
+    <h4>The fixes, best first</h4>
+    <ol>
+      <li><b>Set/clear registers (hardware).</b> Many peripherals give you a second register where writing a 1 changes just that bit and writing a 0 changes nothing. On STM32 that is GPIO <code>BSRR</code>: a 1 in bit <code>n</code> sets output <code>n</code>, a 1 in bit <code>n + 16</code> clears it. There is no read, so there is no window. It is one store:</li>
+    </ol>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: GPIOA_BSRR = 1u &lt;&lt; 5</span></figcaption><pre><code>led_on_bsrr:
+    movs  r0, #24
+    movt  r0, #16386        @ r0 = 0x40020018, the BSRR register
+    movs  r1, #32           @ r1 = 1 &lt;&lt; 5
+    str   r1, [r0]          @ ONE write. Nothing to interrupt.
+    bx    lr</code></pre></figure>
+    <ol start="2">
+      <li><b>Bit-banding (Cortex-M3 and M4 only).</b> The chip gives every bit in the first 1 MB of SRAM and of the peripheral area its <b>own 32-bit address</b> in an "alias" region. Writing 1 or 0 to that alias word changes only that one bit, and the bus does the read-modify-write as one step that the CPU cannot interrupt. The formula is: alias = alias base + (byte offset × 32) + (bit number × 4).</li>
+    </ol>
+    <figure class="cb code"><figcaption><span>bitband.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+/* Cortex-M3/M4 bit-band: each bit of the first 1 MB of SRAM and of
+   peripherals gets its own 32-bit word in an alias region. */
+static uint32_t bitband(uint32_t addr, unsigned bit)
+{
+    uint32_t region = addr &amp; 0xF0000000u;          /* 0x20000000 or 0x40000000 */
+    uint32_t alias  = region + 0x02000000u;        /* 0x22000000 or 0x42000000 */
+    return alias + (addr - region) * 32u + bit * 4u;
+}
+
+int main(void)
+{
+    printf("SRAM word 0x20000100, bit 3  -&gt; alias 0x%08X\n", bitband(0x20000100u, 3));
+    printf("GPIOA ODR 0x40020014, bit 5  -&gt; alias 0x%08X\n", bitband(0x40020014u, 5));
+    return 0;
+}</code></pre></figure>
+    <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>SRAM word 0x20000100, bit 3  -&gt; alias 0x2200200C
+GPIOA ODR 0x40020014, bit 5  -&gt; alias 0x42400294</code></pre></figure>
+    <p>So <code>*(volatile uint32_t *)0x42400294 = 1;</code> sets GPIOA ODR bit 5 and nothing else. Bit-banding is optional, and it does not exist on Cortex-M0, M0+, M7 or M33. On those chips use set/clear registers or the fixes below.</p>
+    <ol start="3">
+      <li><b>Turn interrupts off for those three instructions.</b> Save the interrupt mask, disable interrupts, do the read-modify-write, then restore the saved mask. Keep it short, because it delays every interrupt.</li>
+      <li><b>Exclusive load and store, for a shared variable in RAM.</b> <code>atomic_fetch_or</code> from C11 compiles to <code>ldrex</code>/<code>strex</code>. <code>strex</code> only writes if nothing else touched the address since <code>ldrex</code>, and the loop retries if it failed. Whether this works on peripheral registers depends on the chip, so use it for RAM flags.</li>
+    </ol>
+    <figure class="cb code"><figcaption><span>atomic_or.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdatomic.h&gt;
+#include &lt;stdint.h&gt;
+
+_Atomic uint32_t flags;      /* a flag word in RAM, shared with an interrupt */
+
+void set_flag(void)
+{
+    atomic_fetch_or(&amp;flags, 1u &lt;&lt; 5);
+}</code></pre></figure>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: atomic_fetch_or becomes a retry loop</span></figcaption><pre><code>set_flag:
+    movw  r0, :lower16:flags
+    movt  r0, :upper16:flags   @ r0 = &amp;flags
+    dmb   sy                   @ memory barrier
+.LBB0_1:
+    ldrex r1, [r0]             @ read, and start watching the address
+    orr   r1, r1, #32          @ set bit 5
+    strex r2, r1, [r0]         @ write only if nobody touched it. r2 = 0 means it worked
+    cmp   r2, #0
+    bne   .LBB0_1              @ someone did: try again
+    dmb   sy
+    bx    lr</code></pre></figure>
+    <div class="recap">
+      <h4>Before you move on, say these from memory</h4>
+      <ol>
+        <li>The four moves: set, clear, toggle, test, each as one line of C.</li>
+        <li>Logical vs arithmetic right shift, and which one clang uses for a negative int.</li>
+        <li>Why <code>1 &lt;&lt; 31</code> is UB and what <code>1u &lt;&lt; 31</code> fixes. What happens with a shift by 32.</li>
+        <li>What <code>x &amp; (x - 1)</code> and <code>x &amp; -x</code> give for <code>0101 1000</code>.</li>
+        <li>The read and write expressions for bits [11:4].</li>
+        <li>What volatile does and does not do, and three fixes for a read-modify-write race.</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<section id="d2-code" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-code" data-tick="code"> Done</label>
+    <div class="eyebrow">Step 3 · 50 minutes</div>
+    <h2>Solve three problems</h2>
+  </div>
+  <p>Spend up to 15 minutes on each one by yourself, in your plain editor. Then open the solution and read it even if you solved it, because the explanations include the follow-up questions interviewers ask next. If you needed the solution, mark the problem red in your notes and solve it again on Day 4.</p>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 1 of 3 · Easy · LeetCode 190</div>
+    <h3>Reverse Bits</h3>
+    <p>Reverse the order of the bits in a 32-bit unsigned number. Bit 0 goes to bit 31, bit 1 goes to bit 30, and so on.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>In binary</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td>43261596</td><td><code>0000 0010 1001 0100 0001 1110 1001 1100</code></td><td>964176192</td></tr>
+        <tr><td>4294967293</td><td><code>1111 1111 1111 1111 1111 1111 1111 1101</code></td><td>3221225471</td></tr>
+        <tr><td>1</td><td>only bit 0 set</td><td>2147483648, only bit 31 set</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>uint32_t reverse_bits(uint32_t n);</code></p>
+    <details class="hint"><summary>Hint</summary><p>Build the answer <code>r</code> one bit at a time. Each step, shift <code>r</code> left to make room, then copy <code>n</code>'s lowest bit into <code>r</code>'s lowest bit, then shift <code>n</code> right. Do it exactly 32 times.</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <h4>Way 1: move one bit at a time</h4>
+      <figure class="cb code"><figcaption><span>reverse_bits.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>uint32_t reverse_bits(uint32_t n)
+{
+    uint32_t r = 0;
+    for (int i = 0; i &lt; 32; i++) {
+        r = (r &lt;&lt; 1) | (n &amp; 1u);   /* make room on the right of r, drop in n's lowest bit */
+        n &gt;&gt;= 1;                   /* bring n's next bit down to position 0 */
+    }
+    return r;
+}</code></pre></figure>
+      <p>The bit that leaves <code>n</code> first (bit 0) goes into <code>r</code> first. It then gets pushed left 31 more times, so it ends at bit 31. That is the reversal. Here is the same idea with 8 bits, so you can follow every step:</p>
+      <figure class="cb out"><figcaption><span>Real trace, 8-bit version with n = 0000 1011</span></figcaption><pre><code>start   n = 0000 1011   r = 0000 0000
+step 1  n = 0000 0101   r = 0000 0001
+step 2  n = 0000 0010   r = 0000 0011
+step 3  n = 0000 0001   r = 0000 0110
+step 4  n = 0000 0000   r = 0000 1101
+step 5  n = 0000 0000   r = 0001 1010
+step 6  n = 0000 0000   r = 0011 0100
+step 7  n = 0000 0000   r = 0110 1000
+step 8  n = 0000 0000   r = 1101 0000</code></pre></figure>
+      <p><b>Why the loop must run exactly 32 times:</b> you might think "stop when <code>n</code> is 0". But then the leading zeros of <code>n</code> are never counted. Look at steps 5 to 8 above: <code>n</code> is already 0, yet <code>r</code> still has to move left. The bits of <code>n</code> that were 0 must become 0s at the bottom of <code>r</code>.</p>
+      <p><b>The types matter:</b> use <code>uint32_t</code>. With a signed <code>int</code>, <code>r &lt;&lt; 1</code> can push a 1 into the sign bit, which is Trap A from Lesson 4, and <code>n &gt;&gt;= 1</code> would bring in copies of the sign bit, not zeros.</p>
+      <h4>Way 2: swap halves, then bytes, nibbles, pairs and bits</h4>
+      <p>The follow-up is "do it without a loop". Reversing 32 bits is the same as: swap the two 16-bit halves, then swap the bytes inside each half, then the nibbles inside each byte, then the pairs, then the single bits. Five steps, no loop.</p>
+      <figure class="cb code"><figcaption><span>reverse_fast.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>uint32_t reverse_bits_fast(uint32_t n)
+{
+    n = (n &gt;&gt; 16) | (n &lt;&lt; 16);                                /* swap the two 16-bit halves */
+    n = ((n &amp; 0xFF00FF00u) &gt;&gt; 8) | ((n &amp; 0x00FF00FFu) &lt;&lt; 8);  /* swap bytes inside each half */
+    n = ((n &amp; 0xF0F0F0F0u) &gt;&gt; 4) | ((n &amp; 0x0F0F0F0Fu) &lt;&lt; 4);  /* swap nibbles inside each byte */
+    n = ((n &amp; 0xCCCCCCCCu) &gt;&gt; 2) | ((n &amp; 0x33333333u) &lt;&lt; 2);  /* swap pairs inside each nibble */
+    n = ((n &amp; 0xAAAAAAAAu) &gt;&gt; 1) | ((n &amp; 0x55555555u) &lt;&lt; 1);  /* swap bits inside each pair */
+    return n;
+}</code></pre></figure>
+      <p>Each line uses two masks. <code>0xF0F0F0F0</code> picks the top nibble of each byte and <code>0x0F0F0F0F</code> picks the bottom nibble. Shift each group toward the other one, then OR them together. <code>0xCCCCCCCC</code> is <code>1100 1100...</code> and <code>0xAAAAAAAA</code> is <code>1010 1010...</code>.</p>
+      <h4>Way 3: one instruction on Cortex-M4</h4>
+      <p>Cortex-M3 and M4 have an instruction that reverses all 32 bits: <code>rbit</code>. Clang recognized the whole loop from Way 1 and replaced it:</p>
+      <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: the 32-step loop from Way 1</span></figcaption><pre><code>rev_loop:
+    rbit  r0, r0        @ reverse all 32 bits, one instruction
+    bx    lr</code></pre></figure>
+      <p>In CMSIS code you can also call <code>__RBIT(x)</code> directly. Saying this in an interview shows you know the target, not only the puzzle.</p>
+      <h4>What the interviewer asks next</h4>
+      <ul>
+        <li><b>"You call this many times. Can you make it faster in software?"</b> Use a 256-entry table that holds each byte reversed. Reverse each of the 4 bytes with the table and put them in the opposite order. That costs 256 bytes of flash, so on a small MCU, prefer <code>rbit</code>.</li>
+        <li><b>"Where is this used?"</b> Some serial links and CRC algorithms send the least significant bit first, and an FFT needs indexes in bit-reversed order.</li>
+      </ul>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 2 of 3 · Easy · LeetCode 338</div>
+    <h3>Counting Bits</h3>
+    <p>Given <code>n</code>, return an array <code>ans</code> of length <code>n + 1</code> where <code>ans[i]</code> is the number of 1 bits in <code>i</code>, for every <code>i</code> from 0 to <code>n</code>. Do it in one pass, O(n), without counting each number from scratch.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td>n = 2</td><td><code>[0, 1, 1]</code></td></tr>
+        <tr><td>n = 5</td><td><code>[0, 1, 1, 2, 1, 2]</code></td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>int *countBits(int n, int *returnSize);</code> LeetCode's C version wants you to <code>malloc</code> the array and set <code>*returnSize</code>.</p>
+    <details class="hint"><summary>Hint</summary><p><code>i &gt;&gt; 1</code> is <code>i</code> with its last bit removed, and it is smaller than <code>i</code>, so you already have its answer. How many 1s did you remove?</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <figure class="cb code"><figcaption><span>count_bits.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>/* LeetCode's C signature. The caller frees the returned array. */
+int *countBits(int n, int *returnSize)
+{
+    int *ans = malloc((size_t)(n + 1) * sizeof *ans);
+    if (ans == NULL) {
+        *returnSize = 0;
+        return NULL;
+    }
+    ans[0] = 0;
+    for (int i = 1; i &lt;= n; i++)
+        ans[i] = ans[i &gt;&gt; 1] + (i &amp; 1);   /* i without its last bit, plus that last bit */
+    *returnSize = n + 1;
+    return ans;
+}</code></pre></figure>
+      <p>Every number <code>i</code> is two parts: <code>i &gt;&gt; 1</code> (all of its bits except the last one) and <code>i &amp; 1</code> (its last bit). <code>i &gt;&gt; 1</code> is a smaller number, so its count is already in the array. Add the last bit, and you are done. This is <b>dynamic programming</b>: each answer is built from an answer you already have.</p>
+      <figure class="cb out"><figcaption><span>Real trace, n = 8</span></figcaption><pre><code> i   binary   i &gt;&gt; 1   i &amp; 1   ans[i] = ans[i &gt;&gt; 1] + (i &amp; 1)
+ 0   0000     -        -     0
+ 1   0001     0        1     ans[0] + 1 = 1
+ 2   0010     1        0     ans[1] + 0 = 1
+ 3   0011     1        1     ans[1] + 1 = 2
+ 4   0100     2        0     ans[2] + 0 = 1
+ 5   0101     2        1     ans[2] + 1 = 2
+ 6   0110     3        0     ans[3] + 0 = 2
+ 7   0111     3        1     ans[3] + 1 = 3
+ 8   1000     4        0     ans[4] + 0 = 1</code></pre></figure>
+      <p>Check row 7: <code>0111</code>. Remove the last bit to get <code>011</code>, which is 3, and <code>ans[3]</code> is 2. The removed bit was 1. So 2 + 1 = 3.</p>
+      <h4>The other way, using the warm-up trick</h4>
+      <figure class="cb code"><figcaption><span>Same table, built with x &amp; (x - 1)</span></figcaption><pre><code>ans[i] = ans[i &amp; (i - 1)] + 1;    /* i with its lowest 1 removed has exactly one 1 fewer */</code></pre></figure>
+      <p><code>i &amp; (i - 1)</code> is smaller than <code>i</code> and has exactly one fewer 1 bit, so add 1. The test program below checks both versions against <code>__builtin_popcount</code> for every entry.</p>
+      <h4>Cost</h4>
+      <ul>
+        <li>O(n) time: one step per entry. Calling a popcount on each number is O(n × 32) with the loop from Day 1, and O(n) with a hardware instruction.</li>
+        <li>O(n) memory, but that memory is the answer itself, so the extra memory is O(1).</li>
+        <li><code>malloc</code> can fail. Check for <code>NULL</code>, and on a microcontroller, ask whether the caller should pass the buffer in instead. Many embedded coding standards ban <code>malloc</code> after start-up.</li>
+      </ul>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="eyebrow">Problem 3 of 3 · Easy · LeetCode 268</div>
+    <h3>Missing Number</h3>
+    <p>An array holds <code>n</code> different numbers taken from 0, 1, 2 … <code>n</code>. Exactly one number in that range is missing. Return it, in O(n) time and O(1) extra memory.</p>
+    <div class="scroll"><table class="nums">
+      <thead><tr><th>Input</th><th>Output</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><code>[3, 0, 1]</code></td><td>2</td><td>range 0 to 3, 2 is not there</td></tr>
+        <tr><td><code>[0, 1]</code></td><td>2</td><td>range 0 to 2</td></tr>
+        <tr><td><code>[9, 6, 4, 2, 3, 5, 7, 0, 1]</code></td><td>8</td><td>range 0 to 9</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Write:</b> <code>int missingNumber(const int *nums, int numsSize);</code></p>
+    <details class="hint"><summary>Hint</summary><p>Remember Single Number from Day 1: <code>x ^ x = 0</code>. What do you get if you XOR every index 0 to <code>n</code> together with every value in the array?</p></details>
+    <details class="sol"><summary>Solution and explanation</summary><div class="sol-body">
+      <figure class="cb code"><figcaption><span>missing.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>int missingNumber(const int *nums, int numsSize)
+{
+    int x = numsSize;              /* the index the loop never reaches */
+    for (int i = 0; i &lt; numsSize; i++)
+        x ^= i ^ nums[i];          /* each number that is present cancels its own index */
+    return x;
+}</code></pre></figure>
+      <p>XOR together all the numbers 0 to <code>n</code>, and all the values in the array. Every number that is present appears <b>twice</b> (once as an index, once as a value), so it cancels to 0. The missing number appears <b>once</b>, so it is what remains.</p>
+      <p>The loop's indexes only go up to <code>n - 1</code>. That is why <code>x</code> starts at <code>n</code>: it adds the one index the loop never reaches.</p>
+      <figure class="cb out"><figcaption><span>Real trace with [3, 0, 1]</span></figcaption><pre><code>start            x = 3   (n)
+i = 0, nums = 3  x = 3 ^ 0 ^ 3 = 0
+i = 1, nums = 0  x = 0 ^ 1 ^ 0 = 1
+i = 2, nums = 1  x = 1 ^ 2 ^ 1 = 2
+answer           2</code></pre></figure>
+      <h4>The other way: the sum formula</h4>
+      <figure class="cb code"><figcaption><span>Sum of 0..n minus the sum of the array</span></figcaption><pre><code>int expected = n * (n + 1) / 2;    /* 0 + 1 + ... + n */
+int missing  = expected - sum;</code></pre></figure>
+      <p>It is also O(n) time and O(1) memory, and easy to explain. The interviewer's follow-up is: "what is wrong with it?" <code>n * (n + 1)</code> overflows a 32-bit <code>int</code> once <code>n</code> passes 46,340, and signed overflow is UB (Day 1). The XOR version can never overflow. If you use the sum version, do the math in <code>uint64_t</code>.</p>
+      <h4>What the interviewer asks next</h4>
+      <ul>
+        <li><b>"What if two numbers are missing?"</b> XOR gives you <code>a ^ b</code>. Any set bit of that result splits all numbers into two groups, with <code>a</code> in one and <code>b</code> in the other. You will do this on Day 3.</li>
+        <li><b>"What if the array is sorted?"</b> Binary search for the first index where <code>nums[i] != i</code>. That is O(log n).</li>
+      </ul>
+    </div></details>
+  </article>
+
+  <h3 class="sub">Test all three</h3>
+  <p>Save your three solutions as <code>reverse_bits.c</code>, <code>reverse_fast.c</code>, <code>count_bits.c</code> and <code>missing.c</code>, next to this test program. It includes them directly and checks the edge cases: 0, all ones, only bit 0, and only bit 31.</p>
+  <figure class="cb code"><figcaption><span>lc_test.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;assert.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include "reverse_bits.c"
+#include "reverse_fast.c"
+#include "count_bits.c"
+#include "missing.c"
+
+/* The other way to fill the table: i with its lowest 1 removed, plus one. */
+static int count_bits_low(int i, const int *ans) { return ans[i &amp; (i - 1)] + 1; }
+
+int main(void)
+{
+    uint32_t in[]   = {0x02941E9Cu, 0xFFFFFFFDu, 0x00000001u, 0x80000000u, 0u, 0xFFFFFFFFu};
+    uint32_t want[] = {0x39782940u, 0xBFFFFFFFu, 0x80000000u, 0x00000001u, 0u, 0xFFFFFFFFu};
+    for (int i = 0; i &lt; 6; i++) {
+        uint32_t a = reverse_bits(in[i]), b = reverse_bits_fast(in[i]);
+        printf("reverse_bits(0x%08X) = 0x%08X   (%u -&gt; %u)\n", in[i], a, in[i], a);
+        assert(a == want[i] &amp;&amp; b == want[i] &amp;&amp; a == __builtin_bitreverse32(in[i]));
+    }
+
+    int ns[] = {2, 5, 0};
+    for (int k = 0; k &lt; 3; k++) {
+        int size;
+        int *ans = countBits(ns[k], &amp;size);
+        assert(ans != NULL &amp;&amp; size == ns[k] + 1);
+        printf("countBits(%d) = [", ns[k]);
+        for (int i = 0; i &lt; size; i++) {
+            printf(i ? ",%d" : "%d", ans[i]);
+            assert(ans[i] == __builtin_popcount((unsigned)i));
+            if (i &gt; 0)
+                assert(ans[i] == count_bits_low(i, ans));
+        }
+        printf("]\n");
+        free(ans);
+    }
+
+    int a1[] = {3, 0, 1}, a2[] = {0, 1}, a3[] = {9, 6, 4, 2, 3, 5, 7, 0, 1}, a4[] = {1}, a5[] = {0};
+    printf("missingNumber([3,0,1]) = %d\n", missingNumber(a1, 3));
+    printf("missingNumber([0,1]) = %d\n", missingNumber(a2, 2));
+    printf("missingNumber([9,6,4,2,3,5,7,0,1]) = %d\n", missingNumber(a3, 9));
+    printf("missingNumber([1]) = %d\n", missingNumber(a4, 1));
+    printf("missingNumber([0]) = %d\n", missingNumber(a5, 1));
+    assert(missingNumber(a1, 3) == 2 &amp;&amp; missingNumber(a2, 2) == 2 &amp;&amp; missingNumber(a3, 9) == 8);
+    assert(missingNumber(a4, 1) == 0 &amp;&amp; missingNumber(a5, 1) == 1);
+
+    printf("all tests passed\n");
+    return 0;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -g -Wall -Wextra -Werror -fsanitize=address,undefined lc_test.c -o build/lc_test
+./build/lc_test</code></pre></figure>
+  <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>reverse_bits(0x02941E9C) = 0x39782940   (43261596 -&gt; 964176192)
+reverse_bits(0xFFFFFFFD) = 0xBFFFFFFF   (4294967293 -&gt; 3221225471)
+reverse_bits(0x00000001) = 0x80000000   (1 -&gt; 2147483648)
+reverse_bits(0x80000000) = 0x00000001   (2147483648 -&gt; 1)
+reverse_bits(0x00000000) = 0x00000000   (0 -&gt; 0)
+reverse_bits(0xFFFFFFFF) = 0xFFFFFFFF   (4294967295 -&gt; 4294967295)
+countBits(2) = [0,1,1]
+countBits(5) = [0,1,1,2,1,2]
+countBits(0) = [0]
+missingNumber([3,0,1]) = 2
+missingNumber([0,1]) = 2
+missingNumber([9,6,4,2,3,5,7,0,1]) = 8
+missingNumber([1]) = 0
+missingNumber([0]) = 1
+all tests passed</code></pre></figure>
+</section>
+
+<section id="d2-build" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-build" data-tick="build"> Done</label>
+    <div class="eyebrow">Step 4 · 25 minutes</div>
+    <h2>Build and test</h2>
+  </div>
+  <h3 class="sub">Part A: field macros, nibble swap and byte swap</h3>
+  <p>Write <code>fields.h</code> yourself first: <code>GET_FIELD</code>, <code>SET_FIELD</code>, a nibble swap and a 32-bit byte swap. Then compare with this version. Here <code>mask</code> is the field already in its place, for example <code>0x00000FF0u</code> for bits [11:4].</p>
+  <figure class="cb code"><figcaption><span>fields.h</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#ifndef FIELDS_H
+#define FIELDS_H
+
+#include &lt;stdint.h&gt;
+
+/* A mask with bits hi down to lo set, for 0 &lt;= lo &lt;= hi &lt;= 31.
+   It never shifts by 32, so BIT_RANGE(31, 0) is safe. */
+#define BIT_RANGE(hi, lo)  ((0xFFFFFFFFu &gt;&gt; (31u - (hi))) &amp; ~((1u &lt;&lt; (lo)) - 1u))
+
+/* mask is the field already in place, for example 0x00000FF0u for bits [11:4]. */
+#define GET_FIELD(reg, mask, shift) \
+    (((uint32_t)(reg) &amp; (uint32_t)(mask)) &gt;&gt; (shift))
+
+/* Read-modify-write. reg is read once and written once.
+   A val too wide for the field is cut down to the field's width. */
+#define SET_FIELD(reg, mask, shift, val) \
+    ((reg) = ((reg) &amp; ~(uint32_t)(mask)) | (((uint32_t)(val) &lt;&lt; (shift)) &amp; (uint32_t)(mask)))
+
+static inline uint8_t nibble_swap(uint8_t b)
+{
+    return (uint8_t)((b &gt;&gt; 4) | (b &lt;&lt; 4));   /* the cast drops the bits pushed past bit 7 */
+}
+
+static inline uint32_t bswap32(uint32_t x)
+{
+    return  (x &gt;&gt; 24)                  /* byte 3 -&gt; byte 0 */
+          | ((x &gt;&gt;  8) &amp; 0x0000FF00u)  /* byte 2 -&gt; byte 1 */
+          | ((x &lt;&lt;  8) &amp; 0x00FF0000u)  /* byte 1 -&gt; byte 2 */
+          |  (x &lt;&lt; 24);                /* byte 0 -&gt; byte 3 */
+}
+
+#endif</code></pre></figure>
+  <p>Points to notice:</p>
+  <ul>
+    <li><b>Every argument is in parentheses</b>, and so is each whole macro. Day 1 showed what goes wrong without them.</li>
+    <li><b>The <code>(uint32_t)</code> casts</b> make all the math unsigned. So <code>val &lt;&lt; 24</code> with a big value never shifts into a sign bit.</li>
+    <li><b><code>BIT_RANGE</code> never shifts by 32.</b> It starts from all ones and shifts right by <code>31 - hi</code>, which is 0 to 31. <code>BIT_RANGE(31, 0)</code> is safe, where <code>(1u &lt;&lt; 32) - 1u</code> is not.</li>
+    <li><b><code>SET_FIELD</code> names <code>reg</code> twice</b>, once to read and once to write. That is the read-modify-write. It also means you must never pass something with a side effect, such as <code>regs[i++]</code>. A <code>static inline</code> function avoids that problem, which is why many teams prefer functions to macros.</li>
+    <li><b>The nibble swap's cast</b>: <code>b &lt;&lt; 4</code> is computed as an <code>int</code> (Day 1, Rule 1), so for <code>0xF0</code> the expression is <code>0xF0F</code>, not <code>0x0F</code>. The <code>uint8_t</code> return type would cut it to 8 bits anyway. The cast makes that cut visible, and it matters when you use the expression directly, as in Day 1's quiz Q4.</li>
+  </ul>
+  <p>Now the test. It covers the edge values: a value of 0, the largest value, a value too wide for the field, a field at bit 0, a field touching bit 31, and the whole register.</p>
+  <figure class="cb code"><figcaption><span>fields_test.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include "fields.h"
+
+static int checks, failed;
+
+static void check(const char *what, uint32_t got, uint32_t want)
+{
+    checks++;
+    if (got != want)
+        failed++;
+    printf("%-38s got 0x%08X  want 0x%08X  %s\n", what, got, want, got == want ? "ok" : "FAIL");
+}
+
+int main(void)
+{
+    check("BIT_RANGE(11, 4)", BIT_RANGE(11, 4), 0x00000FF0u);
+    check("BIT_RANGE(0, 0)", BIT_RANGE(0, 0), 0x00000001u);
+    check("BIT_RANGE(31, 31)", BIT_RANGE(31, 31), 0x80000000u);
+    check("BIT_RANGE(31, 0)  full width", BIT_RANGE(31, 0), 0xFFFFFFFFu);
+
+    uint32_t reg = 0x12345678u;
+    check("GET [11:4] of 0x12345678", GET_FIELD(reg, 0x00000FF0u, 4), 0x67u);
+    check("GET [31:24] of 0x12345678", GET_FIELD(reg, 0xFF000000u, 24), 0x12u);
+    check("GET [0:0] of 0x12345678", GET_FIELD(reg, 0x00000001u, 0), 0u);
+    check("GET [31:0] of 0x12345678", GET_FIELD(reg, 0xFFFFFFFFu, 0), 0x12345678u);
+    check("GET [31:31] of 0xFFFFFFFF", GET_FIELD(0xFFFFFFFFu, 0x80000000u, 31), 1u);
+
+    reg = 0x12345678u; SET_FIELD(reg, 0x00000FF0u, 4, 0xAB);
+    check("SET [11:4] = 0xAB", reg, 0x12345AB8u);
+    reg = 0x12345678u; SET_FIELD(reg, 0x00000FF0u, 4, 0);
+    check("SET [11:4] = 0  (clear only)", reg, 0x12345008u);
+    reg = 0x12345678u; SET_FIELD(reg, 0x00000FF0u, 4, 0xFF);
+    check("SET [11:4] = 0xFF  (max)", reg, 0x12345FF8u);
+    reg = 0x12345678u; SET_FIELD(reg, 0x00000FF0u, 4, 0x1AB);
+    check("SET [11:4] = 0x1AB  (too wide, cut)", reg, 0x12345AB8u);
+    reg = 0xFFFFFFFFu; SET_FIELD(reg, 0x00000FF0u, 4, 0);
+    check("SET [11:4] = 0 on all ones", reg, 0xFFFFF00Fu);
+    reg = 0u; SET_FIELD(reg, 0xFF000000u, 24, 0xFF);
+    check("SET [31:24] = 0xFF on zero  (top bit)", reg, 0xFF000000u);
+    reg = 0u; SET_FIELD(reg, 0x80000000u, 31, 1);
+    check("SET [31:31] = 1  (the sign-bit slot)", reg, 0x80000000u);
+    reg = 0xDEADBEEFu; SET_FIELD(reg, 0xFFFFFFFFu, 0, 0x01234567u);
+    check("SET [31:0]  (whole register)", reg, 0x01234567u);
+
+    check("nibble_swap(0xAB)", nibble_swap(0xAB), 0xBAu);
+    check("nibble_swap(0x0F)", nibble_swap(0x0F), 0xF0u);
+    check("nibble_swap(0x00)", nibble_swap(0x00), 0x00u);
+    check("nibble_swap(0xFF)", nibble_swap(0xFF), 0xFFu);
+
+    uint32_t bs[] = {0x12345678u, 0x000000FFu, 0x80000000u, 0x00000000u, 0xFFFFFFFFu, 0x01020304u};
+    for (int i = 0; i &lt; 6; i++) {
+        char what[40];
+        snprintf(what, sizeof what, "bswap32(0x%08X)", bs[i]);
+        check(what, bswap32(bs[i]), __builtin_bswap32(bs[i]));
+    }
+
+    printf("\n%d checks, %d failed\n", checks, failed);
+    return failed != 0;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -g -Wall -Wextra -Werror -fsanitize=address,undefined fields_test.c -o build/fields_test
+./build/fields_test</code></pre></figure>
+  <figure class="cb out"><figcaption><span>Output</span></figcaption><pre><code>BIT_RANGE(11, 4)                       got 0x00000FF0  want 0x00000FF0  ok
+BIT_RANGE(0, 0)                        got 0x00000001  want 0x00000001  ok
+BIT_RANGE(31, 31)                      got 0x80000000  want 0x80000000  ok
+BIT_RANGE(31, 0)  full width           got 0xFFFFFFFF  want 0xFFFFFFFF  ok
+GET [11:4] of 0x12345678               got 0x00000067  want 0x00000067  ok
+GET [31:24] of 0x12345678              got 0x00000012  want 0x00000012  ok
+GET [0:0] of 0x12345678                got 0x00000000  want 0x00000000  ok
+GET [31:0] of 0x12345678               got 0x12345678  want 0x12345678  ok
+GET [31:31] of 0xFFFFFFFF              got 0x00000001  want 0x00000001  ok
+SET [11:4] = 0xAB                      got 0x12345AB8  want 0x12345AB8  ok
+SET [11:4] = 0  (clear only)           got 0x12345008  want 0x12345008  ok
+SET [11:4] = 0xFF  (max)               got 0x12345FF8  want 0x12345FF8  ok
+SET [11:4] = 0x1AB  (too wide, cut)    got 0x12345AB8  want 0x12345AB8  ok
+SET [11:4] = 0 on all ones             got 0xFFFFF00F  want 0xFFFFF00F  ok
+SET [31:24] = 0xFF on zero  (top bit)  got 0xFF000000  want 0xFF000000  ok
+SET [31:31] = 1  (the sign-bit slot)   got 0x80000000  want 0x80000000  ok
+SET [31:0]  (whole register)           got 0x01234567  want 0x01234567  ok
+nibble_swap(0xAB)                      got 0x000000BA  want 0x000000BA  ok
+nibble_swap(0x0F)                      got 0x000000F0  want 0x000000F0  ok
+nibble_swap(0x00)                      got 0x00000000  want 0x00000000  ok
+nibble_swap(0xFF)                      got 0x000000FF  want 0x000000FF  ok
+bswap32(0x12345678)                    got 0x78563412  want 0x78563412  ok
+bswap32(0x000000FF)                    got 0xFF000000  want 0xFF000000  ok
+bswap32(0x80000000)                    got 0x00000080  want 0x00000080  ok
+bswap32(0x00000000)                    got 0x00000000  want 0x00000000  ok
+bswap32(0xFFFFFFFF)                    got 0xFFFFFFFF  want 0xFFFFFFFF  ok
+bswap32(0x01020304)                    got 0x04030201  want 0x04030201  ok
+
+27 checks, 0 failed</code></pre></figure>
+  <p>Look at the line for <code>0x1AB</code>. The value has 9 bits, but the field has 8. The <code>&amp; mask</code> cut it down to <code>0xAB</code> and the bits outside the field were not touched. That is safe, but it hides a bug in the caller. In a real driver, add <code>assert(val &lt;= (mask &gt;&gt; shift))</code> in debug builds.</p>
+  <p>The byte swap is checked against <code>__builtin_bswap32</code>, the compiler's own version. On Cortex-M4, the shift-and-mask code becomes one instruction:</p>
+  <div class="side">
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: bswap32</span></figcaption><pre><code>swap_bytes:
+    rev   r0, r0        @ reverse the 4 bytes
+    bx    lr</code></pre></figure>
+    <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: nibble swap</span></figcaption><pre><code>swap_nibbles:
+    lsls  r1, r0, #4          @ r1 = b &lt;&lt; 4
+    orr.w r0, r1, r0, lsr #4  @ r0 = r1 | (b &gt;&gt; 4)
+    uxtb  r0, r0              @ keep 8 bits, this is the cast
+    bx    lr</code></pre></figure>
+  </div>
+  <p>A byte swap converts between little-endian and big-endian data, for example a 32-bit value from a network packet. Endianness is Day 3.</p>
+
+  <h3 class="sub">Part B: predict, then run</h3>
+  <p>Type in this program. Before running it, write your predicted value for each numbered line on paper. Then compare. Any line you got wrong goes in your notes.</p>
+  <figure class="cb code"><figcaption><span>predict.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+
+int main(void)
+{
+    uint8_t r = 0x3C;
+    printf("1. r | 0x81 = 0x%X\n", r | 0x81);
+    printf("2. r &amp; ~0x0C = 0x%X\n", r &amp; ~0x0C);
+    printf("3. r ^ 0xFF = 0x%X\n", r ^ 0xFF);
+    printf("4. (r &gt;&gt; 3) &amp; 1 = %d\n", (r &gt;&gt; 3) &amp; 1);
+    printf("5. r &amp; (1 &lt;&lt; 3) = %d\n", r &amp; (1 &lt;&lt; 3));
+    printf("6. ~r = 0x%X\n", ~r);
+    printf("7. -12 &gt;&gt; 2 = %d, (unsigned)-12 &gt;&gt; 28 = %u\n", -12 &gt;&gt; 2, (unsigned)-12 &gt;&gt; 28);
+    uint32_t x = 0x30;
+    printf("8. x &amp; (x - 1) = 0x%X, x &amp; -x = 0x%X\n", x &amp; (x - 1), x &amp; -x);
+    uint32_t reg = 0xCAFEF00Du;
+    printf("9. (reg &gt;&gt; 12) &amp; 0xF = 0x%X\n", (reg &gt;&gt; 12) &amp; 0xF);
+    uint64_t big = 1u &lt;&lt; 31;
+    printf("10. 1u &lt;&lt; 31 in uint64_t = 0x%llX\n", (unsigned long long)big);
+    return 0;
+}</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang -std=c11 -w predict.c -o build/predict
+./build/predict</code></pre></figure>
+  <details class="sol"><summary>Show the correct output</summary><div class="sol-body">
+  <figure class="cb out"><figcaption><span>Output on your Mac</span></figcaption><pre><code>1. r | 0x81 = 0xBD
+2. r &amp; ~0x0C = 0x30
+3. r ^ 0xFF = 0xC3
+4. (r &gt;&gt; 3) &amp; 1 = 1
+5. r &amp; (1 &lt;&lt; 3) = 8
+6. ~r = 0xFFFFFFC3
+7. -12 &gt;&gt; 2 = -3, (unsigned)-12 &gt;&gt; 28 = 15
+8. x &amp; (x - 1) = 0x20, x &amp; -x = 0x10
+9. (reg &gt;&gt; 12) &amp; 0xF = 0xF
+10. 1u &lt;&lt; 31 in uint64_t = 0x80000000</code></pre></figure>
+  <ul>
+    <li><b>Line 6</b> prints <code>0xFFFFFFC3</code>, not <code>0xC3</code>. <code>r</code> became an <code>int</code> before <code>~</code> ran, so all 32 bits flipped. Same rule as Day 1.</li>
+    <li><b>Line 5</b> is 8, not 1. The test kept bit 3 in its place (Lesson 2, Trap 1).</li>
+    <li><b>Line 7:</b> −12 is <code>...1111 0100</code>. An arithmetic shift by 2 gives <code>...1111 1101</code>, which is −3. As unsigned, the top 4 bits are <code>1111</code>, which is 15.</li>
+    <li><b>Line 9:</b> <code>0xCAFEF00D</code> has hex digits C A F E F 0 0 D. Bits [15:12] are the fourth digit from the right, <code>F</code>.</li>
+  </ul>
+  </div></details>
+
+  <h3 class="sub">Part C: see the Arm instructions from your own compiler</h3>
+  <p>Save <code>m4.c</code>, which holds every Cortex-M4 example from today. Generate the assembly and find each function.</p>
+  <figure class="cb code"><figcaption><span>m4.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdint.h&gt;
+
+#define GPIOA_ODR   (*(volatile uint32_t *)0x40020014u)
+#define GPIOA_BSRR  (*(volatile uint32_t *)0x40020018u)
+#define GPIOA_IDR     (*(volatile uint32_t *)0x40020010u)   /* input pins */
+#define GPIOA_IDR_NV  (*(uint32_t *)0x40020010u)            /* the same address, no volatile */
+
+uint32_t get_11_4(uint32_t reg)              { return (reg &gt;&gt; 4) &amp; 0xFFu; }
+uint32_t set_11_4(uint32_t reg, uint32_t v)  { return (reg &amp; ~(0xFFu &lt;&lt; 4)) | ((v &lt;&lt; 4) &amp; (0xFFu &lt;&lt; 4)); }
+
+void led_on_rmw(void)   { GPIOA_ODR |= 1u &lt;&lt; 5; }
+void led_on_bsrr(void)  { GPIOA_BSRR = 1u &lt;&lt; 5; }
+
+void wait_pin_nv(void) { while ((GPIOA_IDR_NV &amp; (1u &lt;&lt; 5)) == 0) { } }
+void wait_pin(void)    { while ((GPIOA_IDR &amp; (1u &lt;&lt; 5)) == 0) { } }
+
+int      sar(int x)                    { return x &gt;&gt; 1; }
+uint32_t shr(uint32_t x)               { return x &gt;&gt; 1; }
+uint32_t shl(uint32_t x, uint32_t n)   { return x &lt;&lt; n; }
+
+uint32_t clear_low(uint32_t x)  { return x &amp; (x - 1); }
+uint32_t keep_low(uint32_t x)   { return x &amp; -x; }
+
+uint32_t rev_loop(uint32_t n)
+{
+    uint32_t r = 0;
+    for (int i = 0; i &lt; 32; i++) {
+        r = (r &lt;&lt; 1) | (n &amp; 1u);
+        n &gt;&gt;= 1;
+    }
+    return r;
+}
+
+uint32_t swap_bytes(uint32_t x)
+{
+    return (x &gt;&gt; 24) | ((x &gt;&gt; 8) &amp; 0x0000FF00u) | ((x &lt;&lt; 8) &amp; 0x00FF0000u) | (x &lt;&lt; 24);
+}
+
+uint8_t swap_nibbles(uint8_t b) { return (uint8_t)((b &gt;&gt; 4) | (b &lt;&lt; 4)); }</code></pre></figure>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>clang --target=thumbv7em-none-eabi -mcpu=cortex-m4 -mfloat-abi=soft -O2 -S m4.c -o build/m4.s
+grep -A3 -E '^(get_11_4|set_11_4|rev_loop|swap_bytes):' build/m4.s
+grep -A12 '^wait_pin_nv:' build/m4.s</code></pre></figure>
+  <p>Now make one edit of your own: remove <code>volatile</code> from <code>GPIOA_ODR</code>, regenerate, and look at <code>led_on_rmw</code>. Does the read still happen? Write down what you see.</p>
+
+  <h3 class="sub">Part D: save your work</h3>
+  <figure class="cb term"><figcaption><span>Terminal</span><button class="copy" type="button">Copy</button></figcaption><pre><code>cd ~/embedded-portfolio
+git add .
+git commit -m "Day 2: bit ops, shifts, register fields, reverse bits, counting bits, missing number"</code></pre></figure>
+</section>
+
+<section id="d2-explain" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-explain" data-tick="explain"> Done</label>
+    <div class="eyebrow">Step 5 · 20 minutes</div>
+    <h2>Answer these out loud</h2>
+  </div>
+  <p>Say your answer first, as if an interviewer just asked it. Then open the model answer and compare. Keep each answer under a minute. Record yourself on at least two of them.</p>
+  <div class="qa">
+    <details><summary>Why is 1 &lt;&lt; 31 on an int a problem? How do you write it safely?</summary><div class="ans">
+      <p>"A plain <code>1</code> is a signed 32-bit <code>int</code>, and bit 31 is its sign bit. <code>1 &lt;&lt; 31</code> asks for 2<sup>31</sup>, which is one more than <code>INT_MAX</code>, so in C it's undefined behavior. UBSan reports it as 'left shift of 1 by 31 places cannot be represented in type int'. Even when the compiler gives the bit pattern you expect, the value is negative, so if you put it in a 64-bit variable it's sign-extended. I've seen it: <code>uint64_t m = 1 &lt;&lt; 31</code> gave <code>0xFFFFFFFF80000000</code>, 33 bits set instead of one.</p>
+      <p>The safe spelling is <code>1u &lt;&lt; 31</code>: unsigned, no sign bit, well defined, and it widens with zeros. For a 64-bit mask, <code>1ull &lt;&lt; n</code> or <code>UINT64_C(1) &lt;&lt; n</code>. Two related rules: the shift count must be below the type's width, so <code>1u &lt;&lt; 32</code> is also UB, and I do all bit work on unsigned fixed-width types."</p>
+    </div></details>
+    <details><summary>Extract bits [11:4] of a 32-bit register in one expression.</summary><div class="ans">
+      <p>"<code>(reg &gt;&gt; 4) &amp; 0xFFu</code>. Shift right by the low bit number so bit 4 lands at bit 0, then mask with the field width, which is 11 − 4 + 1 = 8 bits, so <code>0xFF</code>. An equivalent form is <code>(reg &amp; 0x00000FF0u) &gt;&gt; 4</code>. <code>reg</code> should be <code>uint32_t</code> so the shift is logical. On a Cortex-M4 the compiler turns that into a single <code>ubfx r0, r0, #4, #8</code>. For <code>0x12345678</code> the result is <code>0x67</code>.</p>
+      <p>Then I'd mention the write: clear with <code>reg &amp; ~(0xFFu &lt;&lt; 4)</code>, OR in <code>(val &lt;&lt; 4) &amp; (0xFFu &lt;&lt; 4)</code>. That's a read-modify-write, which isn't atomic, so if an interrupt touches the same register I use a set/clear register or mask interrupts around it."</p>
+    </div></details>
+    <details><summary>How does hardware popcount differ from the software loop?</summary><div class="ans">
+      <p>"The loop tests one bit per step, so it takes up to 32 steps and has a branch each time. A hardware popcount is one instruction with a fixed, short delay. Whether you get it depends on the target and the flags, not on the C source. I checked three cases."</p>
+      <figure class="cb code"><figcaption><span>pop.c, compiled three ways</span></figcaption><pre><code>int pop_builtin(uint32_t x) { return __builtin_popcount(x); }
+
+int pop_loop(uint32_t n)      /* one bit per step */
+{
+    int count = 0;
+    while (n != 0) { count += n &amp; 1u; n &gt;&gt;= 1; }
+    return count;
+}</code></pre></figure>
+      <p>"On x86 with POPCNT allowed, the builtin is one instruction:"</p>
+      <figure class="cb asm"><figcaption><span>x86-64, clang -O2 -mpopcnt: __builtin_popcount</span></figcaption><pre><code>_pop_builtin:
+    pushq %rbp
+    movq  %rsp, %rbp
+    popcntl %edi, %eax      # the whole count, one instruction
+    popq  %rbp
+    retq</code></pre></figure>
+      <p>"The plain loop stays a loop, even with POPCNT allowed:"</p>
+      <figure class="cb asm"><figcaption><span>x86-64, clang -O2 -mpopcnt: the shift loop</span></figcaption><pre><code>_pop_loop:
+    pushq %rbp
+    movq  %rsp, %rbp
+    xorl  %eax, %eax        # count = 0
+    testl %edi, %edi
+    je    LBB1_3
+    movl  %edi, %ecx
+LBB1_2:
+    movl  %edi, %edx
+    andl  $1, %edx          # n &amp; 1
+    addl  %edx, %eax        # count += it
+    shrl  %ecx              # n &gt;&gt;= 1
+    cmpl  $1, %edi
+    movl  %ecx, %edi
+    ja    LBB1_2            # go round again
+LBB1_3:
+    popq  %rbp
+    retq</code></pre></figure>
+      <p>"Interesting detail: clang does recognize Kernighan's <code>n &amp;= n - 1</code> loop and turns it into <code>popcntl</code> too. Without <code>-mpopcnt</code>, Apple clang can't assume the CPU has the instruction, so the builtin becomes the branch-free parallel bit count from Day 1, the one with <code>0x55555555</code>, <code>0x33333333</code> and the multiply by <code>0x01010101</code>."</p>
+      <figure class="cb asm"><figcaption><span>Cortex-M4 -O2: __builtin_popcount. There is no popcount instruction, so this is the parallel count</span></figcaption><pre><code>pop_builtin:
+    mov.w r1, #1431655765        @ 0x55555555
+    and.w r1, r1, r0, lsr #1
+    subs  r0, r0, r1             @ counts per 2 bits
+    mov.w r1, #858993459         @ 0x33333333
+    and.w r1, r1, r0, lsr #2
+    bic   r0, r0, #-858993460    @ &amp; 0x33333333
+    add   r0, r1                 @ counts per 4 bits
+    add.w r0, r0, r0, lsr #4
+    bic   r0, r0, #-252645136    @ &amp; 0x0F0F0F0F, counts per byte
+    mov.w r1, #16843009          @ 0x01010101
+    muls  r0, r1, r0             @ add the 4 bytes into the top byte
+    lsrs  r0, r0, #24
+    bx    lr</code></pre></figure>
+      <p>"On the Cortex-M4 there's no popcount instruction at all. ARMv7-M doesn't have one. So the builtin gives 12 instructions plus the return, with no branches and the same time for every input. That's still much better than the loop, which the compiler only unrolled. I measured it on my Mac:"</p>
+      <figure class="cb code"><figcaption><span>bench.c</span><button class="copy" type="button">Copy</button></figcaption><pre><code>#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+__attribute__((noinline)) static int pop_loop(uint32_t n)
+{
+    int count = 0;
+    while (n != 0) {
+        count += n &amp; 1u;
+        n &gt;&gt;= 1;
+    }
+    return count;
+}
+
+__attribute__((noinline)) static int pop_builtin(uint32_t n)
+{
+    return __builtin_popcount(n);
+}
+
+static double run(int (*f)(uint32_t), unsigned long long *sum)
+{
+    enum { N = 50000000 };
+    uint32_t x = 12345u;
+    clock_t t = clock();
+    for (int i = 0; i &lt; N; i++) {
+        x = x * 1664525u + 1013904223u;      /* a cheap stream of varied numbers */
+        *sum += (unsigned long long)f(x);
+    }
+    return (double)(clock() - t) / CLOCKS_PER_SEC * 1e9 / N;
+}
+
+int main(void)
+{
+    unsigned long long a = 0, b = 0;
+    double tl = run(pop_loop, &amp;a), tb = run(pop_builtin, &amp;b);
+    printf("shift loop:          %.2f ns per call\n", tl);
+    printf("__builtin_popcount:  %.2f ns per call\n", tb);
+    printf("same answers: %s\n", a == b ? "yes" : "NO");
+    return 0;
+}</code></pre></figure>
+      <figure class="cb out"><figcaption><span>One run on your Mac at build time (times vary run to run)</span></figcaption><pre><code>$ clang -O2 bench.c          # no POPCNT allowed
+shift loop:          31.70 ns per call
+__builtin_popcount:  2.73 ns per call
+same answers: yes
+
+$ clang -O2 -mpopcnt bench.c # POPCNT allowed
+shift loop:          29.57 ns per call
+__builtin_popcount:  2.10 ns per call
+same answers: yes</code></pre></figure>
+      <p>"So the tradeoffs are: the loop costs time that depends on the input. The parallel count costs a fixed dozen instructions. A table costs flash. The instruction costs nothing but needs the right target flags, and if you ship a binary with <code>-mpopcnt</code> to a CPU without it, the program crashes with an illegal instruction. On an MCU I use <code>__builtin_popcount</code> and let the compiler pick the best code for the core."</p>
+    </div></details>
+    <details><summary>What does volatile do, and what does it not do?</summary><div class="ans"><p>"It tells the compiler that every access to that object has an effect it can't see, so each read and write in the source must really happen, at that width, and in source order relative to other volatile accesses. Without it, a polling loop on a status register can compile to one read and a jump to itself; I've seen that on Cortex-M4 at <code>-O2</code>. What it doesn't do: it doesn't make an access atomic, it doesn't disable interrupts, it doesn't order ordinary memory accesses around it, and it isn't a lock between cores. For those you need atomics, barriers like <code>dmb</code>, or a critical section."</p></div></details>
+    <details><summary>Why is a read-modify-write on a register not atomic? How do you fix it?</summary><div class="ans"><p>"<code>reg |= bit</code> is three instructions on Arm: <code>ldr</code>, <code>orr</code>, <code>str</code>. If an interrupt runs between the load and the store and changes another bit of the same register, the store writes back the stale copy and erases that change. The fixes, in the order I'd try them: use the peripheral's set/clear register, like STM32's BSRR, which is a single store with no read. On Cortex-M3 or M4, use the bit-band alias, so one bit has its own address and the bus does the update in one step. Otherwise, save PRIMASK, disable interrupts for those few instructions, and restore it. For shared flags in RAM, use C11 atomics, which compile to <code>ldrex</code>/<code>strex</code> retry loops on Cortex-M4."</p></div></details>
+    <details><summary>What is bit-banding?</summary><div class="ans"><p>"A Cortex-M3 and M4 feature where each bit in the first megabyte of SRAM and of the peripheral region is mapped to its own 32-bit word in an alias region. The address is alias base plus byte offset times 32 plus bit number times 4. For GPIOA ODR bit 5 on an STM32F4 that's <code>0x42400294</code>. Writing 1 or 0 there changes only that bit, and the bus does the read-modify-write in a way the CPU can't interrupt. It's optional, and it's not on M0, M0+, M7 or M33, so portable code shouldn't rely on it."</p></div></details>
+    <details><summary>Is right-shifting a negative number arithmetic or logical?</summary><div class="ans"><p>"In C it's implementation-defined: each compiler must choose one and document it. gcc and clang use arithmetic shift, so copies of the sign bit come in. I checked that −8 as an <code>int8_t</code> is <code>1111 1000</code> and shifting gives <code>1111 1100</code>, which is −4, and on Cortex-M4 the compiler emits <code>asrs</code> for signed and <code>lsrs</code> for unsigned. Since C++20, C++ requires arithmetic shift. But I avoid relying on it: bit manipulation goes on unsigned types, and if I need division I write division, because <code>-7 &gt;&gt; 1</code> is −4 while <code>-7 / 2</code> is −3."</p></div></details>
+    <details><summary>What happens if you shift a 32-bit value by 32?</summary><div class="ans"><p>"It's undefined behavior, for signed and unsigned types alike. Hardware disagrees, which is why the standard won't pick an answer: x86 uses only the bottom 5 bits of the count, so <code>1u &lt;&lt; 32</code> gave 1 on my Mac, while Arm's register shift uses the bottom 8 bits and gives 0. The classic place it bites is <code>(1u &lt;&lt; width) - 1</code> for a field that can be 32 bits wide. I either special-case 32 or build the mask by shifting all ones right, like <code>0xFFFFFFFFu &gt;&gt; (32 - width)</code> for widths 1 to 32."</p></div></details>
+    <details><summary>Write set, clear, toggle and test of bit n.</summary><div class="ans"><p>"Set: <code>r |= 1u &lt;&lt; n</code>. Clear: <code>r &amp;= ~(1u &lt;&lt; n)</code>. Toggle: <code>r ^= 1u &lt;&lt; n</code>. Test: <code>(r &gt;&gt; n) &amp; 1u</code>, or <code>(r &amp; (1u &lt;&lt; n)) != 0</code>. Two traps I watch for: testing with <code>== 1</code>, which only works for bit 0 because the AND keeps the place value, and leaving out parentheses, because <code>==</code> binds tighter than <code>&amp;</code>. Clang warns about the second one with <code>-Wall</code>. And it's always <code>1u</code>, never <code>1</code>, for the reason we just covered."</p></div></details>
+    <details><summary>What does x &amp; -x give you, and where is it used?</summary><div class="ans"><p>"It keeps only the lowest set bit. For <code>0101 1000</code> it gives <code>0000 1000</code>. It works because <code>-x</code> is <code>~x + 1</code>: below the lowest 1, everything matches and is zero, and above it every bit is inverted, so the AND clears it. Its partner <code>x &amp; (x - 1)</code> clears the lowest set bit. Together they let you walk only the set bits of a mask, like pending interrupts or ready tasks in a scheduler. <code>x &amp; -x</code> is also the core step of a Fenwick tree. I use it on unsigned values, because <code>-INT_MIN</code> overflows."</p></div></details>
+    <details><summary>How would you reverse the bits of a 32-bit word quickly on a Cortex-M4?</summary><div class="ans"><p>"Cortex-M3 and M4 have <code>rbit</code>, which does it in one instruction, and CMSIS exposes it as <code>__RBIT</code>. I checked that clang turns a plain 32-step loop into <code>rbit</code> at <code>-O2</code>. Without that instruction, I'd use the five-step swap: halves, bytes, nibbles, pairs, bits, each a mask and two shifts. Or a 256-byte lookup table if flash is cheap and the core is slow at shifts. For bytes rather than bits, it's <code>rev</code>, the byte swap, which is what you need for endianness conversion."</p></div></details>
+    <details><summary>Macro or static inline function for register field access?</summary><div class="ans"><p>"I prefer <code>static inline</code> functions. They check argument types, they evaluate each argument exactly once, so <code>SET_FIELD(regs[i++], ...)</code> can't silently do two increments, and they're easier to step through in a debugger. At <code>-O2</code> they compile to the same <code>bfi</code> or <code>ubfx</code> instruction as the macro. Macros still make sense when I need the result as a compile-time constant, like a mask in a <code>case</code> label or a static initializer. Whichever I use, everything is parenthesized, unsigned, and the field width is checked in debug builds."</p></div></details>
+  </div>
+</section>
+
+<section id="d2-quiz" class="block">
+  <div class="block-head">
+    <label class="tick"><input type="checkbox" id="d2-tick-quiz" data-tick="quiz"> Done</label>
+    <div class="eyebrow">Step 6 · 10 minutes</div>
+    <h2>Predict the output</h2>
+  </div>
+  <p>Write your answer before opening each one. Every answer was run on your Mac. Assume the needed headers are included.</p>
+  <div class="quiz">
+    <div class="q"><div class="q-n">Q1</div><pre class="snip"><code>uint8_t r = 0x5A;
+r |= 1u &lt;&lt; 7;
+printf("0x%X", r);</code></pre><details><summary>Answer</summary><p><b>0xDA.</b> <code>0101 1010</code> with bit 7 set is <code>1101 1010</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q2</div><pre class="snip"><code>uint32_t r = 0xFF;
+r &amp;= ~(1u &lt;&lt; 3);
+printf("0x%X", r);</code></pre><details><summary>Answer</summary><p><b>0xF7.</b> <code>1111 1111</code> with bit 3 cleared is <code>1111 0111</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q3</div><pre class="snip"><code>printf("%d", (0x10 &amp; (1u &lt;&lt; 4)) == 1);</code></pre><details><summary>Answer</summary><p><b>0.</b> Bit 4 is set, but the AND gives 16, its place value, and 16 is not 1. Use <code>!= 0</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q4</div><pre class="snip"><code>uint64_t m = 1 &lt;&lt; 31;
+printf("%llX", (unsigned long long)m);</code></pre><details><summary>Answer</summary><p><b>FFFFFFFF80000000</b> with clang on your Mac, and the line is UB. The negative <code>int</code> was sign-extended into 64 bits. <code>1u &lt;&lt; 31</code> gives <code>80000000</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q5</div><pre class="snip"><code>int x = -16;
+printf("%d %u", x &gt;&gt; 2, (unsigned)x &gt;&gt; 28);</code></pre><details><summary>Answer</summary><p><b>−4 15.</b> Arithmetic shift keeps the sign: −16 / 4. As unsigned, the top 4 bits of <code>0xFFFFFFF0</code> are <code>1111</code>, which is 15.</p></details></div>
+    <div class="q"><div class="q-n">Q6</div><pre class="snip"><code>uint32_t x = 0x58;
+printf("0x%X 0x%X", x &amp; (x - 1), x &amp; -x);</code></pre><details><summary>Answer</summary><p><b>0x50 0x8.</b> <code>0101 1000</code>: removing the lowest 1 leaves <code>0101 0000</code>, and keeping only it gives <code>0000 1000</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q7</div><pre class="snip"><code>uint32_t r = 0xABCD1234;
+printf("0x%X", (r &gt;&gt; 8) &amp; 0xFFF);</code></pre><details><summary>Answer</summary><p><b>0xD12.</b> This reads bits [19:8], which are 12 bits, or three hex digits: the 3rd, 4th and 5th digits from the right.</p></details></div>
+    <div class="q"><div class="q-n">Q8</div><pre class="snip"><code>uint8_t b = 0x81;
+printf("0x%X", (uint8_t)~b &gt;&gt; 1);</code></pre><details><summary>Answer</summary><p><b>0x3F.</b> <code>~b</code> is <code>0xFFFFFF7E</code> as an int. The cast keeps <code>0x7E</code>, which is <code>0111 1110</code>, and shifting right gives <code>0011 1111</code>.</p></details></div>
+    <div class="q"><div class="q-n">Q9</div><pre class="snip"><code>printf("%d", __builtin_popcount(0xF0F0u)
+           + __builtin_ctz(0x50u));</code></pre><details><summary>Answer</summary><p><b>12.</b> <code>0xF0F0</code> has 8 ones. <code>0x50</code> is <code>0101 0000</code>, so it has 4 zeros below its lowest 1. 8 + 4 = 12.</p></details></div>
+    <div class="q"><div class="q-n">Q10</div><pre class="snip"><code>uint32_t v = 0;
+v = (v &amp; ~0x0F00u) | ((0x1Fu &lt;&lt; 8) &amp; 0x0F00u);
+printf("0x%X", v);</code></pre><details><summary>Answer</summary><p><b>0xF00.</b> The field [11:8] is 4 bits wide. <code>0x1F</code> needs 5 bits, so the mask cut it to <code>0xF</code>. No error, no warning: the caller's bug is silently hidden.</p></details></div>
+  </div>
+</section>
+
+<section id="d2-finish" class="block finish">
+  <div class="eyebrow">Finish</div>
+  <h2>You are done with Day 2 when you can</h2>
+  <ul class="exit">
+    <li>Write set, clear, toggle and test from memory, and explain why testing with <code>== 1</code> is wrong.</li>
+    <li>Say what comes in on the left for a logical and an arithmetic right shift, and which one clang uses for a negative <code>int</code>.</li>
+    <li>Explain why <code>1 &lt;&lt; 31</code> and <code>1u &lt;&lt; 32</code> are undefined, and write the safe versions.</li>
+    <li>Work out <code>x &amp; (x - 1)</code> and <code>x &amp; -x</code> in binary for any byte.</li>
+    <li>Write the read and the write of bits [11:4], and name the Cortex-M4 instructions they become.</li>
+    <li>Explain what volatile does and does not do, and give three fixes for a read-modify-write race.</li>
+    <li>Solve Reverse Bits, Counting Bits and Missing Number from memory, with their edge cases.</li>
+  </ul>
+  <div class="done-row">
+    <label class="done-box" for="dayDone"><input type="checkbox" id="dayDone"> Mark Day 2 done in my plan</label>
+    <a class="next-link" href="#top" data-open="plan">Back to the plan</a>
+  </div>
+  <p class="tomorrow"><b>Tomorrow, Day 3:</b> Bit manipulation II. XOR tricks, sign extension, Gray code, parity, rounding up to an alignment with <code>(x + a - 1) &amp; ~(a - 1)</code>, and endianness. You will reuse <code>bswap32</code> from today, so keep <code>fields.h</code> handy.</p>
+</section>
+
+</main>
+
+</div>
 <script>
 const WEEKS=[
  {n:1,title:"C, rebuilt from the metal",goal:"Re-learn how C maps to machine code and become fluent with bits, the most common low-level screening topic."},
@@ -1322,7 +2756,7 @@ const WEEKS=[
 const D=[
 /* ---------- Week 1 ---------- */
 {w:1,lesson:1,t:"How C becomes machine code",l:"Compilation stages (preprocess, compile, assemble, link) with gcc -E, -S, -c and objdump. Type sizes, two's complement, integer promotion and the usual arithmetic conversions.",r:"Everything you need is in the lesson. No book required.",c:["LC 191 Number of 1 Bits","LC 231 Power of Two","LC 136 Single Number"],b:"Set up gcc/clang with sanitizers, Anki and the GitHub repo. Compile a 20-line program and read its assembly on godbolt at -O0 and -O2.",e:["What does (unsigned)-1 > 0 evaluate to, and why?","Signed overflow is undefined. What can the optimizer do with that?","int, long and pointer sizes on ILP32 vs LP64."]},
-{w:1,t:"Bit manipulation I",l:"Set, clear, toggle and test bits. Masks, logical vs arithmetic shift, why shifting into the sign bit is a trap. x & (x-1) and x & -x. Read-modify-write on a register field.",r:"Hacker's Delight ch. 2 · Bit Twiddling Hacks",c:["LC 190 Reverse Bits","LC 338 Counting Bits","LC 268 Missing Number"],b:"Write SET_FIELD(reg, mask, shift, val) and GET_FIELD macros, a nibble swap and a 32-bit byte swap. Test edge values.",e:["Why is 1 << 31 on an int a problem? How do you write it safely?","Extract bits [11:4] of a 32-bit register in one expression.","How does hardware popcount differ from the software loop?"]},
+{w:1,lesson:2,t:"Bit manipulation I",l:"Set, clear, toggle and test bits. Masks, logical vs arithmetic shift, why shifting into the sign bit is a trap. x & (x-1) and x & -x. Read-modify-write on a register field.",r:"Everything you need is in the lesson. No book required.",c:["LC 190 Reverse Bits","LC 338 Counting Bits","LC 268 Missing Number"],b:"Write SET_FIELD(reg, mask, shift, val) and GET_FIELD macros, a nibble swap and a 32-bit byte swap. Test edge values.",e:["Why is 1 << 31 on an int a problem? How do you write it safely?","Extract bits [11:4] of a 32-bit register in one expression.","How does hardware popcount differ from the software loop?"]},
 {w:1,t:"Bit manipulation II",l:"XOR tricks, sign extension, Gray code, parity, rounding up to an alignment with (x + a - 1) & ~(a - 1), endianness detection, bit arrays.",r:"Hacker's Delight ch. 2–3",c:["LC 371 Sum of Two Integers","LC 137 Single Number II","LC 260 Single Number III","LC 89 Gray Code"],b:"Sign-extend a 12-bit ADC sample to int16_t. Build a bitset with set, clear, test and find-first-zero.",e:["Little vs big endian, and what network byte order is.","Detect endianness at runtime and at compile time.","Why use Gray code for encoders and FIFO pointers?"]},
 {w:1,t:"Pointers and arrays, done properly",l:"Pointer arithmetic, array decay, pointer-to-array vs array-of-pointers, multi-dimensional arrays, const placement, void*, function pointers and callback tables, restrict.",r:"K&R ch. 5 · Expert C Programming ch. 4 and 9",c:["LC 238 Product of Array Except Self","LC 48 Rotate Image","LC 54 Spiral Matrix"],b:"Write a command dispatcher using a table of {name, function pointer} and a qsort comparator for an array of structs.",e:["Decode int (*(*fp)(int))[10] in words.","sizeof(arr) inside the declaring function vs inside a callee.","const int *p vs int *const p vs const int *const p."]},
 {w:1,t:"The memory map of a C program",l:"text, data, bss, stack and heap. Storage classes and linkage. Stack frames and the ARM AAPCS (r0–r3 arguments, r0 return). Alignment, padding, offsetof, #pragma pack.",r:"CS:APP 3.7 · ARM AAPCS summary",c:["LC 1 Two Sum","LC 49 Group Anagrams","LC 128 Longest Consecutive Sequence"],b:"Predict sizeof for five tricky structs, then verify. Reorder fields to minimize padding and measure the saving.",e:["Where do a static local, a string literal and a const global live?","Why can an unaligned access through a packed struct fault on Cortex-M0?","What does the stack frame of a non-leaf ARM function contain?"]},
@@ -1453,7 +2887,7 @@ function render(){
       const code=d.c.length?`<ul>${d.c.map(x=>`<li class="lc">${x}</li>`).join("")}</ul>`:'<p class="res">No new problems today. Use the time for the build and the out-loud practice.</p>';
       a.innerHTML=`<div class="day-top"><input type="checkbox" id="cb${n}" aria-label="Mark day ${n} done" ${isDone?"checked":""}><span class="addr">D${String(n).padStart(2,"0")} · 0x${n.toString(16).toUpperCase().padStart(2,"0")}<small>${dateFor(d.i)}</small></span><h3>${d.t}</h3><div class="tags">${tags}</div></div>
       <div class="day-body">
-        <div class="cell"><h4>Learn</h4><p>${d.l}</p><p class="res">${d.r}</p>${d.lesson?`<a class="lesson-link" href="#lesson-1" data-open="1">Open the full lesson</a>`:""}</div>
+        <div class="cell"><h4>Learn</h4><p>${d.l}</p><p class="res">${d.r}</p>${d.lesson?`<a class="lesson-link" href="#lesson-${d.lesson}" data-open="${d.lesson}">Open the full lesson</a>`:""}</div>
         <div class="cell"><h4>Code</h4>${code}</div>
         <div class="cell"><h4>Build</h4><p>${d.b}</p></div>
         <div class="cell"><h4>Explain out loud</h4><ul>${d.e.map(x=>`<li>${x}</li>`).join("")}</ul></div>
@@ -1482,6 +2916,8 @@ document.getElementById("qa").innerHTML=QA.map(([q,a])=>`<details><summary>${q}<
 render();applyHide();
 </script>
 <script>
+(function(R){
+
 (function(){
   var store={
     get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
@@ -1489,7 +2925,7 @@ render();applyHide();
   };
 
   // Copy buttons
-  document.querySelectorAll(".copy").forEach(function(btn){
+  R.querySelectorAll(".copy").forEach(function(btn){
     btn.addEventListener("click",function(){
       var code=btn.closest("figure").querySelector("code");
       var flash=function(t){btn.textContent=t;setTimeout(function(){btn.textContent="Copy"},1400)};
@@ -1499,7 +2935,7 @@ render();applyHide();
   });
 
   // 8-bit register
-  var host=document.getElementById("regBits"),value=0xFA,PLACES=[-128,64,32,16,8,4,2,1];
+  var host=R.querySelector("#"+"regBits"),value=0xFA,PLACES=[-128,64,32,16,8,4,2,1];
   function paint(){
     host.querySelectorAll(".bit").forEach(function(b){
       var on=(value>>Number(b.dataset.bit))&1;
@@ -1507,10 +2943,10 @@ render();applyHide();
       b.querySelector("b").textContent=on;
     });
     var hex=function(v){return "0x"+v.toString(16).toUpperCase().padStart(2,"0")};
-    document.getElementById("regHex").textContent=hex(value);
-    document.getElementById("regU").textContent=value;
-    document.getElementById("regS").textContent=value>=128?value-256:value;
-    document.getElementById("regN").textContent=hex((~value+1)&0xFF);
+    R.querySelector("#"+"regHex").textContent=hex(value);
+    R.querySelector("#"+"regU").textContent=value;
+    R.querySelector("#"+"regS").textContent=value>=128?value-256:value;
+    R.querySelector("#"+"regN").textContent=hex((~value+1)&0xFF);
   }
   PLACES.forEach(function(place,i){
     var bit=7-i,b=document.createElement("button");
@@ -1524,13 +2960,13 @@ render();applyHide();
 
   // Step ticks, saved in this browser
   var ticks=store.get("p60.d1.ticks",{});
-  document.querySelectorAll("[data-tick]").forEach(function(c){
+  R.querySelectorAll("[data-tick]").forEach(function(c){
     var k=c.dataset.tick;c.checked=!!ticks[k];
     c.addEventListener("change",function(){if(c.checked)ticks[k]=1;else delete ticks[k];store.set("p60.d1.ticks",ticks)});
   });
 
   // Shares its record with the plan page
-  var done=store.get("p60.done",{}),box=document.getElementById("dayDone");
+  var done=store.get("p60.done",{}),box=R.querySelector("#"+"dayDone");
   box.checked=!!done[1];
   box.addEventListener("change",function(){
     done=store.get("p60.done",{});
@@ -1538,15 +2974,85 @@ render();applyHide();
     store.set("p60.done",done);
   });
 })();
+
+})(document.getElementById("lesson1"));
+</script>
+<script>
+(function(R){
+
+(function(){
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  };
+
+  // Copy buttons
+  R.querySelectorAll(".copy").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var code=btn.closest("figure").querySelector("code");
+      var flash=function(t){btn.textContent=t;setTimeout(function(){btn.textContent="Copy"},1400)};
+      var selectIt=function(){var r=document.createRange();r.selectNodeContents(code);var s=getSelection();s.removeAllRanges();s.addRange(r);flash("Selected")};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code.textContent).then(function(){flash("Copied")},selectIt)}else{selectIt()}
+    });
+  });
+
+  // 16-bit register: click bits, read x & (x - 1), x & -x and bits [11:4]
+  var host=R.querySelector("#"+"d2regBits"),START=0x1A58,value=START;
+  var hex=function(v,w){return "0x"+v.toString(16).toUpperCase().padStart(w,"0")};
+  var bin=function(v){return v.toString(2).padStart(16,"0").replace(/(....)(?=.)/g,"$1 ")};
+  function paint(){
+    host.querySelectorAll(".bit").forEach(function(b){
+      var on=(value>>Number(b.dataset.bit))&1;
+      b.setAttribute("aria-pressed",on?"true":"false");
+      b.querySelector("b").textContent=on;
+    });
+    R.querySelector("#"+"d2regBin").textContent=bin(value);
+    R.querySelector("#"+"d2regHex").textContent=hex(value,4);
+    R.querySelector("#"+"d2regClr").textContent=hex(value&(value-1)&0xFFFF,4);
+    R.querySelector("#"+"d2regLow").textContent=hex(value&(-value)&0xFFFF,4);
+    R.querySelector("#"+"d2regFld").textContent=hex((value>>4)&0xFF,2);
+  }
+  for(var bit=15;bit>=0;bit--)(function(bit){
+    var b=document.createElement("button");
+    b.type="button";b.className=bit>=4&&bit<=11?"bit fld":"bit";b.dataset.bit=bit;
+    b.setAttribute("aria-label","Bit "+bit+(bit>=4&&bit<=11?", inside field [11:4]":""));
+    b.innerHTML="<b>0</b><small>"+bit+"</small>";
+    b.addEventListener("click",function(){value^=(1<<bit);paint()});
+    host.appendChild(b);
+  })(bit);
+  R.querySelector("#"+"d2regStep").addEventListener("click",function(){value&=value-1;paint()});
+  R.querySelector("#"+"d2regReset").addEventListener("click",function(){value=START;paint()});
+  paint();
+
+  // Step ticks, saved in this browser
+  var ticks=store.get("p60.d2.ticks",{});
+  R.querySelectorAll("[data-tick]").forEach(function(c){
+    var k=c.dataset.tick;c.checked=!!ticks[k];
+    c.addEventListener("change",function(){if(c.checked)ticks[k]=1;else delete ticks[k];store.set("p60.d2.ticks",ticks)});
+  });
+
+  // Shares its record with the plan page
+  var done=store.get("p60.done",{}),box=R.querySelector("#"+"dayDone");
+  box.checked=!!done[2];
+  box.addEventListener("change",function(){
+    done=store.get("p60.done",{});
+    if(box.checked)done[2]=1;else delete done[2];
+    store.set("p60.done",done);
+  });
+})();
+
+})(document.getElementById("lesson2"));
 </script>
 <script>
 (function(){
-  var planV=document.getElementById("planView"),lesV=document.getElementById("lessonView");
+  var planV=document.getElementById("planView"),TITLES={"1": "How C Becomes Machine Code", "2": "Bits, Masks and Register Fields"};
+  function views(){return document.querySelectorAll(".lessonView")}
   function show(which){
     var lesson=which!=="plan";
-    planV.hidden=lesson;lesV.hidden=!lesson;
+    planV.hidden=lesson;
+    views().forEach(function(v){v.hidden=v.id!=="lesson"+which});
     if(!lesson){done=store.get("p60.done",{});render();applyHide()}
-    document.title=lesson?"Day 1 · How C Becomes Machine Code":"Sixty Days to Principal Embedded";
+    document.title=lesson?(TITLES[which]||"Lesson"):"Sixty Days to Principal Embedded";
     window.scrollTo(0,0);
   }
   document.addEventListener("click",function(ev){
@@ -1554,14 +3060,15 @@ render();applyHide();
     if(!a)return;
     ev.preventDefault();show(a.dataset.open);
   });
-  var h=(location.hash||"").slice(1);
-  if(h==="lesson-1"||(h&&lesV.querySelector("#"+CSS.escape(h)))){show("1");var t=document.getElementById(h);if(t)t.scrollIntoView()}
+  var h=(location.hash||"").slice(1),m=/^lesson-(\d+)$/.exec(h);
+  if(m&&TITLES[m[1]])show(m[1]);
+  else if(h){views().forEach(function(v){if(!m&&v.querySelector("#"+CSS.escape(h))){m=1;show(v.id.slice(6));var t=v.querySelector("#"+CSS.escape(h));if(t)t.scrollIntoView()}})}
 })();
 </script>
 <script>
 /* Where you are: first unfinished day, and the market panel. */
 (function(){
-  var LESSONS=[1];
+  var LESSONS=[1, 2];
   var panel=document.getElementById("resumePanel");
   function doneMap(){try{return JSON.parse(localStorage.getItem("p60.done")||"{}")}catch(e){return {}}}
   window.p60Resume=function(){
