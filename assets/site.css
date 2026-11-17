@@ -193,3 +193,6 @@ p { margin: 0; }
   .pt { font-size: 19px; }
   .email { font-size: 19px; padding: 14px 18px; }
 }
+
+#kaggle .meter { margin-top: auto; }
+#kaggle .bigfigs { margin-top: 0; }
